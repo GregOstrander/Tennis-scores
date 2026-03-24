@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Noah Tennis">
+<meta name="theme-color" content="#0A0F0D">
+<title>Noah · Match Tracker</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap');
+  :root {
+    --green:#00C853; --red:#FF1744; --amber:#FFB300; --purple:#AA00FF; --orange:#FF6D00;
+    --bg:#0A0F0D; --surface:#131A15; --surface2:#1C2620; --border:#2A3830;
+    --text:#E8F5E9; --muted:#6B8F71;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;max-width:430px;margin:0 auto;padding-bottom:40px;}
+
+  /* HEADER */
+  .header{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 14px;position:sticky;top:0;z-index:100;}
+  .header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+  .player-name{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;color:var(--green);}
+  .header-btns{display:flex;gap:6px;}
+  .hdr-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;padding:7px 11px;border-radius:8px;cursor:pointer;}
+  .hdr-btn:active{filter:brightness(1.3);}
+  .hdr-btn.danger{color:var(--red);border-color:#FF174440;}
+  .stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;}
+  .stat-box{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:5px 6px;text-align:center;}
+  .stat-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:600;}
+  .stat-value{font-family:'Bebas Neue',sans-serif;font-size:19px;line-height:1.1;margin-top:1px;}
+  .stat-value.green{color:var(--green);} .stat-value.red{color:var(--red);} .stat-value.amber{color:var(--amber);}
+
+  /* INSTALL BANNER */
+  .install-banner{margin:10px 14px 0;background:#001A3A;border:1px solid #2979FF;border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+  .install-banner.hidden{display:none;}
+  .install-text{font-size:11px;color:#82B1FF;font-weight:600;line-height:1.4;}
+  .install-dismiss{background:transparent;border:none;color:#2979FF;font-size:18px;cursor:pointer;padding:0 4px;flex-shrink:0;}
+
+  /* SCOREBOARD */
+  .scoreboard{margin:12px 14px 0;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  .sb-head{display:grid;grid-template-columns:90px 1fr 1fr 1fr 1fr;background:var(--surface2);border-bottom:1px solid var(--border);}
+  .sb-head>div{padding:6px 4px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);text-align:center;}
+  .sb-head>div:first-child{text-align:left;padding-left:12px;}
+  .sb-row{display:grid;grid-template-columns:90px 1fr 1fr 1fr 1fr;border-bottom:1px solid var(--border);align-items:center;min-height:50px;}
+  .sb-row:last-child{border-bottom:none;}
+  .sb-player{display:flex;align-items:center;gap:7px;padding:0 8px 0 12px;font-size:13px;font-weight:700;}
+  .serve-dot{width:9px;height:9px;border-radius:50%;background:var(--amber);flex-shrink:0;box-shadow:0 0 7px var(--amber);transition:opacity .2s;}
+  .serve-dot.hidden{opacity:0;}
+  .sb-cell{text-align:center;font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--text);padding:4px 2px;}
+  .sb-game-cell{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 6px;}
+  .adj-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);font-size:16px;font-weight:700;width:100%;padding:3px 0;border-radius:5px;cursor:pointer;line-height:1;font-family:'DM Sans',sans-serif;}
+  .adj-btn:active{filter:brightness(1.4);}
+  .adj-btn.plus{color:var(--green);border-color:#00C85340;}
+  .adj-btn.minus{color:var(--red);border-color:#FF174440;font-size:20px;}
+
+  /* GAME SCORE BAR */
+  .game-bar{margin:8px 14px 0;display:flex;gap:8px;align-items:center;}
+  .game-score-box{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;}
+  .game-score-label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.8px;}
+  .game-score-val{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--green);}
+  .new-game-btn{background:#003D1A;border:1px solid var(--green);color:var(--green);font-family:'DM Sans',sans-serif;font-weight:700;font-size:11px;padding:8px 11px;border-radius:10px;cursor:pointer;line-height:1.4;white-space:nowrap;}
+  .new-game-btn:active{filter:brightness(1.3);}
+
+  /* SET SCORE MINI PANELS */
+  .set-adj-row{margin:6px 14px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;}
+  .set-adj-panel{background:var(--surface);border:1px solid var(--border);border-radius:9px;overflow:hidden;}
+  .set-adj-title{font-size:9px;color:var(--muted);text-align:center;padding:4px 0;border-bottom:1px solid var(--border);font-weight:600;text-transform:uppercase;letter-spacing:.6px;}
+  .set-adj-inner{display:grid;grid-template-columns:1fr 1fr;}
+  .set-adj-col{border-right:1px solid var(--border);}
+  .set-adj-col:last-child{border-right:none;}
+  .set-adj-name{font-size:9px;color:var(--muted);text-align:center;padding:2px;font-weight:600;}
+  .set-adj-btns{display:flex;flex-direction:column;gap:2px;padding:3px;}
+
+  /* SERVER SETUP */
+  .server-setup{margin:8px 14px 0;background:#1A1500;border:1px solid var(--amber);border-radius:10px;padding:9px 14px;display:flex;justify-content:space-between;align-items:center;}
+  .server-label{font-size:11px;color:var(--amber);font-weight:600;text-transform:uppercase;letter-spacing:.8px;}
+  .server-btns{display:flex;gap:6px;}
+  .srv-btn{background:var(--surface2);border:1px solid var(--border);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;padding:6px 13px;border-radius:7px;cursor:pointer;}
+  .srv-btn.active{background:var(--amber);border-color:var(--amber);color:#0A0F0D;}
+  .srv-btn:active{filter:brightness(1.2);}
+
+  /* SET TABS */
+  .set-tabs{display:flex;gap:6px;padding:0 14px;margin-top:12px;}
+  .set-tab{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 4px;text-align:center;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;font-size:11px;color:var(--muted);transition:background .15s,border-color .15s,color .15s;}
+  .set-tab.active{background:var(--green);border-color:var(--green);color:#0A0F0D;}
+  .set-tab-num{font-family:'Bebas Neue',sans-serif;font-size:18px;display:block;line-height:1;margin-bottom:1px;}
+
+  /* SECTION */
+  .section{padding:12px 14px 0;}
+  .section-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);font-weight:600;margin-bottom:7px;}
+
+  /* SERVE PANEL */
+  .serve-panel{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  .serve-row{display:grid;grid-template-columns:70px 1fr 1fr 1fr;border-bottom:1px solid var(--border);}
+  .serve-row:last-child{border-bottom:none;}
+  .serve-name{display:flex;align-items:center;padding:0 10px;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;background:var(--surface2);border-right:1px solid var(--border);}
+  .serve-btn{border:none;background:transparent;padding:11px 4px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;color:var(--muted);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:2px;}
+  .serve-btn:last-child{border-right:none;}
+  .serve-btn:active{filter:brightness(1.3);}
+  .serve-btn.in{background:rgba(0,200,83,.15);color:var(--green);}
+  .serve-btn.out{background:rgba(255,23,68,.12);color:var(--red);}
+  .serve-btn.df{background:rgba(255,23,68,.2);color:var(--red);}
+  .serve-btn.stat{cursor:default;}
+  .btn-count{font-family:'Bebas Neue',sans-serif;font-size:18px;line-height:1;}
+  .btn-label{font-size:9px;}
+
+  /* POINT BUTTONS */
+  .btn-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+  .btn-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
+  .point-btn{border:none;border-radius:10px;padding:11px 6px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:filter .1s,transform .08s;}
+  .point-btn:active{filter:brightness(1.25);transform:scale(.97);}
+  .point-btn .count{font-family:'Bebas Neue',sans-serif;font-size:20px;line-height:1;}
+  .point-btn .lbl{font-size:10px;opacity:.85;}
+  .btn-w-fh,.btn-w-bh,.btn-w-vo,.btn-w-oh,.btn-w-dt{background:#003D1A;color:#5FFFAB;border:1px solid #00C853;}
+  .btn-w-sv{background:#004D20;color:#69FFBB;border:1px solid #00E676;}
+  .btn-ue-fh,.btn-ue-bh,.btn-ue-sv,.btn-ue-vo,.btn-ue-oh{background:#3D0009;color:#FF8A80;border:1px solid #FF1744;}
+  .btn-fe{background:#3D2800;color:#FFE57F;border:1px solid #FFB300;}
+  .btn-bw{background:#1A0033;color:#CF8FFF;border:1px solid #AA00FF;}
+  .btn-bl{background:#2A1500;color:#FFAB76;border:1px solid #FF6D00;}
+
+  /* SAVE INDICATOR */
+  .save-indicator{position:fixed;bottom:16px;right:16px;background:var(--surface);border:1px solid var(--green);border-radius:20px;padding:6px 12px;font-size:11px;font-weight:600;color:var(--green);opacity:0;transition:opacity .3s;pointer-events:none;z-index:200;}
+  .save-indicator.show{opacity:1;}
+
+  /* LOG */
+  .log-area{margin:12px 14px 0;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  .log-header{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-bottom:1px solid var(--border);}
+  .log-title{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);font-weight:600;}
+  .undo-btn{background:var(--surface2);border:1px solid var(--border);color:var(--amber);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;padding:5px 11px;border-radius:6px;cursor:pointer;}
+  .undo-btn:active{filter:brightness(1.3);}
+  .log-list{max-height:180px;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+  .log-item{display:flex;align-items:center;gap:9px;padding:8px 14px;border-bottom:1px solid var(--border);font-size:12px;}
+  .log-item:last-child{border-bottom:none;}
+  .log-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+  .log-dot.w{background:var(--green);} .log-dot.ue{background:var(--red);}
+  .log-dot.fe{background:var(--amber);} .log-dot.bw{background:var(--purple);}
+  .log-dot.bl{background:var(--orange);}
+  .log-text{flex:1;color:var(--text);}
+  .log-set{font-size:10px;color:var(--muted);font-weight:600;}
+
+  /* OVERLAYS */
+  .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;justify-content:center;align-items:flex-end;padding:16px;}
+  .overlay.open{display:flex;}
+  .summary-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;width:100%;max-width:420px;padding:20px;max-height:88vh;overflow-y:auto;}
+  .summary-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;color:var(--green);margin-bottom:14px;}
+  .summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}
+  .summary-stat{background:var(--surface2);border-radius:10px;padding:10px;}
+  .summary-stat .val{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;}
+  .summary-stat .val.g{color:var(--green);} .summary-stat .val.r{color:var(--red);}
+  .summary-stat .val.a{color:var(--amber);} .summary-stat .val.p{color:#CF8FFF;}
+  .summary-stat .lbl{font-size:11px;color:var(--muted);margin-top:3px;font-weight:600;}
+  .close-btn{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:14px;border-radius:10px;cursor:pointer;}
+  .close-btn:active{filter:brightness(1.2);}
+
+  /* CONFIRM DIALOG */
+  .confirm-card{background:var(--surface);border:1px solid var(--red);border-radius:16px;width:100%;max-width:380px;padding:24px;text-align:center;}
+  .confirm-title{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--red);margin-bottom:8px;}
+  .confirm-body{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.5;}
+  .confirm-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .confirm-yes{background:#3D0009;border:1px solid var(--red);color:var(--red);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;padding:14px;border-radius:10px;cursor:pointer;}
+  .confirm-no{background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;padding:14px;border-radius:10px;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <span class="player-name">NOAH</span>
+    <div class="header-btns">
+      <button class="hdr-btn" onclick="openSummary()">Summary</button>
+      <button class="hdr-btn danger" onclick="confirmReset()">New Match</button>
+    </div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-label">Winners</div><div class="stat-value green" id="hdrWinners">0</div></div>
+    <div class="stat-box"><div class="stat-label">Unforced Err</div><div class="stat-value red" id="hdrUE">0</div></div>
+    <div class="stat-box"><div class="stat-label">W:UE</div><div class="stat-value amber" id="hdrRatio">—</div></div>
+  </div>
+</div>
+
+<!-- INSTALL BANNER (iOS) -->
+<div class="install-banner" id="installBanner">
+  <div class="install-text">📲 Add to Home Screen: tap <strong>Share</strong> → <strong>Add to Home Screen</strong> so it works like an app and never resets.</div>
+  <button class="install-dismiss" onclick="dismissInstall()">✕</button>
+</div>
+
+<!-- SCOREBOARD -->
+<div class="scoreboard">
+  <div class="sb-head">
+    <div></div><div>Set 1</div><div>Set 2</div><div>Set 3</div><div>Game pts</div>
+  </div>
+  <div class="sb-row">
+    <div class="sb-player"><div class="serve-dot" id="noahDot"></div>Noah</div>
+    <div class="sb-cell" id="noahS1">0</div>
+    <div class="sb-cell" id="noahS2">0</div>
+    <div class="sb-cell" id="noahS3">0</div>
+    <div class="sb-game-cell">
+      <button class="adj-btn plus"  onclick="adjGame('noah',1)">+</button>
+      <button class="adj-btn minus" onclick="adjGame('noah',-1)">−</button>
+    </div>
+  </div>
+  <div class="sb-row">
+    <div class="sb-player"><div class="serve-dot hidden" id="oppDot"></div>Opp</div>
+    <div class="sb-cell" id="oppS1">0</div>
+    <div class="sb-cell" id="oppS2">0</div>
+    <div class="sb-cell" id="oppS3">0</div>
+    <div class="sb-game-cell">
+      <button class="adj-btn plus"  onclick="adjGame('opp',1)">+</button>
+      <button class="adj-btn minus" onclick="adjGame('opp',-1)">−</button>
+    </div>
+  </div>
+</div>
+
+<!-- GAME SCORE + END GAME -->
+<div class="game-bar">
+  <div class="game-score-box">
+    <span class="game-score-label">Game Score</span>
+    <span class="game-score-val" id="gameScoreVal">0 – 0</span>
+  </div>
+  <button class="new-game-btn" onclick="newGame()">✓ End<br>Game</button>
+</div>
+
+<!-- SET SCORE ADJUSTERS -->
+<div class="set-adj-row">
+  <div class="set-adj-panel">
+    <div class="set-adj-title">Set 1 Games</div>
+    <div class="set-adj-inner">
+      <div class="set-adj-col"><div class="set-adj-name">Noah</div><div class="set-adj-btns"><button class="adj-btn plus" onclick="adjSet(0,'noah',1)">+</button><button class="adj-btn minus" onclick="adjSet(0,'noah',-1)">−</button></div></div>
+      <div class="set-adj-col"><div class="set-adj-name">Opp</div><div class="set-adj-btns"><button class="adj-btn plus" onclick="adjSet(0,'opp',1)">+</button><button class="adj-btn minus" onclick="adjSet(0,'opp',-1)">−</button></div></div>
+    </div>
+  </div>
+  <div class="set-adj-panel">
+    <div class="set-adj-title">Set 2 Games</div>
+    <div class="set-adj-inner">
+      <div class="set-adj-col"><div class="set-adj-name">Noah</div><div class="set-adj-btns"><button class="adj-btn plus" onclick="adjSet(1,'noah',1)">+</button><button class="adj-btn minus" onclick="adjSet(1,'noah',-1)">−</button></div></div>
+      <div class="set-adj-col"><div class="set-adj-name">Opp</div><div class="set-adj-btns"><button class="adj-btn plus" onclick="adjSet(1,'opp',1)">+</button><button class="adj-btn minus" onclick="adjSet(1,'opp',-1)">−</button></div></div>
+    </div>
+  </div>
+  <div class="set-adj-panel">
+    <div class="set-adj-title">Set 3 Games</div>
+    <div class="set-adj-inner">
+      <div class="set-adj-col"><div class="set-adj-name">Noah</div><div class="set-adj-btns"><button class="adj-btn plus" onclick="adjSet(2,'noah',1)">+</button><button class="adj-btn minus" onclick="adjSet(2,'noah',-1)">−</button></div></div>
+      <div class="set-adj-col"><div class="set-adj-name">Opp</div><div class="set-adj-btns"><button class="adj-btn plus" onclick="adjSet(2,'opp',1)">+</button><button class="adj-btn minus" onclick="adjSet(2,'opp',-1)">−</button></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVER -->
+<div class="server-setup">
+  <span class="server-label">⚡ Server</span>
+  <div class="server-btns">
+    <button class="srv-btn" id="srvNoah" onclick="setServer('noah')">Noah</button>
+    <button class="srv-btn" id="srvOpp"  onclick="setServer('opp')">Opp</button>
+  </div>
+</div>
+
+<!-- SET TABS -->
+<div class="set-tabs">
+  <div class="set-tab active" id="tab0" onclick="switchSet(0)"><span class="set-tab-num" id="tabNum0">0/0</span>Set 1</div>
+  <div class="set-tab"        id="tab1" onclick="switchSet(1)"><span class="set-tab-num" id="tabNum1">0/0</span>Set 2</div>
+  <div class="set-tab"        id="tab2" onclick="switchSet(2)"><span class="set-tab-num" id="tabNum2">0/0</span>Set 3</div>
+</div>
+
+<!-- SERVE TRACKING -->
+<div class="section">
+  <div class="section-label">Serve Tracking</div>
+  <div class="serve-panel">
+    <div class="serve-row">
+      <div class="serve-name">1st</div>
+      <button class="serve-btn in"  onclick="logServe('1st','in')"><span class="btn-count" id="s1in">0</span><span class="btn-label">In ✓</span></button>
+      <button class="serve-btn out" onclick="logServe('1st','out')"><span class="btn-count" id="s1out">0</span><span class="btn-label">Out ✗</span></button>
+      <button class="serve-btn stat"><span class="btn-count" id="s1pct">—</span><span class="btn-label">% In</span></button>
+    </div>
+    <div class="serve-row">
+      <div class="serve-name">2nd</div>
+      <button class="serve-btn in"  onclick="logServe('2nd','in')"><span class="btn-count" id="s2in">0</span><span class="btn-label">In ✓</span></button>
+      <button class="serve-btn out" onclick="logServe('2nd','out')"><span class="btn-count" id="s2out">0</span><span class="btn-label">Out ✗</span></button>
+      <button class="serve-btn df"  onclick="logServe('2nd','df')"><span class="btn-count" id="s2df">0</span><span class="btn-label">D.Fault</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- WINNERS -->
+<div class="section" style="margin-top:10px">
+  <div class="section-label">Winners</div>
+  <div class="btn-grid-3" style="margin-bottom:7px">
+    <button class="point-btn btn-w-fh" onclick="logPoint('W','Forehand')"><span class="count" id="W_Forehand">0</span><span class="lbl">Forehand</span></button>
+    <button class="point-btn btn-w-bh" onclick="logPoint('W','Backhand')"><span class="count" id="W_Backhand">0</span><span class="lbl">Backhand</span></button>
+    <button class="point-btn btn-w-sv" onclick="logPoint('W','Serve')"><span class="count" id="W_Serve">0</span><span class="lbl">Serve</span></button>
+  </div>
+  <div class="btn-grid-3">
+    <button class="point-btn btn-w-vo" onclick="logPoint('W','Volley')"><span class="count" id="W_Volley">0</span><span class="lbl">Volley</span></button>
+    <button class="point-btn btn-w-oh" onclick="logPoint('W','Overhead')"><span class="count" id="W_Overhead">0</span><span class="lbl">Overhead</span></button>
+    <button class="point-btn btn-w-dt" onclick="logPoint('W','Drop Shot')"><span class="count" id="W_Drop Shot">0</span><span class="lbl">Drop Shot</span></button>
+  </div>
+</div>
+
+<!-- UNFORCED ERRORS -->
+<div class="section" style="margin-top:10px">
+  <div class="section-label">Unforced Errors</div>
+  <div class="btn-grid-3" style="margin-bottom:7px">
+    <button class="point-btn btn-ue-fh" onclick="logPoint('UE','Forehand')"><span class="count" id="UE_Forehand">0</span><span class="lbl">Forehand</span></button>
+    <button class="point-btn btn-ue-bh" onclick="logPoint('UE','Backhand')"><span class="count" id="UE_Backhand">0</span><span class="lbl">Backhand</span></button>
+    <button class="point-btn btn-ue-sv" onclick="logPoint('UE','Serve')"><span class="count" id="UE_Serve">0</span><span class="lbl">Serve</span></button>
+  </div>
+  <div class="btn-grid" style="max-width:236px">
+    <button class="point-btn btn-ue-vo" onclick="logPoint('UE','Volley')"><span class="count" id="UE_Volley">0</span><span class="lbl">Volley</span></button>
+    <button class="point-btn btn-ue-oh" onclick="logPoint('UE','Overhead')"><span class="count" id="UE_Overhead">0</span><span class="lbl">Overhead</span></button>
+  </div>
+</div>
+
+<!-- OTHER -->
+<div class="section" style="margin-top:10px">
+  <div class="section-label">Other</div>
+  <div class="btn-grid-3">
+    <button class="point-btn btn-fe" onclick="logPoint('FE','Forced')"><span class="count" id="FE_Forced">0</span><span class="lbl">Forced Err</span></button>
+    <button class="point-btn btn-bw" onclick="logPoint('BW','Blind')"><span class="count" id="BW_Blind">0</span><span class="lbl">👁 Won</span></button>
+    <button class="point-btn btn-bl" onclick="logPoint('BL','Blind')"><span class="count" id="BL_Blind">0</span><span class="lbl">👁 Lost</span></button>
+  </div>
+  <div style="margin-top:5px;font-size:10px;color:var(--muted);padding:0 2px;">👁 = didn't see it · purple = won · orange = lost</div>
+</div>
+
+<!-- LOG -->
+<div class="log-area">
+  <div class="log-header">
+    <span class="log-title">Point Log</span>
+    <button class="undo-btn" onclick="undoLast()">↩ Undo</button>
+  </div>
+  <div class="log-list" id="logList">
+    <div style="padding:14px;font-size:12px;color:var(--muted);text-align:center">Tap buttons above to log points</div>
+  </div>
+</div>
+
+<!-- SAVE INDICATOR -->
+<div class="save-indicator" id="saveIndicator">✓ Saved</div>
+
+<div style="height:30px"></div>
+
+<!-- SUMMARY OVERLAY -->
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeOverlay()">
+  <div class="summary-card">
+    <div class="summary-title">Match Summary</div>
+    <div class="summary-grid" id="summaryGrid"></div>
+    <button class="close-btn" onclick="closeOverlay()">Close</button>
+  </div>
+</div>
+
+<!-- CONFIRM RESET OVERLAY -->
+<div class="overlay" id="confirmOverlay" onclick="if(event.target===this)closeConfirm()">
+  <div class="confirm-card">
+    <div class="confirm-title">New Match?</div>
+    <div class="confirm-body">This will clear all point data, serve stats, and the score. This cannot be undone.</div>
+    <div class="confirm-btns">
+      <button class="confirm-yes" onclick="doReset()">Yes, Reset</button>
+      <button class="confirm-no"  onclick="closeConfirm()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'noah_tennis_v1';
+
+// ── STATE ──
+let sets = [[], [], []];
+let currentSet = 0;
+let score = {
+  sets: [[0,0],[0,0],[0,0]],
+  game: [0, 0],
+  server: null,
+};
+
+// ── PERSISTENCE ──
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ sets, currentSet, score }));
+    flashSave();
+  } catch(e) { /* storage full or unavailable */ }
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const s = JSON.parse(raw);
+    if (s.sets)       sets       = s.sets;
+    if (s.score)      score      = s.score;
+    if (s.currentSet !== undefined) currentSet = s.currentSet;
+  } catch(e) { /* bad data, start fresh */ }
+}
+
+let saveFlashTimer = null;
+function flashSave() {
+  const el = document.getElementById('saveIndicator');
+  el.classList.add('show');
+  clearTimeout(saveFlashTimer);
+  saveFlashTimer = setTimeout(() => el.classList.remove('show'), 1200);
+}
+
+// ── INSTALL BANNER ──
+function dismissInstall() {
+  document.getElementById('installBanner').classList.add('hidden');
+  try { localStorage.setItem('noah_install_dismissed', '1'); } catch(e){}
+}
+function checkInstallBanner() {
+  // Hide if already dismissed, or if running as installed PWA
+  const dismissed = localStorage.getItem('noah_install_dismissed');
+  const isPWA = window.navigator.standalone === true;
+  if (dismissed || isPWA) {
+    document.getElementById('installBanner').classList.add('hidden');
+  }
+}
+
+// ── SCORE LOGIC ──
+// game points stored as raw integers. At deuce (both 3), AD = one player at 4.
+// If the player with AD loses the point, both drop back to 3 (deuce).
+// Cap at 4 — pressing + when already at AD does nothing (game should be ended).
+const GP = ['0','15','30','40','AD'];
+function gameDisplay(n, o) {
+  if (n < 3 && o < 3) return GP[n] + ' – ' + GP[o];  // normal: 0-40
+  if (n === 3 && o === 3) return 'Deuce';
+  if (n === 4 && o === 3) return 'AD – 40';
+  if (n === 3 && o === 4) return '40 – AD';
+  // shouldn't happen, but fallback
+  return GP[Math.min(n,4)] + ' – ' + GP[Math.min(o,4)];
+}
+
+function setServer(who) {
+  score.server = who;
+  document.getElementById('srvNoah').classList.toggle('active', who==='noah');
+  document.getElementById('srvOpp').classList.toggle('active',  who==='opp');
+  updateDots();
+  saveState();
+  updateUI();
+}
+
+function updateDots() {
+  document.getElementById('noahDot').classList.toggle('hidden', score.server !== 'noah');
+  document.getElementById('oppDot').classList.toggle('hidden',  score.server !== 'opp');
+}
+
+function adjGame(player, delta) {
+  const idx  = player==='noah' ? 0 : 1;
+  const other = 1 - idx;
+  let n = score.game[idx];
+  let o = score.game[other];
+
+  if (delta > 0) {
+    // Adding a point
+    if (n === 4) return; // already at AD, tap End Game instead
+    if (n === 3 && o === 4) {
+      // opponent had AD — going back to deuce
+      score.game[other] = 3;
+    } else {
+      score.game[idx] = n + 1;
+    }
+  } else {
+    // Removing a point (undo-style)
+    if (n === 0) return;
+    if (n === 3 && o === 4) {
+      // drop back from deuce when opponent is at AD — remove opp AD too
+      score.game[other] = 3;
+    }
+    score.game[idx] = Math.max(0, n - 1);
+  }
+  saveState();
+  updateUI();
+}
+
+function adjSet(setIdx, player, delta) {
+  const idx = player==='noah' ? 0 : 1;
+  score.sets[setIdx][idx] = Math.max(0, score.sets[setIdx][idx] + delta);
+  saveState();
+  updateUI();
+}
+
+function newGame() {
+  score.game = [0, 0];
+  if (score.server === 'noah') { score.server = 'opp'; }
+  else if (score.server === 'opp') { score.server = 'noah'; }
+  document.getElementById('srvNoah').classList.toggle('active', score.server==='noah');
+  document.getElementById('srvOpp').classList.toggle('active',  score.server==='opp');
+  saveState();
+  updateUI();
+}
+
+// ── COUNTS ──
+function counts(setIdx) {
+  const entries = setIdx==='all' ? sets.flat() : sets[setIdx];
+  const c = {W:0,UE:0,FE:0,BW:0,BL:0,S1in:0,S1out:0,S2in:0,S2out:0,S2df:0,types:{}};
+  for (const e of entries) {
+    if (e.category==='serve') {
+      if      (e.serve==='1st'&&e.result==='in')  c.S1in++;
+      else if (e.serve==='1st'&&e.result==='out') c.S1out++;
+      else if (e.serve==='2nd'&&e.result==='in')  c.S2in++;
+      else if (e.serve==='2nd'&&e.result==='out') c.S2out++;
+      else if (e.serve==='2nd'&&e.result==='df')  c.S2df++;
+    } else {
+      c[e.type]=(c[e.type]||0)+1;
+      const k=e.type+'_'+e.shot;
+      c.types[k]=(c.types[k]||0)+1;
+    }
+  }
+  return c;
+}
+
+function pct(n,d) { return d ? Math.round(n/d*100)+'%' : '—'; }
+function ratio(w,ue) { if(!ue) return w>0?w+':0':'—'; return (w/ue).toFixed(2); }
+
+// ── UI ──
+function updateUI() {
+  const all = counts('all');
+  const cur = counts(currentSet);
+
+  document.getElementById('hdrWinners').textContent = all.W;
+  document.getElementById('hdrUE').textContent = all.UE;
+  document.getElementById('hdrRatio').textContent = ratio(all.W, all.UE);
+
+  for (let i=0; i<3; i++) {
+    document.getElementById('noahS'+(i+1)).textContent = score.sets[i][0];
+    document.getElementById('oppS' +(i+1)).textContent = score.sets[i][1];
+  }
+
+  document.getElementById('gameScoreVal').textContent = gameDisplay(score.game[0], score.game[1]);
+  updateDots();
+
+  document.getElementById('s1in').textContent  = cur.S1in;
+  document.getElementById('s1out').textContent = cur.S1out;
+  document.getElementById('s2in').textContent  = cur.S2in;
+  document.getElementById('s2out').textContent = cur.S2out;
+  document.getElementById('s2df').textContent  = cur.S2df;
+  document.getElementById('s1pct').textContent = pct(cur.S1in, cur.S1in+cur.S1out);
+
+  const allTypes=['W','UE','FE','BW','BL'];
+  const allShots=['Forehand','Backhand','Serve','Volley','Overhead','Drop Shot','Forced','Blind'];
+  for (const t of allTypes) for (const s of allShots) {
+    const el = document.getElementById(t+'_'+s);
+    if (el) el.textContent = cur.types[t+'_'+s] || 0;
+  }
+
+  for (let i=0; i<3; i++) {
+    const c = counts(i);
+    document.getElementById('tabNum'+i).textContent = c.W+'/'+c.UE;
+    document.getElementById('tab'+i).classList.toggle('active', i===currentSet);
+  }
+
+  renderLog();
+}
+
+function logPoint(type, shot) {
+  sets[currentSet].push({category:'point', type, shot, ts:Date.now()});
+  saveState();
+  updateUI();
+}
+
+function logServe(serve, result) {
+  sets[currentSet].push({category:'serve', serve, result, ts:Date.now()});
+  saveState();
+  updateUI();
+}
+
+function undoLast() {
+  if (sets[currentSet].length) { sets[currentSet].pop(); }
+  else { for (let i=currentSet-1; i>=0; i--) { if(sets[i].length){sets[i].pop();break;} } }
+  saveState();
+  updateUI();
+}
+
+function switchSet(idx) { currentSet=idx; updateUI(); }
+
+function renderLog() {
+  const all = [];
+  for (let i=0; i<3; i++) for (const e of sets[i]) all.push({...e, setIdx:i});
+  const list = document.getElementById('logList');
+  if (!all.length) {
+    list.innerHTML = '<div style="padding:14px;font-size:12px;color:var(--muted);text-align:center">Tap buttons above to log points</div>';
+    return;
+  }
+  list.innerHTML = [...all].reverse().map(e => {
+    let cls, label;
+    if (e.category==='serve') {
+      cls = e.result==='in' ? 'w' : 'ue';
+      label = e.serve+' serve '+(e.result==='df'?'double fault':e.result);
+    } else if (e.type==='BW') { cls='bw'; label="👁 Didn't see · Point WON"; }
+    else if   (e.type==='BL') { cls='bl'; label="👁 Didn't see · Point LOST"; }
+    else {
+      cls = e.type==='W'?'w':e.type==='UE'?'ue':'fe';
+      label = e.type==='W' ? 'Winner · '+e.shot : e.type==='UE' ? 'UE · '+e.shot : 'Forced Error';
+    }
+    return `<div class="log-item"><div class="log-dot ${cls}"></div><div class="log-text">${label}</div><div class="log-set">S${e.setIdx+1}</div></div>`;
+  }).join('');
+}
+
+// ── SUMMARY ──
+function openSummary() {
+  const all = counts('all');
+  const s1t = all.S1in+all.S1out;
+  const s2t = all.S2in+all.S2out+all.S2df;
+  const grid = [
+    {label:'Total Winners',   val:all.W,                        cls:'g'},
+    {label:'Unforced Errors', val:all.UE,                       cls:'r'},
+    {label:'W:UE Ratio',      val:ratio(all.W,all.UE),          cls:'g'},
+    {label:'Forced Errors',   val:all.FE,                       cls:'a'},
+    {label:'1st Serve %',     val:pct(all.S1in,s1t),            cls:'g'},
+    {label:'2nd Serve %',     val:pct(all.S2in,s2t),            cls:'a'},
+    {label:'Double Faults',   val:all.S2df,                     cls:'r'},
+    {label:'FH Winners',      val:all.types['W_Forehand']||0,   cls:'g'},
+    {label:'BH Winners',      val:all.types['W_Backhand']||0,   cls:'g'},
+    {label:'FH UE',           val:all.types['UE_Forehand']||0,  cls:'r'},
+    {label:'BH UE',           val:all.types['UE_Backhand']||0,  cls:'r'},
+    {label:'Serve Winners',   val:all.types['W_Serve']||0,      cls:'g'},
+    {label:'👁 Won (unseen)', val:all.BW||0,                    cls:'p'},
+    {label:'👁 Lost (unseen)',val:all.BL||0,                    cls:'r'},
+  ];
+  document.getElementById('summaryGrid').innerHTML = grid.map(g =>
+    `<div class="summary-stat"><div class="val ${g.cls}">${g.val}</div><div class="lbl">${g.label}</div></div>`
+  ).join('');
+  document.getElementById('overlay').classList.add('open');
+}
+function closeOverlay() { document.getElementById('overlay').classList.remove('open'); }
+
+// ── RESET ──
+function confirmReset() { document.getElementById('confirmOverlay').classList.add('open'); }
+function closeConfirm()  { document.getElementById('confirmOverlay').classList.remove('open'); }
+function doReset() {
+  sets = [[], [], []];
+  currentSet = 0;
+  score = { sets:[[0,0],[0,0],[0,0]], game:[0,0], server:null };
+  document.getElementById('srvNoah').classList.remove('active');
+  document.getElementById('srvOpp').classList.remove('active');
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
+  closeConfirm();
+  updateUI();
+}
+
+// ── INIT ──
+loadState();
+checkInstallBanner();
+updateUI();
+</script>
+</body>
+</html>
