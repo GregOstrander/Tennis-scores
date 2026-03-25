@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -804,8 +805,12 @@ function intenseStartPoint() {
 }
 
 function intensePickServer(who) {
-  setServer(who);
   intensePhase = 'serve1';
+  score.server = who;
+  document.getElementById('srvNoah').classList.toggle('active', who==='noah');
+  document.getElementById('srvOpp').classList.toggle('active', who==='opp');
+  updateDots();
+  saveState();
   renderPointEntry();
 }
 
@@ -889,19 +894,21 @@ function intenseReturn(result) {
 
 function rallyTapSide(side) {
   rallySelSide = side;
+  rallyPending = null;
   renderPointEntry();
 }
 
 function rallyTapShot(shotType) {
-  const player = rallyNextPlayer();
-  // No direction step — commit shot immediately
-  rallyShots.push({ player, side: rallySelSide, shotType });
-  rallySelSide = null;
+  // Store as pending — wait for outcome before committing
+  rallyPending = { player: rallyNextPlayer(), side: rallySelSide, shotType };
   renderPointEntry();
 }
 
 function rallyUndoShot() {
-  if (rallyShots.length) {
+  if (rallyPending) {
+    rallyPending = null;
+    rallySelSide = null;
+  } else if (rallyShots.length) {
     rallyShots.pop();
     rallySelSide = null;
   } else if (intensePhase === 'rally') {
@@ -939,8 +946,24 @@ function oppRallyError(type) {
   clearRallyState();
   awardPoint('noah');
 }
+// Noah's shot went in — commit it and pass to opp
+function rallyCommitGood() {
+  if (!rallyPending) return;
+  rallyShots.push({ ...rallyPending });
+  rallyPending = null;
+  rallySelSide = null;
+  renderPointEntry();
+}
+
 function commitRallyPoint(outcome) {
-  if (!rallyShots.length) return;
+  // Commit the pending shot first (if any), then end the point
+  const shot = rallyPending || (rallyShots.length ? rallyShots[rallyShots.length-1] : null);
+  if (!shot) return;
+  if (rallyPending) {
+    rallyShots.push({ ...rallyPending });
+    rallyPending = null;
+    rallySelSide = null;
+  }
   const lastShot   = rallyShots[rallyShots.length - 1];
   const lastPlayer = lastShot.player;
 
@@ -1058,21 +1081,36 @@ function renderPointEntry() {
 
     // ── SERVE 1 SCREEN ──
     if (intensePhase === 'serve1') {
-      const s1total = noahServing ? (gc.S1in||0)+(gc.S1soft||0)+(gc.S1out||0) : 0;
+      if (!noahServing) {
+        // Opp serving — just two buttons
+        root.innerHTML = `
+<div class="rb-serve-screen">
+  <div class="rb-serve-title"><span>🎾 OPP Serving</span></div>
+  <div class="rb-serve-grid" style="grid-template-columns:1fr 1fr;gap:10px;">
+    <button class="rb-serve-zone rbsz-in" onclick="intenseServe('1st','in')">
+      <span class="rbsz-count" style="font-size:20px">▶</span>Point Started
+    </button>
+    <button class="rb-serve-zone rbsz-df" onclick="intenseServe('2nd','df')">
+      <span class="rbsz-count">${gc.oppDf||0}</span>Double Fault
+    </button>
+  </div>
+</div>`;
+        return;
+      }
+      const s1total = (gc.S1in||0)+(gc.S1soft||0)+(gc.S1out||0);
       const s1pct   = s1total ? Math.round((gc.S1in+gc.S1soft)/s1total*100)+'%' : '—';
-      const statLine= noahServing ? `<span style="color:var(--green)">${s1pct} in (${s1total})</span>` : '';
       root.innerHTML = `
 <div class="rb-serve-screen">
   <div class="rb-serve-title">
-    <span>🎾 ${serverName} · 1st Serve</span>
-    ${statLine}
+    <span>🎾 NOAH · 1st Serve</span>
+    <span style="color:var(--green)">${s1pct} in (${s1total})</span>
   </div>
   <div class="rb-serve-grid" style="grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
     <button class="rb-serve-zone rbsz-in"   onclick="intenseServe('1st','in')">
-      <span class="rbsz-count">${noahServing ? gc.S1in||0 : ''}</span>Hard Serve
+      <span class="rbsz-count">${gc.S1in||0}</span>Hard Serve
     </button>
     <button class="rb-serve-zone rbsz-soft" onclick="intenseServe('1st','soft')">
-      <span class="rbsz-count">${noahServing ? gc.S1soft||0 : ''}</span>Soft Serve
+      <span class="rbsz-count">${gc.S1soft||0}</span>Soft Serve
     </button>
   </div>
   <div class="rb-serve-grid" style="grid-template-columns:1fr 1fr;gap:8px;">
@@ -1080,26 +1118,25 @@ function renderPointEntry() {
       <span class="rbsz-count"></span>Ace ★
     </button>
     <button class="rb-serve-zone rbsz-fault" onclick="intenseServe('1st','fault')">
-      <span class="rbsz-count">${noahServing ? gc.S1out||0 : ''}</span>Fault ✗
+      <span class="rbsz-count">${gc.S1out||0}</span>Fault ✗
     </button>
   </div>
 </div>`;
 
-    // ── SERVE 2 SCREEN ──
+    // ── SERVE 2 SCREEN (Noah only) ──
     } else if (intensePhase === 'serve2') {
-      const s2total = noahServing ? (gc.S2in||0)+(gc.S2out||0)+(gc.S2df||0) : 0;
+      const s2total = (gc.S2in||0)+(gc.S2out||0)+(gc.S2df||0);
       const s2pct   = s2total ? Math.round(gc.S2in/s2total*100)+'%' : '—';
-      const statLine= noahServing ? `<span style="color:var(--amber)">${s2pct} in (${s2total})</span>` : '';
       root.innerHTML = `
 <div class="rb-serve-screen">
   <div class="rb-serve-title">
-    <span>🎾 ${serverName} · 2nd Serve</span>
-    ${statLine}
+    <span>🎾 NOAH · 2nd Serve</span>
+    <span style="color:var(--amber)">${s2pct} in (${s2total})</span>
     <button class="rb-undo" onclick="rallyUndoShot()">↩ 1st serve</button>
   </div>
   <div class="rb-serve-grid" style="grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
     <button class="rb-serve-zone rbsz-in"   onclick="intenseServe('2nd','in')">
-      <span class="rbsz-count">${noahServing ? gc.S2in||0 : ''}</span>Hard Serve
+      <span class="rbsz-count">${gc.S2in||0}</span>Hard Serve
     </button>
     <button class="rb-serve-zone rbsz-soft" onclick="intenseServe('2nd','soft')">
       <span class="rbsz-count"></span>Soft Serve
@@ -1110,7 +1147,7 @@ function renderPointEntry() {
       <span class="rbsz-count">—</span>Fault
     </button>
     <button class="rb-serve-zone rbsz-df"   onclick="intenseServe('2nd','df')">
-      <span class="rbsz-count">${noahServing ? gc.S2df||0 : gc.oppDf||0}</span>Double Fault
+      <span class="rbsz-count">${gc.S2df||0}</span>Double Fault
     </button>
   </div>
 </div>`;
@@ -1164,6 +1201,7 @@ function renderPointEntry() {
     <button class="rb-side-btn fh${rallySelSide==='FH'?' sel':''}" onclick="rallyTapSide('FH')">Forehand</button>
     <button class="rb-side-btn bh${rallySelSide==='BH'?' sel':''}" onclick="rallyTapSide('BH')">Backhand</button>
   </div>
+  ${!rallyPending ? `
   <div class="rb-shot-list">
     <button class="rb-shot-item${!rallySelSide?' disabled':''}" onclick="rallyTapShot('Ground')">Ground stroke</button>
     <button class="rb-shot-item${!rallySelSide?' disabled':''}" onclick="rallyTapShot('Slice')">Slice</button>
@@ -1173,15 +1211,17 @@ function renderPointEntry() {
     <button class="rb-shot-item" onclick="rallyTapShot('Drop')">Drop shot</button>
     <button class="rb-shot-item" onclick="rallyTapShot('Other')">Other</button>
   </div>
-  ${canEnd ? `
-  <div class="rb-end-section">
-    <div class="rb-end-label">End on Noah's shot:</div>
-    <div class="rb-outcome-grid">
-      <button class="rb-out-btn rb-out-w"  onclick="commitRallyPoint('W')">Winner</button>
-      <button class="rb-out-btn rb-out-fe" onclick="commitRallyPoint('FE')">Forced Err</button>
-      <button class="rb-out-btn rb-out-ue" onclick="commitRallyPoint('UE')">Unforced</button>
-    </div>
-  </div>` : ''}
+  ` : `
+  <div class="rb-pending-bar">
+    ${rallyPending.side ? rallyPending.side+' ' : ''}${rallyPending.shotType} — what happened?
+  </div>
+  <div class="rb-shot-list">
+    <button class="rb-shot-item" style="background:#003D1A;color:#5FFFAB;border-color:#00C853" onclick="rallyCommitGood()">Shot goes in →</button>
+    <button class="rb-shot-item" style="background:#003D1A;color:#5FFFAB;border-color:#00C853;opacity:.8" onclick="commitRallyPoint('W')">Noah Winner ★</button>
+    <button class="rb-shot-item" style="background:#3D2800;color:#FFE57F;border-color:#FFB300" onclick="commitRallyPoint('FE')">Noah Forced Error</button>
+    <button class="rb-shot-item" style="background:#3D0009;color:#FF8A80;border-color:#FF1744" onclick="commitRallyPoint('UE')">Noah Unforced Error</button>
+  </div>
+  `}
   ` : `
   <div class="rb-shot-list">
     <button class="rb-shot-item" style="background:#003D1A;color:#5FFFAB;border-color:#00C853" onclick="oppRallyReturn()">Rally Continues →</button>
@@ -1621,7 +1661,7 @@ function openSaveDialog(){
   const mm = String(today.getMonth()+1).padStart(2,'0');
   const dd = String(today.getDate()).padStart(2,'0');
   document.getElementById('saveDate').value = yyyy+'-'+mm+'-'+dd;
-  document.getElementById('saveOpponent').value = '';
+  document.getElementById('saveOpponent').value = matchConfig.opponent || '';
   document.getElementById('saveStatus').textContent = '';
   document.getElementById('saveOverlay').classList.add('open');
 }
@@ -1905,8 +1945,13 @@ function startMatch() {
   if(!opp) return;
   matchConfig.opponent = opp;
   matchConfig.date = document.getElementById('setupDate').value;
+  // Reset server and intense state for fresh match
+  score.server = null;
+  intensePhase = null;
+  rallyShots   = [];
+  rallyPending = null;
+  rallySelSide = null;
   document.getElementById('startScreen').classList.add('hidden');
-  // Also pre-fill save dialog fields
   document.getElementById('saveOpponent').value = opp;
   document.getElementById('saveDate').value = matchConfig.date;
   saveState();
