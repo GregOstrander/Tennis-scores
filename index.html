@@ -69,21 +69,17 @@
 .serve-btn.stat{cursor:default;}
 .btn-count{font-family:‘Bebas Neue’,sans-serif;font-size:18px;line-height:1;}
 .btn-label{font-size:9px;}
+.opp-serve-panel{background:var(–surface);border:1px solid var(–border);border-radius:12px;overflow:hidden;}
+.opp-df-btn{width:100%;border:none;background:rgba(255,23,68,.12);color:var(–red);font-family:‘DM Sans’,sans-serif;font-size:13px;font-weight:700;padding:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;}
+.opp-df-btn:active{filter:brightness(1.3);}
+.opp-df-count{font-family:‘Bebas Neue’,sans-serif;font-size:22px;line-height:1;}
 
-/* ── POINT ENTRY GRID ── */
+/* POINT ENTRY */
 .point-entry{margin:10px 14px 0;}
-.pe-hint{font-size:10px;color:var(–muted);margin-bottom:7px;display:flex;align-items:center;gap:8px;}
-.pe-hint-step{background:var(–surface2);border:1px solid var(–border);border-radius:12px;padding:2px 8px;font-weight:600;font-size:10px;color:var(–muted);}
-.pe-hint-step.active{border-color:var(–green);color:var(–green);}
-.pe-hint-arrow{color:var(–border);font-size:12px;}
-
 .pe-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:stretch;}
 .pe-grid > div{display:flex;flex-direction:column;}
 .pe-col-outcomes{display:flex;flex-direction:column;flex:1;}
-
 .pe-col-label{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(–muted);text-align:center;margin-bottom:5px;}
-
-/* position buttons — blue family */
 .pe-btn{border:none;border-radius:10px;padding:6px 4px;font-family:‘DM Sans’,sans-serif;font-size:12px;font-weight:700;cursor:pointer;width:100%;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;transition:filter .1s,transform .08s;margin-bottom:6px;}
 .pe-btn:last-child{margin-bottom:0;}
 .pe-col-outcomes .pe-btn{margin-bottom:4px;}
@@ -91,40 +87,28 @@
 .pe-btn:active{filter:brightness(1.3);transform:scale(.97);}
 .pe-btn .pe-count{font-family:‘Bebas Neue’,sans-serif;font-size:18px;line-height:1;}
 .pe-btn .pe-lbl{font-size:10px;line-height:1.2;text-align:center;}
-
-/* position = blue */
 .pe-pos{background:#001E3C;color:#82B1FF;border:1px solid #1565C0;}
 .pe-pos.selected{background:#1565C0;color:#fff;border-color:#2979FF;box-shadow:0 0 10px #2979FF60;}
-
-/* shot = neutral/white */
 .pe-shot{background:var(–surface2);color:var(–text);border:1px solid var(–border);}
 .pe-shot.selected{background:#2A2A3A;color:#fff;border-color:#7C7CFF;box-shadow:0 0 10px #7C7CFF50;}
-
-/* outcomes */
-.pe-out-w   {background:#003D1A;color:#5FFFAB;border:1px solid #00C853;}  /* winner = green */
-.pe-out-fon {background:#3D2800;color:#FFE57F;border:1px solid #FFB300;}  /* forced on noah = amber */
-.pe-out-foo {background:#1A2800;color:#C8FF80;border:1px solid #76C442;}  /* forced on opp = lime */
-.pe-out-uen {background:#3D0009;color:#FF8A80;border:1px solid #FF1744;}  /* UE by noah = red */
-.pe-out-ueo {background:#3D1000;color:#FFAB76;border:1px solid #FF6D00;}  /* UE by opp = orange */
-
-.pe-out-w.selected,.pe-out-foo.selected,.pe-out-ueo.selected{box-shadow:0 0 10px #00C85360;}
-.pe-out-fon.selected,.pe-out-uen.selected{box-shadow:0 0 10px #FF174460;}
-
-/* disabled outcome col before pos+shot selected */
+.pe-out-w   {background:#003D1A;color:#5FFFAB;border:1px solid #00C853;}
+.pe-out-fon {background:#3D2800;color:#FFE57F;border:1px solid #FFB300;}
+.pe-out-foo {background:#1A2800;color:#C8FF80;border:1px solid #76C442;}
+.pe-out-uen {background:#3D0009;color:#FF8A80;border:1px solid #FF1744;}
+.pe-out-ueo {background:#3D1000;color:#FFAB76;border:1px solid #FF6D00;}
 .pe-col-outcomes.locked .pe-btn{opacity:.35;pointer-events:none;}
 .pe-col-outcomes.locked .pe-col-label{opacity:.4;}
 
-/* STANDALONE BUTTONS (serve winner, blind) */
-.standalone-row{margin:8px 14px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
+/* STANDALONE */
+.standalone-row{margin:8px 14px 0;display:grid;grid-template-columns:1fr 1fr;gap:7px;}
 .sa-btn{border:none;border-radius:10px;padding:11px 6px;font-family:‘DM Sans’,sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:filter .1s,transform .08s;}
 .sa-btn:active{filter:brightness(1.25);transform:scale(.97);}
 .sa-btn .count{font-family:‘Bebas Neue’,sans-serif;font-size:20px;line-height:1;}
 .sa-btn .lbl{font-size:10px;opacity:.85;text-align:center;line-height:1.3;}
-.sa-sv{background:#004D20;color:#69FFBB;border:1px solid #00E676;}
 .sa-bw{background:#1A0033;color:#CF8FFF;border:1px solid #AA00FF;}
 .sa-bl{background:#2A1500;color:#FFAB76;border:1px solid #FF6D00;}
 
-/* MATCH STATS TOGGLE */
+/* MATCH STATS */
 .match-stats-toggle{margin:10px 14px 0;background:var(–surface);border:1px solid var(–border);border-radius:10px;overflow:hidden;}
 .match-stats-header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;cursor:pointer;user-select:none;}
 .match-stats-header:active{filter:brightness(1.2);}
@@ -137,12 +121,8 @@
 .ms-stat{background:var(–surface2);border-radius:8px;padding:8px 10px;}
 .ms-val{font-family:‘Bebas Neue’,sans-serif;font-size:22px;line-height:1;}
 .ms-val.g{color:var(–green);} .ms-val.r{color:var(–red);} .ms-val.a{color:var(–amber);}
-.ms-lbl{font-size:10px;color:var(–muted);margin-top:2px;font-weight:600;}
-/* OPP SERVE PANEL */
-.opp-serve-panel{background:var(–surface);border:1px solid var(–border);border-radius:12px;overflow:hidden;}
-.opp-df-btn{width:100%;border:none;background:rgba(255,23,68,.12);color:var(–red);font-family:‘DM Sans’,sans-serif;font-size:13px;font-weight:700;padding:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;}
-.opp-df-btn:active{filter:brightness(1.3);}
-.opp-df-count{font-family:‘Bebas Neue’,sans-serif;font-size:22px;line-height:1;}
+
+/* SET SCORE */
 .set-score-card{margin:10px 14px 0;background:var(–surface);border:1px solid var(–border);border-radius:12px;overflow:hidden;}
 .set-score-head{display:grid;grid-template-columns:80px 1fr 1fr 1fr;background:var(–surface2);border-bottom:1px solid var(–border);}
 .set-score-head>div{padding:5px 4px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(–muted);text-align:center;}
@@ -164,7 +144,7 @@
 .adj-btn.plus{color:var(–green);border-color:#00C85340;}
 .adj-btn.minus{color:var(–red);border-color:#FF174440;font-size:19px;}
 
-/* MATCH / LOG */
+/* LOG */
 .set-tabs{display:flex;gap:6px;padding:0 14px;margin-top:10px;}
 .set-tab{flex:1;background:var(–surface2);border:1px solid var(–border);border-radius:8px;padding:7px 4px;text-align:center;cursor:pointer;font-family:‘DM Sans’,sans-serif;font-weight:600;font-size:11px;color:var(–muted);transition:background .15s,border-color .15s,color .15s;}
 .set-tab.active{background:var(–green);border-color:var(–green);color:#0A0F0D;}
@@ -184,130 +164,7 @@
 .log-text{flex:1;color:var(–text);}
 .log-set{font-size:10px;color:var(–muted);font-weight:600;}
 
-/* ── LIGHT MODE ── */
-.light-entry{margin:10px 14px 0;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.light-win-btn{border:none;border-radius:14px;padding:22px 10px;font-family:‘DM Sans’,sans-serif;font-size:15px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;transition:filter .1s,transform .08s;}
-.light-win-btn:active{filter:brightness(1.3);transform:scale(.97);}
-.light-win-btn .lwc{font-family:‘Bebas Neue’,sans-serif;font-size:36px;line-height:1;}
-.lwb-noah{background:#003D1A;color:#5FFFAB;border:2px solid #00C853;}
-.lwb-opp {background:#3D0009;color:#FF8A80;border:2px solid #FF1744;}
-
-/* ── INTENSE MODE / RALLY BUILDER ── */
-.rally-builder{margin:10px 14px 0;}
-
-/* Serve screen — Smashpoint-style large tap zones */
-.rb-serve-screen{margin:10px 14px 0;}
-.rb-serve-title{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(–muted);font-weight:600;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;}
-.rb-serve-grid{display:grid;gap:8px;}
-.rb-serve-grid.two{grid-template-columns:1fr 1fr;}
-.rb-serve-zone{border:none;border-radius:14px;padding:28px 10px;font-family:‘DM Sans’,sans-serif;font-size:15px;font-weight:700;cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;transition:filter .1s,transform .08s;}
-.rb-serve-zone:active{filter:brightness(1.3);transform:scale(.98);}
-.rb-serve-zone .rbsz-count{font-family:‘Bebas Neue’,sans-serif;font-size:28px;line-height:1;}
-.rbsz-in   {background:#003D1A;color:#5FFFAB;border:2px solid #00C853;}
-.rbsz-soft {background:#00261A;color:#80E5A0;border:2px solid #00843D;}
-.rbsz-ace  {background:#004D20;color:#69FFBB;border:2px solid #00E676;}
-.rbsz-fault{background:#3D0009;color:#FF8A80;border:2px solid #FF1744;}
-.rbsz-df   {background:#5C000D;color:#FF5252;border:2px solid #D50000;}
-
-/* Return screen */
-.rb-return-screen{margin:10px 14px 0;}
-.rb-return-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
-.rb-return-grid.three{grid-template-columns:1fr 1fr 1fr;}
-.rb-return-zone{border:none;border-radius:14px;padding:22px 8px;font-family:‘DM Sans’,sans-serif;font-size:13px;font-weight:700;cursor:pointer;text-align:center;transition:filter .1s,transform .08s;}
-.rb-return-zone:active{filter:brightness(1.3);transform:scale(.98);}
-.rbr-winner{background:#003D1A;color:#5FFFAB;border:2px solid #00C853;}
-.rbr-error {background:#3D0009;color:#FF8A80;border:2px solid #FF1744;}
-.rbr-rally {background:#001E3C;color:#82B1FF;border:2px solid #1565C0;}
-
-/* Rally chip strip */
-.rally-chain-wrap{background:var(–surface);border:1px solid var(–border);border-radius:10px;padding:8px 10px;margin-bottom:8px;min-height:42px;display:flex;align-items:center;}
-.rally-chain{display:flex;gap:5px;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;flex:1;}
-.rally-chip{flex-shrink:0;border-radius:16px;padding:4px 9px;font-size:11px;font-weight:700;white-space:nowrap;}
-.rally-chip.noah{background:#001E3C;color:#82B1FF;border:1px solid #1565C0;}
-.rally-chip.opp {background:#2A0A00;color:#FFAB76;border:1px solid #FF6D00;}
-.rally-chain-empty{color:var(–muted);font-size:11px;font-style:italic;}
-
-/* Step header: who’s hitting + step name */
-.rb-step-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-.rb-turn{font-family:‘Bebas Neue’,sans-serif;font-size:20px;letter-spacing:1px;}
-.rb-turn.noah{color:#82B1FF;} .rb-turn.opp{color:#FFAB76;}
-.rb-step-name{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(–muted);font-weight:600;}
-.rb-undo{background:var(–surface2);border:1px solid var(–border);color:var(–amber);font-size:11px;font-weight:600;padding:5px 10px;border-radius:6px;cursor:pointer;}
-
-/* FH / BH toggle — Smashpoint-style large tabs */
-.rb-side-toggle{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:12px;overflow:hidden;border:1px solid var(–border);margin-bottom:10px;}
-.rb-side-btn{border:none;padding:16px 8px;font-family:‘DM Sans’,sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:background .12s,color .12s;}
-.rb-side-btn:active{filter:brightness(1.2);}
-.rb-side-btn.fh{background:var(–surface2);color:var(–muted);}
-.rb-side-btn.bh{background:var(–surface2);color:var(–muted);border-left:1px solid var(–border);}
-.rb-side-btn.fh.sel{background:#1565C0;color:#fff;}
-.rb-side-btn.bh.sel{background:#5E35B1;color:#fff;}
-
-/* Shot type list — full-width tall buttons like Smashpoint */
-.rb-shot-list{display:flex;flex-direction:column;gap:5px;margin-bottom:8px;}
-.rb-shot-item{border:none;border-radius:10px;padding:15px 16px;font-family:‘DM Sans’,sans-serif;font-size:14px;font-weight:700;cursor:pointer;text-align:left;background:var(–surface2);color:var(–text);border:1px solid var(–border);transition:filter .1s;}
-.rb-shot-item:active{filter:brightness(1.3);}
-.rb-shot-item.disabled{opacity:.3;pointer-events:none;}
-
-/* Direction buttons — full-width */
-.rb-dir-list{display:flex;flex-direction:column;gap:5px;margin-bottom:8px;}
-.rb-dir-item{border:none;border-radius:10px;padding:15px 16px;font-family:‘DM Sans’,sans-serif;font-size:14px;font-weight:700;cursor:pointer;text-align:left;background:#0A1A2A;color:#90CAF9;border:1px solid #1565C0;transition:filter .1s;}
-.rb-dir-item:active{filter:brightness(1.3);}
-
-/* Pending shot indicator */
-.rb-pending-bar{background:var(–surface2);border:1px solid var(–amber);border-radius:8px;padding:8px 12px;font-size:12px;color:var(–amber);font-weight:600;margin-bottom:8px;}
-
-/* End rally + outcome buttons */
-.rb-end-section{margin-top:6px;border-top:1px solid var(–border);padding-top:10px;}
-.rb-end-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(–muted);font-weight:600;margin-bottom:7px;}
-.rb-outcome-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;}
-.rb-out-btn{border:none;border-radius:10px;padding:14px 4px;font-family:‘DM Sans’,sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:filter .1s,transform .08s;}
-.rb-out-btn:active{filter:brightness(1.3);transform:scale(.97);}
-.rb-out-w  {background:#003D1A;color:#5FFFAB;border:1px solid #00C853;}
-.rb-out-fe {background:#3D2800;color:#FFE57F;border:1px solid #FFB300;}
-.rb-out-ue {background:#3D0009;color:#FF8A80;border:1px solid #FF1744;}
-
-/* ── VOICE MODE ── */
-.voice-screen{margin:10px 14px 0;}
-.voice-hold-btn{width:100%;border:none;border-radius:20px;padding:36px 10px;font-family:‘DM Sans’,sans-serif;font-size:16px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:10px;background:#1A0033;color:#CF8FFF;border:2px solid #AA00FF;transition:all .1s;-webkit-user-select:none;user-select:none;}
-.voice-hold-btn.recording{background:#3D0060;border-color:#E040FB;color:#F8BBFF;box-shadow:0 0 30px #AA00FF60;}
-.voice-hold-btn .voice-icon{font-size:40px;line-height:1;}
-.voice-hold-btn .voice-lbl{font-size:13px;letter-spacing:.5px;}
-.voice-transcript{margin-top:10px;background:var(–surface);border:1px solid var(–border);border-radius:12px;padding:12px 14px;min-height:52px;font-size:13px;color:var(–text);line-height:1.5;font-style:italic;}
-.voice-transcript.empty{color:var(–muted);}
-.voice-parsed-card{margin-top:10px;background:var(–surface);border:1px solid #AA00FF;border-radius:12px;overflow:hidden;}
-.voice-parsed-title{background:#1A0033;padding:9px 14px;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#CF8FFF;font-weight:600;}
-.voice-parsed-body{padding:10px 14px;}
-.voice-parsed-row{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px;border-bottom:1px solid var(–border);}
-.voice-parsed-row:last-child{border-bottom:none;}
-.voice-parsed-key{color:var(–muted);font-weight:600;min-width:70px;font-size:11px;}
-.voice-parsed-val{color:var(–text);font-weight:600;}
-.voice-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
-.voice-commit{border:none;border-radius:10px;padding:14px;font-family:‘DM Sans’,sans-serif;font-size:13px;font-weight:700;cursor:pointer;background:#003D1A;color:#5FFFAB;border:1px solid #00C853;}
-.voice-redo{border:none;border-radius:10px;padding:14px;font-family:‘DM Sans’,sans-serif;font-size:13px;font-weight:700;cursor:pointer;background:var(–surface2);color:var(–muted);border:1px solid var(–border);}
-.voice-tap-fallback{margin-top:8px;width:100%;border:none;background:transparent;color:var(–muted);font-size:11px;font-weight:600;padding:8px;cursor:pointer;text-decoration:underline;}
-.voice-error{margin-top:8px;background:#3D0009;border:1px solid #FF1744;border-radius:8px;padding:10px 12px;font-size:12px;color:#FF8A80;}
-.voice-spinner{display:inline-block;width:18px;height:18px;border:2px solid #CF8FFF40;border-top-color:#CF8FFF;border-radius:50%;animation:spin .7s linear infinite;margin-bottom:2px;}
-@keyframes spin{to{transform:rotate(360deg);}}
-
-/* ── MODE PICKER OVERLAY ── */
-.mode-picker-card{background:var(–surface);border:1px solid var(–border);border-radius:16px;width:100%;max-width:380px;padding:20px;}
-.mode-picker-title{font-family:‘Bebas Neue’,sans-serif;font-size:22px;letter-spacing:2px;color:var(–text);margin-bottom:14px;}
-.mode-picker-opts{display:flex;flex-direction:column;gap:8px;}
-.mode-opt-btn{border:none;border-radius:12px;padding:16px 14px;font-family:‘DM Sans’,sans-serif;font-size:14px;font-weight:700;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:3px;transition:filter .1s;}
-.mode-opt-btn:active{filter:brightness(1.2);}
-.mode-opt-btn.light  {background:#001E3C;color:#82B1FF;border:1px solid #1565C0;}
-.mode-opt-btn.medium {background:#003D1A;color:#5FFFAB;border:1px solid #00C853;}
-.mode-opt-btn.intense{background:#1A0033;color:#CF8FFF;border:1px solid #AA00FF;}
-.mode-opt-btn.current{outline:3px solid var(–amber);}
-.mode-opt-sub{font-size:11px;opacity:.7;font-weight:500;}
-/* mode badge in header */
-.mode-badge{font-size:9px;font-weight:700;letter-spacing:.8px;padding:2px 6px;border-radius:4px;cursor:pointer;margin-left:6px;vertical-align:middle;}
-.mode-badge.light  {background:#001E3C;color:#82B1FF;border:1px solid #1565C0;}
-.mode-badge.medium {background:#003D1A;color:#5FFFAB;border:1px solid #00C853;}
-.mode-badge.intense{background:#1A0033;color:#CF8FFF;border:1px solid #AA00FF;}
-
-/* SAVE */
+/* SAVE INDICATOR */
 .save-indicator{position:fixed;bottom:16px;right:16px;background:var(–surface);border:1px solid var(–green);border-radius:20px;padding:6px 12px;font-size:11px;font-weight:600;color:var(–green);opacity:0;transition:opacity .3s;pointer-events:none;z-index:300;}
 .save-indicator.show{opacity:1;}
 
@@ -336,6 +193,7 @@
 .confirm-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .confirm-yes{background:#3D0009;border:1px solid var(–red);color:var(–red);font-family:‘DM Sans’,sans-serif;font-size:14px;font-weight:700;padding:14px;border-radius:10px;cursor:pointer;}
 .confirm-no{background:var(–surface2);border:1px solid var(–border);color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:14px;font-weight:700;padding:14px;border-radius:10px;cursor:pointer;}
+
 /* SAVE DIALOG */
 .save-card{background:var(–surface);border:1px solid var(–green);border-radius:16px;width:100%;max-width:400px;padding:22px;}
 .save-card-title{font-family:‘Bebas Neue’,sans-serif;font-size:24px;letter-spacing:2px;color:var(–green);margin-bottom:16px;}
@@ -353,13 +211,13 @@
 .save-status{font-size:11px;color:var(–muted);text-align:center;margin-top:8px;min-height:16px;}
 
 /* START SCREEN */
-.start-screen{position:fixed;inset:0;background:#0A0F0D;background:var(–bg);z-index:500;overflow-y:auto;padding:20px 16px 40px;-webkit-overflow-scrolling:touch;min-height:100vh;min-height:-webkit-fill-available;}
+.start-screen{position:fixed;inset:0;background:#0A0F0D;background:var(–bg);z-index:500;overflow-y:auto;padding:20px 16px 40px;-webkit-overflow-scrolling:touch;}
 .start-screen.hidden{display:none;}
 .start-title{font-family:‘Bebas Neue’,sans-serif;font-size:36px;letter-spacing:3px;color:var(–green);margin-bottom:4px;}
 .start-subtitle{font-size:12px;color:var(–muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:24px;}
 .start-section{margin-bottom:20px;}
 .start-section-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(–muted);margin-bottom:8px;}
-.start-input{width:100%;background:var(–surface);border:1px solid var(–border);border-radius:10px;padding:12px 14px;font-family:‘DM Sans’,sans-serif;font-size:15px;color:var(–text);outline:none;margin-bottom:0;}
+.start-input{width:100%;background:var(–surface);border:1px solid var(–border);border-radius:10px;padding:12px 14px;font-family:‘DM Sans’,sans-serif;font-size:15px;color:var(–text);outline:none;}
 .start-input:focus{border-color:var(–green);}
 .start-toggle-row{display:grid;gap:7px;}
 .start-toggle-row.two{grid-template-columns:1fr 1fr;}
@@ -419,9 +277,9 @@
 
   <div class="start-section">
     <div class="start-section-label">Match Format</div>
-    <div class="start-toggle-row two" style="margin-bottom:7px">
-      <div class="start-opt sel-green" id="mf-bo3"  onclick="setupSelect('setsToWin',2)">Best of 3<span class="start-opt-sub">First to 2 sets</span></div>
-      <div class="start-opt"           id="mf-one"  onclick="setupSelect('setsToWin',1)">Single Set<span class="start-opt-sub">One set only</span></div>
+    <div class="start-toggle-row two">
+      <div class="start-opt sel-green" id="mf-bo3" onclick="setupSelect('setsToWin',2)">Best of 3<span class="start-opt-sub">First to 2 sets</span></div>
+      <div class="start-opt"           id="mf-one" onclick="setupSelect('setsToWin',1)">Single Set<span class="start-opt-sub">One set only</span></div>
     </div>
   </div>
 
@@ -446,15 +304,6 @@
     </div>
   </div>
 
-  <div class="start-section">
-    <div class="start-section-label">Tracking Mode</div>
-    <div class="start-toggle-row three">
-      <div class="start-opt" id="tm-light"   onclick="setupSelect('trackingMode','light')">Light<span class="start-opt-sub">Score only</span></div>
-      <div class="start-opt sel-green" id="tm-medium"  onclick="setupSelect('trackingMode','medium')">Medium<span class="start-opt-sub">Shot + outcome</span></div>
-      <div class="start-opt" id="tm-intense" onclick="setupSelect('trackingMode','intense')">Intense<span class="start-opt-sub">Full rally</span></div>
-    </div>
-  </div>
-
 <button class="start-begin-btn" id="startBeginBtn" onclick="startMatch()" disabled>START MATCH</button>
 
 </div>
@@ -463,7 +312,7 @@
 
 <div class="header">
   <div class="header-top">
-    <span class="player-name">NOAH <span class="mode-badge medium" id="modeBadge" onclick="openModePicker()">MEDIUM</span></span>
+    <span class="player-name">NOAH</span>
     <div class="header-btns">
       <button class="hdr-btn" onclick="openSummary()">Summary</button>
       <button class="hdr-btn" style="color:var(--amber);border-color:#FFB30040;" onclick="undoLast()">↩ Undo</button>
@@ -478,7 +327,7 @@
   </div>
 </div>
 
-<!-- 1. CURRENT GAME SCORE -->
+<!-- GAME SCORE -->
 
 <div class="game-score-card">
   <div class="game-score-top">
@@ -500,11 +349,10 @@
   </div>
 </div>
 
-<!-- 2. SERVE TRACKING -->
+<!-- SERVE TRACKING -->
 
 <div class="section" id="serveSection">
   <div class="section-label" id="serveSectionLabel">Serve</div>
-  <!-- Noah serving: full panel -->
   <div class="serve-panel" id="noahServePanel">
     <div class="serve-row five">
       <div class="serve-name">1st</div>
@@ -520,7 +368,6 @@
       <button class="serve-btn df"  onclick="logServe('2nd','df')"><span class="btn-count" id="s2df">0</span><span class="btn-label">D.Fault</span></button>
     </div>
   </div>
-  <!-- Opp serving: just double fault -->
   <div class="opp-serve-panel" id="oppServePanel" style="display:none">
     <button class="opp-df-btn" onclick="logServe('opp','df')">
       <span class="opp-df-count" id="oppDfCount">0</span>
@@ -529,13 +376,40 @@
   </div>
 </div>
 
-<!-- 3. POINT ENTRY: rendered by renderPointEntry() based on mode -->
+<!-- POINT ENTRY -->
 
-<div id="pointEntryRoot"></div>
+<div class="point-entry" id="pointEntryRoot">
+  <button id="serveWinnerBtn" style="display:none;width:100%;border:none;border-radius:10px;padding:12px;margin-bottom:10px;background:#004D20;color:#69FFBB;border:1px solid #00E676;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;display:none;justify-content:space-between;align-items:center;" onclick="logStandalone('SW','Serve Winner')">
+    <span>Serve Winner ★</span><span style="font-family:'Bebas Neue',sans-serif;font-size:20px" id="swCount">0</span>
+  </button>
+  <div class="pe-grid" style="align-items:stretch;">
+    <div style="display:flex;flex-direction:column;">
+      <div class="pe-col-label">Position</div>
+      <button class="pe-btn pe-pos" id="pos-Baseline" onclick="selectPos('Baseline')"><span class="pe-count" id="cnt-pos-Baseline">0</span><span class="pe-lbl">Baseline</span></button>
+      <button class="pe-btn pe-pos" id="pos-Approach" onclick="selectPos('Approach')"><span class="pe-count" id="cnt-pos-Approach">0</span><span class="pe-lbl">Approach</span></button>
+      <button class="pe-btn pe-pos" id="pos-Net"      onclick="selectPos('Net')">     <span class="pe-count" id="cnt-pos-Net">0</span>     <span class="pe-lbl">Net</span></button>
+    </div>
+    <div style="display:flex;flex-direction:column;">
+      <div class="pe-col-label">Shot</div>
+      <button class="pe-btn pe-shot" id="shot-Forehand" onclick="selectShot('Forehand')"><span class="pe-count" id="cnt-shot-Forehand">0</span><span class="pe-lbl">Forehand</span></button>
+      <button class="pe-btn pe-shot" id="shot-Backhand" onclick="selectShot('Backhand')"><span class="pe-count" id="cnt-shot-Backhand">0</span><span class="pe-lbl">Backhand</span></button>
+    </div>
+    <div style="display:flex;flex-direction:column;">
+      <div class="pe-col-label">Outcome</div>
+      <div id="outCol" class="pe-col-outcomes locked" style="flex:1;display:flex;flex-direction:column;">
+        <button class="pe-btn pe-out-w"   onclick="commitPoint('W',  'noah')"><span class="pe-count" id="cnt-out-W">0</span>  <span class="pe-lbl">Winner</span></button>
+        <button class="pe-btn pe-out-foo" onclick="commitPoint('FOO','noah')"><span class="pe-count" id="cnt-out-FOO">0</span><span class="pe-lbl">Forced → Noah</span></button>
+        <button class="pe-btn pe-out-fon" onclick="commitPoint('FON','opp')" ><span class="pe-count" id="cnt-out-FON">0</span><span class="pe-lbl">Forced on Noah</span></button>
+        <button class="pe-btn pe-out-ueo" onclick="commitPoint('UEO','noah')"><span class="pe-count" id="cnt-out-UEO">0</span><span class="pe-lbl">Opp UE → Noah</span></button>
+        <button class="pe-btn pe-out-uen" onclick="commitPoint('UEN','opp')" ><span class="pe-count" id="cnt-out-UEN">0</span><span class="pe-lbl">Noah UE</span></button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<!-- STANDALONE: Didn't See -->
+<!-- STANDALONE -->
 
-<div class="standalone-row" id="standaloneRow" style="grid-template-columns:1fr 1fr;">
+<div class="standalone-row" id="standaloneRow">
   <button class="sa-btn sa-bw" onclick="logStandalone('BW','Blind Won')">
     <span class="count" id="cnt-BW">0</span><span class="lbl">👁 Won</span>
   </button>
@@ -544,7 +418,7 @@
   </button>
 </div>
 
-<!-- MATCH STATS (collapsed) -->
+<!-- MATCH STATS -->
 
 <div class="match-stats-toggle">
   <div class="match-stats-header" onclick="toggleMatchStats()">
@@ -556,7 +430,7 @@
   </div>
 </div>
 
-<!-- 5. SET SCORE -->
+<!-- SET SCORE -->
 
 <div class="set-score-card">
   <div class="set-score-head">
@@ -564,15 +438,11 @@
   </div>
   <div class="set-score-row">
     <div class="ss-player">Noah</div>
-    <div class="ss-cell" id="noahS1">0</div>
-    <div class="ss-cell" id="noahS2">0</div>
-    <div class="ss-cell" id="noahS3">0</div>
+    <div class="ss-cell" id="noahS1">0</div><div class="ss-cell" id="noahS2">0</div><div class="ss-cell" id="noahS3">0</div>
   </div>
   <div class="set-score-row">
     <div class="ss-player">Opp</div>
-    <div class="ss-cell" id="oppS1">0</div>
-    <div class="ss-cell" id="oppS2">0</div>
-    <div class="ss-cell" id="oppS3">0</div>
+    <div class="ss-cell" id="oppS1">0</div><div class="ss-cell" id="oppS2">0</div><div class="ss-cell" id="oppS3">0</div>
   </div>
 </div>
 <div class="set-adj-row">
@@ -590,7 +460,7 @@
   </div></div>
 </div>
 
-<!-- 6. MATCH SCORE -->
+<!-- SET TABS + LOG -->
 
 <div class="set-tabs">
   <div class="set-tab active" id="tab0" onclick="switchSet(0)"><span class="set-tab-num" id="tabNum0">0/0</span>Set 1</div>
@@ -610,50 +480,24 @@
 <div class="save-indicator" id="saveIndicator">✓ Saved</div>
 <div style="height:30px"></div>
 
-<!-- SAVE MATCH OVERLAY -->
+<!-- SAVE OVERLAY -->
 
 <div class="overlay" id="saveOverlay" onclick="if(event.target===this)closeSaveDialog()">
   <div class="save-card">
     <div class="save-card-title">Save Match</div>
-    <div class="save-field">
-      <label>Opponent Name</label>
-      <input type="text" id="saveOpponent" placeholder="e.g. Smith, J." autocomplete="off">
-    </div>
-    <div class="save-field">
-      <label>Match Date</label>
-      <input type="date" id="saveDate">
-    </div>
+    <div class="save-field"><label>Opponent Name</label><input type="text" id="saveOpponent" placeholder="e.g. Smith, J." autocomplete="off"></div>
+    <div class="save-field"><label>Match Date</label><input type="date" id="saveDate"></div>
     <div class="save-actions">
-      <button class="save-action-btn html" onclick="saveAsHTML()">📄 Download HTML Summary</button>
-      <button class="save-action-btn json" onclick="saveAsJSON()">📊 Download Raw Data (JSON)</button>
-      <button class="save-action-btn email" onclick="saveAsEmail()">✉️ Email Summary</button>
+      <button class="save-action-btn html"       onclick="saveAsHTML()">📄 Download HTML Summary</button>
+      <button class="save-action-btn json"       onclick="saveAsJSON()">📊 Download Raw Data (JSON)</button>
+      <button class="save-action-btn email"      onclick="saveAsEmail()">✉️ Email Summary</button>
       <button class="save-action-btn close-save" onclick="closeSaveDialog()">Done</button>
     </div>
     <div class="save-status" id="saveStatus"></div>
   </div>
 </div>
 
-<!-- GAME WON OVERLAY -->
-
-<div class="overlay" id="gameWonOverlay">
-  <div class="game-won-card">
-    <div class="game-won-title" id="gameWonTitle">Game Noah!</div>
-    <div class="game-won-score" id="gameWonScore"></div>
-    <button class="game-won-btn" onclick="confirmGameWon()">✓ Confirm &amp; Next Game</button>
-    <button class="game-won-cancel" onclick="cancelGameWon()">Cancel (undo last point)</button>
-  </div>
-</div>
-
-<!-- SET WON OVERLAY -->
-
-<div class="overlay" id="setWonOverlay">
-  <div class="game-won-card" style="border-color:var(--amber)">
-    <div class="game-won-title" id="setWonTitle" style="color:var(--amber)">Set 1 — Noah!</div>
-    <div class="game-won-score" id="setWonScore"></div>
-    <button class="game-won-btn" style="background:var(--amber)" onclick="confirmSetWon()">✓ Confirm &amp; Next Set</button>
-    <button class="game-won-cancel" onclick="cancelSetWon()">Cancel (undo last game)</button>
-  </div>
-</div>
+<!-- SUMMARY OVERLAY -->
 
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeOverlay()">
   <div class="summary-card">
@@ -676,25 +520,25 @@
   </div>
 </div>
 
-<!-- MODE PICKER OVERLAY -->
+<!-- GAME WON -->
 
-<div class="overlay" id="modePickerOverlay" onclick="if(event.target===this)closeModePicker()">
-  <div class="mode-picker-card">
-    <div class="mode-picker-title">Tracking Mode</div>
-    <div class="mode-picker-opts">
-      <button class="mode-opt-btn light"   id="modeOptLight"   onclick="setMode('light')">
-        Light
-        <span class="mode-opt-sub">Score only — Noah Won / Opp Won</span>
-      </button>
-      <button class="mode-opt-btn medium"  id="modeOptMedium"  onclick="setMode('medium')">
-        Medium
-        <span class="mode-opt-sub">Position → Shot → Outcome</span>
-      </button>
-      <button class="mode-opt-btn intense" id="modeOptIntense" onclick="setMode('intense')">
-        Intense
-        <span class="mode-opt-sub">Rally Builder — every shot in the rally</span>
-      </button>
-    </div>
+<div class="overlay" id="gameWonOverlay">
+  <div class="game-won-card">
+    <div class="game-won-title" id="gameWonTitle">Game Noah!</div>
+    <div class="game-won-score" id="gameWonScore"></div>
+    <button class="game-won-btn" onclick="confirmGameWon()">✓ Confirm &amp; Next Game</button>
+    <button class="game-won-cancel" onclick="cancelGameWon()">Cancel (undo last point)</button>
+  </div>
+</div>
+
+<!-- SET WON -->
+
+<div class="overlay" id="setWonOverlay">
+  <div class="game-won-card" style="border-color:var(--amber)">
+    <div class="game-won-title" id="setWonTitle" style="color:var(--amber)">Set 1 — Noah!</div>
+    <div class="game-won-score" id="setWonScore"></div>
+    <button class="game-won-btn" style="background:var(--amber)" onclick="confirmSetWon()">✓ Confirm &amp; Next Set</button>
+    <button class="game-won-cancel" onclick="cancelSetWon()">Cancel (undo last game)</button>
   </div>
 </div>
 
@@ -709,7 +553,6 @@ let gameLog = [];
 let selPos  = null;
 let selShot = null;
 
-// Match configuration — set at start screen
 let matchConfig = {
   opponent: '',
   date: '',
@@ -723,12 +566,11 @@ let matchConfig = {
   tiebreakPoints: 7,
   thirdSetFormat: 'tb10',
   firstServer: null,
-  trackingMode: 'medium',  // 'light' | 'medium' | 'intense'
 };
 
 // ── PERSISTENCE ──
 function saveState() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({sets,currentSet,score,gameLog,matchConfig,rallyShots,intensePhase})); flashSave(); } catch(e){}
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({sets,currentSet,score,gameLog,matchConfig})); flashSave(); } catch(e){}
 }
 function loadState() {
   try {
@@ -740,311 +582,18 @@ function loadState() {
     if (s.currentSet !== undefined) currentSet = s.currentSet;
     if (s.gameLog)     gameLog     = s.gameLog;
     if (s.matchConfig) matchConfig = {...matchConfig, ...s.matchConfig};
-    if (s.rallyShots)  rallyShots  = s.rallyShots;
-    if (s.intensePhase)intensePhase= s.intensePhase;
     return true;
   } catch(e){ return false; }
 }
-let saveFlashTimer=null;
+let saveFlashTimer = null;
 function flashSave(){
-  const el=document.getElementById('saveIndicator');
+  const el = document.getElementById('saveIndicator');
   el.classList.add('show');
   clearTimeout(saveFlashTimer);
-  saveFlashTimer=setTimeout(()=>el.classList.remove('show'),1200);
+  saveFlashTimer = setTimeout(()=>el.classList.remove('show'), 1200);
 }
 
-// ── MODE PICKER ──
-function openModePicker() {
-  const m = matchConfig.trackingMode || 'medium';
-  ['light','medium','intense'].forEach(k => {
-    const el = document.getElementById('modeOpt'+k.charAt(0).toUpperCase()+k.slice(1));
-    if(el) el.classList.toggle('current', k === m);
-  });
-  document.getElementById('modePickerOverlay').classList.add('open');
-}
-function closeModePicker() {
-  document.getElementById('modePickerOverlay').classList.remove('open');
-}
-function setMode(m) {
-  matchConfig.trackingMode = m;
-  clearRallyState();
-  closeModePicker();
-  saveState();
-  updateUI();
-}
-
-// ── RALLY STATE (Intense mode) ──
-let rallyShots   = [];   // [{player, side, shotType}, ...]
-let rallyPending = null; // not used post-direction-removal, kept for compat
-let rallySelSide = null; // 'FH' | 'BH' — currently selected side tab
-let intensePhase = null; // 'serve0'|'serve1'|'serve2'|'return'|'rally'|null
-
-// Voice mode state
-let voiceRecognition = null;
-let voiceTranscript  = '';
-let voiceParsed      = null;
-let voiceState       = 'idle'; // 'idle'|'recording'|'processing'|'confirm'|'error'
-let voiceUseTap      = false;  // fallback to tap UI for this point
-
-function clearRallyState() {
-  rallyShots   = [];
-  rallyPending = null;
-  rallySelSide = null;
-  intensePhase = null;
-  voiceTranscript = '';
-  voiceParsed     = null;
-  voiceState      = 'idle';
-  voiceUseTap     = false;
-  if (voiceRecognition) { try { voiceRecognition.stop(); } catch(e){} voiceRecognition = null; }
-}
-
-// ── VOICE MODE FUNCTIONS ──
-
-// ── API KEY MANAGEMENT ──
-const APIKEY_STORAGE = 'noah_anthropic_key';
-function getApiKey() { try { return localStorage.getItem(APIKEY_STORAGE)||''; } catch(e){ return ''; } }
-function setApiKey(k) { try { localStorage.setItem(APIKEY_STORAGE, k.trim()); } catch(e){} }
-function clearApiKey() { try { localStorage.removeItem(APIKEY_STORAGE); } catch(e){} }
-function promptApiKey() {
-  const k = prompt('Enter your Anthropic API key (stored locally in your browser only):');
-  if (k && k.trim().startsWith('sk-')) { setApiKey(k); renderPointEntry(); }
-  else if (k !== null) { alert('That doesn\'t look like a valid key (should start with sk-). Try again.'); }
-}
-
-function voiceStartRecording() {
-  if (voiceState === 'recording') return;
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SR) {
-    voiceState = 'error';
-    voiceTranscript = 'Speech recognition not supported in this browser. Try Safari on iOS or Chrome.';
-    renderPointEntry(); return;
-  }
-  voiceRecognition = new SR();
-  voiceRecognition.continuous = true;
-  voiceRecognition.interimResults = true;
-  voiceRecognition.lang = 'en-US';
-  voiceTranscript = '';
-  voiceState = 'recording';
-  voiceRecognition.onresult = e => {
-    voiceTranscript = Array.from(e.results).map(r=>r[0].transcript).join(' ');
-    renderPointEntry();
-  };
-  voiceRecognition.onerror = e => {
-    voiceState = 'error';
-    voiceTranscript = 'Mic error: ' + e.error + '. Check microphone permissions.';
-    renderPointEntry();
-  };
-  voiceRecognition.start();
-  renderPointEntry();
-}
-
-function voiceStopRecording() {
-  if (voiceState !== 'recording') return;
-  if (voiceRecognition) { try { voiceRecognition.stop(); } catch(e){} }
-  voiceRecognition = null;
-  if (!voiceTranscript.trim()) { voiceState = 'idle'; renderPointEntry(); return; }
-  voiceState = 'processing';
-  renderPointEntry();
-  voiceParseWithAPI(voiceTranscript.trim());
-}
-
-async function voiceParseWithAPI(transcript) {
-  const noahServing = score.server === 'noah' || score.server === null;
-  const prompt = `You are a tennis analyst parsing a point narration into structured JSON. The narrator is Greg, watching his 15-year-old son Noah play. Greg always narrates FROM NOAH'S PERSPECTIVE.
-
-CONTEXT:
-- Server this point: ${noahServing ? 'NOAH' : 'OPPONENT'}
-- Narration: "${transcript}"
-
-MENTAL MODEL — how Greg narrates:
-- Every shot Greg mentions is NOAH'S shot unless explicitly marked as opponent's
-- Position defaults to BASELINE unless Greg says "approach" or "net" or "came in" or "at net"
-- Once Noah "approaches" or "comes in", he stays at net for subsequent shots until the point ends
-- The opponent getting the ball back between Noah's shots is IMPLICIT — Greg does not narrate opponent returns unless they end the point
-- Sequence: [serve] → [opponent return, implied] → [Noah shot] → [implied opp return] → [Noah shot] → ... → [outcome]
-
-SERVE VOCABULARY (${noahServing ? 'Noah serving' : 'Opponent serving'}):
-- "fault", "out", "long", "wide", "net" → 1st serve fault
-- "in", "good", "deep", "second in", "kick in", "slice in" → serve in (second serve if fault mentioned first)
-- "hard", "flat", "body" → hard serve in
-- "kick", "kick serve", "topspin serve" → soft/kick serve in  
-- "ace", "serve winner", "clean ace" → ace
-- "double", "double fault", "double faulted" → double fault
-
-NOAH'S SHOT VOCABULARY:
-- "forehand", "fh", "forehand ground", "righty" → {side:FH, shotType:Ground}
-- "backhand", "bh", "backhand ground" → {side:BH, shotType:Ground}
-- "slice", "backhand slice", "forehand slice" → {side:FH or BH based on context, shotType:Slice}
-- "volley", "forehand volley", "backhand volley", "put away" → shotType:Volley
-- "overhead", "smash", "slam" → shotType:Smash
-- "drop", "drop shot" → shotType:Drop
-- "lob" → shotType:Lob
-- "approach", "approach shot", "came in on" → position becomes Approach for that shot
-- "at net", "came to net", "net shot" → position becomes Net
-
-OUTCOME VOCABULARY (who won the point):
-- "winner", "clean winner", "clean", "put away", "passed", "blasted" → Noah winner (scorer:noah)
-- "error", "missed", "long", "wide", "in the net", "out", "unforced" → Noah unforced error (scorer:opp)
-- "forced error", "forced", "jammed", "stretched", "couldn't get it", "lunging" → Noah forced error (scorer:opp)
-- "their error", "opp error", "they missed", "they went long", "their unforced" → opponent UE (scorer:noah)
-- "their winner", "passed me", "they hit a winner", "ace" [when opp serving] → opponent winner (scorer:opp)
-
-EXAMPLE NARRATIONS → EXPECTED PARSE:
-"fault, in, forehand, backhand winner" →
-  serve: fault then 2nd serve in; rally: [{noah,FH,Ground},{noah,BH,Ground}]; outcome: winner, scorer:noah
-
-"fault, in, forehand, forehand, approach backhand winner" →
-  serve: fault, 2nd in; rally: [{noah,FH,Ground,baseline},{noah,FH,Ground,baseline},{noah,BH,Volley-or-Ground,approach}]; outcome:winner,scorer:noah
-
-"hard serve, ace" →
-  serve: hard, ace; outcome: winner, scorer:noah
-
-"in, forehand, error" →
-  serve: in (1st); rally:[{noah,FH,Ground}]; outcome: unforced_error, scorer:opp
-
-Output ONLY this JSON, no other text:
-{
-  "serve": {
-    "type": "hard|soft|ace|fault|double_fault|in",
-    "second_serve": true|false,
-    "second_serve_type": "hard|soft|fault|double_fault|null"
-  },
-  "rally": [
-    {"player":"noah","side":"FH|BH|null","shotType":"Ground|Slice|Volley|Smash|Lob|Drop|Other","position":"Baseline|Approach|Net"}
-  ],
-  "outcome": {
-    "type": "winner|forced_error|unforced_error",
-    "scorer": "noah|opp"
-  }
-}
-
-Rules:
-- rally array contains ONLY Noah's shots (opponent returns are implied between each)
-- If no rally shots mentioned (ace, return winner/error), rally = []
-- Always output valid JSON. If genuinely ambiguous, make the most reasonable inference.
-- Do NOT include notes or any text outside the JSON object.`;
-
-  const apiKey = getApiKey();
-  if (!apiKey) {
-    voiceState = 'error';
-    voiceTranscript = 'No API key set. Tap 🔑 to enter your Anthropic API key.';
-    renderPointEntry();
-    return;
-  }
-
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 800,
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-    const data = await res.json();
-    const text = data.content?.[0]?.text || '';
-    const clean = text.replace(/```json|```/g, '').trim();
-    voiceParsed = JSON.parse(clean);
-    voiceCommit(); // commit immediately, no confirmation
-  } catch(e) {
-    voiceState = 'error';
-    voiceTranscript = (voiceTranscript ? voiceTranscript + '\n\n' : '') + 'Parse error: ' + e.message;
-  }
-  renderPointEntry();
-}
-
-function voiceCommit() {
-  if (!voiceParsed) return;
-  const p = voiceParsed;
-  const noahServing = score.server === 'noah' || score.server === null;
-
-  // Log serve stats
-  if (noahServing && p.serve?.type) {
-    // If there was a fault, log it first
-    if (p.serve.second_serve) {
-      sets[currentSet].push({category:'serve', serve:'1st', result:'out', ts:Date.now()});
-      gameLog.push(sets[currentSet][sets[currentSet].length-1]);
-      // Then log the 2nd serve
-      const s2type = p.serve.second_serve_type || p.serve.type;
-      const s2result = s2type === 'double_fault' ? 'df' : s2type === 'soft' ? 'soft' : 'in';
-      sets[currentSet].push({category:'serve', serve:'2nd', result:s2result, ts:Date.now()});
-      gameLog.push(sets[currentSet][sets[currentSet].length-1]);
-    } else {
-      const s1result = {
-        'hard':'in', 'soft':'soft', 'in':'in', 'ace':'in',
-        'fault':'out', 'double_fault':'df'
-      }[p.serve.type] || 'in';
-      sets[currentSet].push({category:'serve', serve:'1st', result:s1result, ts:Date.now()});
-      gameLog.push(sets[currentSet][sets[currentSet].length-1]);
-    }
-  } else if (!noahServing && p.serve?.type === 'double_fault') {
-    sets[currentSet].push({category:'serve', serve:'opp', result:'df', ts:Date.now()});
-    gameLog.push(sets[currentSet][sets[currentSet].length-1]);
-  }
-
-  // Map outcome
-  const outcomeCodeMap = {
-    winner:        p.outcome?.scorer === 'noah' ? 'W'   : 'OW',
-    forced_error:  p.outcome?.scorer === 'noah' ? 'FOO' : 'FON',
-    unforced_error:p.outcome?.scorer === 'noah' ? 'UEO' : 'UEN',
-  };
-  const code   = outcomeCodeMap[p.outcome?.type] || (p.outcome?.scorer === 'noah' ? 'W' : 'UEN');
-  const scorer = p.outcome?.scorer || 'noah';
-
-  // Rally shots are all Noah's — stored with player:noah and position
-  const rallyData = (p.rally || []).map(s => ({
-    player: 'noah',
-    side: s.side || null,
-    shotType: s.shotType || 'Ground',
-    position: s.position || 'Baseline'
-  }));
-
-  const entry = {
-    category: 'point',
-    outcome:  code,
-    scorer,
-    rally:    rallyData,
-    voiceTranscript,
-    ts: Date.now()
-  };
-  sets[currentSet].push(entry);
-  gameLog.push(entry);
-  clearRallyState();
-  awardPoint(scorer);
-}
-
-function voiceRedo() {
-  voiceTranscript = '';
-  voiceParsed = null;
-  voiceState = 'idle';
-  renderPointEntry();
-}
-
-function voiceSwitchToTap() {
-  voiceUseTap = true;
-  voiceTranscript = '';
-  voiceParsed = null;
-  voiceState = 'idle';
-  renderPointEntry();
-}
-
-function rallyFirstPlayer() {
-  // First shot of rally is always by the returner (opponent of server)
-  const server = score.server || 'noah';
-  return server === 'noah' ? 'opp' : 'noah';
-}
-function rallyNextPlayer() {
-  if (!rallyShots.length) return rallyFirstPlayer();
-  return rallyShots[rallyShots.length - 1].player === 'noah' ? 'opp' : 'noah';
-}
-
-// ── POINT ENTRY: 3-tap flow (medium mode) ──
+// ── POINT ENTRY ──
 function selectPos(pos) {
   selPos = pos;
   ['Baseline','Approach','Net'].forEach(p =>
@@ -1058,817 +607,283 @@ function selectShot(shot) {
   updateHints();
 }
 function updateHints() {
-  const hp = document.getElementById('hintPos');
-  const hs = document.getElementById('hintShot');
-  const ho = document.getElementById('hintOut');
-  const oc = document.getElementById('outCol');
-  if(hp) hp.classList.toggle('active', !!selPos);
-  if(hs) hs.classList.toggle('active', !!selShot);
-  if(ho) ho.classList.toggle('active', !!(selPos && selShot));
-  if(oc) oc.classList.toggle('locked', !(selPos && selShot));
+  document.getElementById('outCol').classList.toggle('locked', !(selPos && selShot));
 }
 function clearSelections() {
-  selPos=null; selShot=null;
-  ['Baseline','Approach','Net'].forEach(p=>{const el=document.getElementById('pos-'+p); if(el)el.classList.remove('selected');});
-  ['Forehand','Backhand'].forEach(s=>{const el=document.getElementById('shot-'+s); if(el)el.classList.remove('selected');});
+  selPos = null; selShot = null;
+  ['Baseline','Approach','Net'].forEach(p => document.getElementById('pos-'+p).classList.remove('selected'));
+  ['Forehand','Backhand'].forEach(s => document.getElementById('shot-'+s).classList.remove('selected'));
   updateHints();
 }
-
-// outcome types: W=winner(noah), FOO=forced opp error(noah scores), FON=forced on noah(opp scores),
-//                UEO=opp UE(noah scores), UEN=noah UE(opp scores)
 function commitPoint(outcome, scorer) {
   if (!selPos || !selShot) return;
-  const entry = {
-    category:'point', outcome, scorer,
-    pos: selPos, shot: selShot, ts: Date.now()
-  };
+  const entry = { category:'point', outcome, scorer, pos:selPos, shot:selShot, ts:Date.now() };
   sets[currentSet].push(entry);
   gameLog.push(entry);
   clearSelections();
   awardPoint(scorer);
 }
-
-// ── LIGHT MODE: two-button point entry ──
-function commitLightPoint(scorer) {
-  const entry = { category:'point', outcome: scorer==='noah'?'W':'L', scorer, mode:'light', ts: Date.now() };
-  sets[currentSet].push(entry);
-  gameLog.push(entry);
-  awardPoint(scorer);
-}
-
-// ── INTENSE MODE: Rally Builder ──
-// ── INTENSE STATE MACHINE ──
-// intensePhase: null → 'serve1' → 'serve2'(fault) | 'return'(in) → 'rally'
-//               null when opp serves → go straight to 'rally'
-
-function intenseStartPoint() {
-  clearRallyState();
-  intensePhase = score.server === null ? 'serve0' : 'serve1';
-  renderPointEntry();
-}
-
-function intensePickServer(who) {
-  intensePhase = 'serve1';
-  score.server = who;
-  document.getElementById('srvNoah').classList.toggle('active', who==='noah');
-  document.getElementById('srvOpp').classList.toggle('active', who==='opp');
-  updateDots();
-  saveState();
-  renderPointEntry();
-}
-
-function intenseServe(serveNum, result) {
-  const noahServing = score.server === 'noah';
-
-  // Log serve stats
-  if (noahServing) {
-    const logResult = result === 'ace' ? 'in' : result;
-    const entry = {category:'serve', serve:serveNum==='1st'?'1st':'2nd', result:logResult, ts:Date.now()};
-    sets[currentSet].push(entry);
-    gameLog.push(entry);
-  } else if (result === 'df') {
-    const entry = {category:'serve', serve:'opp', result:'df', ts:Date.now()};
-    sets[currentSet].push(entry);
-    gameLog.push(entry);
-  }
-
-  if (result === 'ace') {
-    const scorer = noahServing ? 'noah' : 'opp';
-    const code   = noahServing ? 'W' : 'OW';
-    sets[currentSet].push({category:'point', outcome:code, scorer, mode:'intense-serve', serveResult:'ace', ts:Date.now()});
-    gameLog.push(sets[currentSet][sets[currentSet].length-1]);
-    clearRallyState();
-    awardPoint(scorer);
-    return;
-  }
-  if (result === 'df') {
-    const scorer = noahServing ? 'opp' : 'noah';
-    const code   = noahServing ? 'UEN' : 'UEO';
-    sets[currentSet].push({category:'point', outcome:code, scorer, mode:'intense-serve', serveResult:'df', ts:Date.now()});
-    gameLog.push(sets[currentSet][sets[currentSet].length-1]);
-    clearRallyState();
-    awardPoint(scorer);
-    return;
-  }
-  if (result === 'fault') {
-    intensePhase = 'serve2';
-    saveState(); renderPointEntry();
-    return;
-  }
-  // Ball in or soft → return screen
-  intensePhase = 'return';
-  saveState(); renderPointEntry();
-}
-
-function intenseReturn(result) {
-  const noahServing = score.server === 'noah';
-  // returner = opponent of server
-  // 'winner' = returner hits a clean winner
-  // 'error'  = returner makes an error
-  const returner = noahServing ? 'opp' : 'noah';
-
-  if (result === 'winner') {
-    // Return winner → returner scores
-    const scorer = returner;
-    const code   = noahServing ? 'FON' : 'FOO';  // forced on Noah's serve, or Noah's forced winner off opp serve
-    sets[currentSet].push({category:'point', outcome:code, scorer, mode:'intense-return', returnResult:'winner', ts:Date.now()});
-    gameLog.push(sets[currentSet][sets[currentSet].length-1]);
-    clearRallyState();
-    awardPoint(scorer);
-    return;
-  }
-  if (result === 'error') {
-    // Return error → server scores
-    const scorer = noahServing ? 'noah' : 'opp';
-    const code   = noahServing ? 'FOO' : 'FON';
-    sets[currentSet].push({category:'point', outcome:code, scorer, mode:'intense-return', returnResult:'error', ts:Date.now()});
-    gameLog.push(sets[currentSet][sets[currentSet].length-1]);
-    clearRallyState();
-    awardPoint(scorer);
-    return;
-  }
-  // Rally continues — opp returned, Noah hits next
-  // Seed the rally with opp's return so rallyNextPlayer() → noah
-  rallyShots.push({ player: 'opp', side: null, shotType: 'return' });
-  intensePhase = 'rally';
-  rallySelSide  = null;
-  saveState(); renderPointEntry();
-}
-
-function rallyTapSide(side) {
-  rallySelSide = side;
-  rallyPending = null;
-  renderPointEntry();
-}
-
-function rallyTapShot(shotType) {
-  // Store as pending — wait for outcome before committing
-  rallyPending = { player: rallyNextPlayer(), side: rallySelSide, shotType };
-  renderPointEntry();
-}
-
-function rallyUndoShot() {
-  if (rallyPending) {
-    rallyPending = null;
-    rallySelSide = null;
-  } else if (rallyShots.length) {
-    rallyShots.pop();
-    rallySelSide = null;
-  } else if (intensePhase === 'rally') {
-    intensePhase = 'return';
-  } else if (intensePhase === 'return') {
-    intensePhase = 'serve1';
-  } else if (intensePhase === 'serve1') {
-    if (score.server === null) intensePhase = 'serve0';
-  } else if (intensePhase === 'serve2') {
-    intensePhase = 'serve1';
-  }
-  renderPointEntry();
-}
-
-// Opp returned the ball — log placeholder, advance to Noah's turn
-function oppRallyReturn() {
-  rallyShots.push({ player: 'opp', side: null, shotType: 'return' });
-  rallySelSide = null;
-  renderPointEntry();
-}
-
-// Opp made an error during the rally — Noah wins, point ends immediately
-function oppRallyError(type) {
-  rallyShots.push({ player: 'opp', side: null, shotType: type === 'FE' ? 'forced-err' : 'ue' });
-  const code = type === 'FE' ? 'FOO' : 'UEO';
-  const entry = {
-    category: 'point',
-    outcome:  code,
-    scorer:   'noah',
-    rally:    [...rallyShots],
-    ts:       Date.now()
-  };
-  sets[currentSet].push(entry);
-  gameLog.push(entry);
-  clearRallyState();
-  awardPoint('noah');
-}
-// Noah's shot went in — commit it and pass to opp
-function rallyCommitGood() {
-  if (!rallyPending) return;
-  rallyShots.push({ ...rallyPending });
-  rallyPending = null;
-  rallySelSide = null;
-  renderPointEntry();
-}
-
-function commitRallyPoint(outcome) {
-  // Commit the pending shot first (if any), then end the point
-  const shot = rallyPending || (rallyShots.length ? rallyShots[rallyShots.length-1] : null);
-  if (!shot) return;
-  if (rallyPending) {
-    rallyShots.push({ ...rallyPending });
-    rallyPending = null;
-    rallySelSide = null;
-  }
-  const lastShot   = rallyShots[rallyShots.length - 1];
-  const lastPlayer = lastShot.player;
-
-  // outcome from last hitter's perspective:
-  //   W  = last hitter hit a winner           → last hitter scores
-  //   FE = last hitter hit a forced error     → opponent scores
-  //   UE = last hitter hit an unforced error  → opponent scores
-  const outcomeMap = {
-    W:  { scorer: lastPlayer,                            code: lastPlayer==='noah' ? 'W'   : 'OW'  },
-    FE: { scorer: lastPlayer==='noah' ? 'opp' : 'noah', code: lastPlayer==='noah' ? 'FON' : 'FOO' },
-    UE: { scorer: lastPlayer==='noah' ? 'opp' : 'noah', code: lastPlayer==='noah' ? 'UEN' : 'UEO' },
-  };
-  const resolved = outcomeMap[outcome] || { scorer:'noah', code:'W' };
-
-  const entry = {
-    category: 'point',
-    outcome:  resolved.code,
-    scorer:   resolved.scorer,
-    rally:    [...rallyShots],
-    ts:       Date.now()
-  };
-  sets[currentSet].push(entry);
-  gameLog.push(entry);
-  clearRallyState();
-  awardPoint(resolved.scorer);
-}
-
-// ── RENDER POINT ENTRY (called from updateUI) ──
-function renderPointEntry() {
-  const root = document.getElementById('pointEntryRoot');
-  if (!root) return;
-  const mode = matchConfig.trackingMode || 'medium';
-  const gc   = gameCounts();
-
-  if (mode === 'light') {
-    const noahWins = (gc.W||0) + (gc.FOO||0) + (gc.UEO||0);
-    const oppWins  = (gc.FON||0) + (gc.UEN||0);
-    root.innerHTML = `
-<div class="light-entry">
-  <button class="light-win-btn lwb-noah" onclick="commitLightPoint('noah')">
-    <span class="lwc">${noahWins}</span>Noah Won
-  </button>
-  <button class="light-win-btn lwb-opp" onclick="commitLightPoint('opp')">
-    <span class="lwc">${oppWins}</span>Opp Won
-  </button>
-</div>`;
-
-  } else if (mode === 'medium') {
-    const noahServing = score.server === 'noah' || score.server === null;
-    root.innerHTML = `
-<div class="point-entry">
-  ${noahServing ? `
-  <button style="width:100%;border:none;border-radius:10px;padding:12px;margin-bottom:10px;background:#004D20;color:#69FFBB;border:1px solid #00E676;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onclick="logStandalone('SW','Serve Winner')">
-    <span>Serve Winner ★</span><span style="font-family:'Bebas Neue',sans-serif;font-size:20px">${gc.SW||0}</span>
-  </button>` : ''}
-  <div class="pe-grid" style="align-items:stretch;">
-    <div style="display:flex;flex-direction:column;">
-      <div class="pe-col-label">Position</div>
-      ${['Baseline','Approach','Net'].map(p=>`
-      <button class="pe-btn pe-pos${selPos===p?' selected':''}" id="pos-${p}" onclick="selectPos('${p}')">
-        <span class="pe-count" id="cnt-pos-${p}">${gc.pos[p]||0}</span>
-        <span class="pe-lbl">${p}</span>
-      </button>`).join('')}
-    </div>
-    <div style="display:flex;flex-direction:column;">
-      <div class="pe-col-label">Shot</div>
-      ${['Forehand','Backhand'].map(s=>`
-      <button class="pe-btn pe-shot${selShot===s?' selected':''}" id="shot-${s}" onclick="selectShot('${s}')">
-        <span class="pe-count" id="cnt-shot-${s}">${gc.shot[s]||0}</span>
-        <span class="pe-lbl">${s}</span>
-      </button>`).join('')}
-    </div>
-    <div style="display:flex;flex-direction:column;">
-      <div class="pe-col-label">Outcome</div>
-      <div id="outCol" class="pe-col-outcomes${(selPos&&selShot)?'':' locked'}" style="flex:1;display:flex;flex-direction:column;">
-        <button class="pe-btn pe-out-w"   onclick="commitPoint('W',  'noah')"><span class="pe-count">${gc.W||0}</span><span class="pe-lbl">Winner</span></button>
-        <button class="pe-btn pe-out-foo" onclick="commitPoint('FOO','noah')"><span class="pe-count">${gc.FOO||0}</span><span class="pe-lbl">Forced → Noah</span></button>
-        <button class="pe-btn pe-out-fon" onclick="commitPoint('FON','opp')" ><span class="pe-count">${gc.FON||0}</span><span class="pe-lbl">Forced on Noah</span></button>
-        <button class="pe-btn pe-out-ueo" onclick="commitPoint('UEO','noah')"><span class="pe-count">${gc.UEO||0}</span><span class="pe-lbl">Opp UE → Noah</span></button>
-        <button class="pe-btn pe-out-uen" onclick="commitPoint('UEN','opp')" ><span class="pe-count">${gc.UEN||0}</span><span class="pe-lbl">Noah UE</span></button>
-      </div>
-    </div>
-  </div>
-</div>`;
-
-  } else if (mode === 'intense') {
-
-    // Fallback: render medium mode UI for this point
-    if (voiceUseTap) {
-      const noahServing = score.server === 'noah' || score.server === null;
-      root.innerHTML = `
-<div class="point-entry">
-  ${noahServing ? `
-  <button style="width:100%;border:none;border-radius:10px;padding:12px;margin-bottom:10px;background:#004D20;color:#69FFBB;border:1px solid #00E676;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onclick="logStandalone('SW','Serve Winner');voiceUseTap=false;">
-    <span>Serve Winner ★</span><span style="font-family:'Bebas Neue',sans-serif;font-size:20px">${gameCounts().SW||0}</span>
-  </button>` : ''}
-  <div class="pe-grid" style="align-items:stretch;">
-    <div style="display:flex;flex-direction:column;">
-      <div class="pe-col-label">Position</div>
-      ${['Baseline','Approach','Net'].map(p=>`
-      <button class="pe-btn pe-pos${selPos===p?' selected':''}" id="pos-${p}" onclick="selectPos('${p}')">
-        <span class="pe-count">${(gameCounts().pos||{})[p]||0}</span>
-        <span class="pe-lbl">${p}</span>
-      </button>`).join('')}
-    </div>
-    <div style="display:flex;flex-direction:column;">
-      <div class="pe-col-label">Shot</div>
-      ${['Forehand','Backhand'].map(s=>`
-      <button class="pe-btn pe-shot${selShot===s?' selected':''}" id="shot-${s}" onclick="selectShot('${s}')">
-        <span class="pe-count">${(gameCounts().shot||{})[s]||0}</span>
-        <span class="pe-lbl">${s}</span>
-      </button>`).join('')}
-    </div>
-    <div style="display:flex;flex-direction:column;">
-      <div class="pe-col-label">Outcome</div>
-      <div id="outCol" class="pe-col-outcomes${(selPos&&selShot)?'':' locked'}" style="flex:1;display:flex;flex-direction:column;">
-        <button class="pe-btn pe-out-w"   onclick="commitPoint('W','noah');voiceUseTap=false;"><span class="pe-count">${gameCounts().W||0}</span><span class="pe-lbl">Winner</span></button>
-        <button class="pe-btn pe-out-foo" onclick="commitPoint('FOO','noah');voiceUseTap=false;"><span class="pe-count">${gameCounts().FOO||0}</span><span class="pe-lbl">Forced → Noah</span></button>
-        <button class="pe-btn pe-out-fon" onclick="commitPoint('FON','opp');voiceUseTap=false;"><span class="pe-count">${gameCounts().FON||0}</span><span class="pe-lbl">Forced on Noah</span></button>
-        <button class="pe-btn pe-out-ueo" onclick="commitPoint('UEO','noah');voiceUseTap=false;"><span class="pe-count">${gameCounts().UEO||0}</span><span class="pe-lbl">Opp UE → Noah</span></button>
-        <button class="pe-btn pe-out-uen" onclick="commitPoint('UEN','opp');voiceUseTap=false;"><span class="pe-count">${gameCounts().UEN||0}</span><span class="pe-lbl">Noah UE</span></button>
-      </div>
-    </div>
-  </div>
-  <button onclick="voiceUseTap=false;renderPointEntry();" style="margin-top:8px;width:100%;border:none;background:transparent;color:var(--muted);font-size:11px;font-weight:600;padding:6px;cursor:pointer;text-decoration:underline;">Back to voice</button>
-</div>`;
-      return;
-    }
-
-    // Voice primary UI
-    const isRecording  = voiceState === 'recording';
-    const isProcessing = voiceState === 'processing';
-    const isError      = voiceState === 'error';
-    const hasKey       = !!getApiKey();
-
-    root.innerHTML = `
-<div class="voice-screen">
-  ${!hasKey ? `
-  <div class="voice-error" style="margin-bottom:10px;">
-    ⚠ No API key set — voice parsing won't work.<br>
-    <button onclick="promptApiKey()" style="margin-top:8px;background:#1A0033;border:1px solid #AA00FF;color:#CF8FFF;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;">🔑 Set API Key</button>
-  </div>` : ''}
-  <button class="voice-hold-btn${isRecording?' recording':''}"
-    ontouchstart="voiceStartRecording()" ontouchend="voiceStopRecording()"
-    onmousedown="voiceStartRecording()" onmouseup="voiceStopRecording()" onmouseleave="voiceStopRecording()">
-    <span class="voice-icon">${isRecording ? '🔴' : isProcessing ? '<span class="voice-spinner"></span>' : '🎤'}</span>
-    <span class="voice-lbl">${isRecording ? 'Recording… release when done' : isProcessing ? 'Parsing point…' : 'Hold to narrate the point'}</span>
-  </button>
-  ${voiceTranscript && !isError ? `<div class="voice-transcript">"${voiceTranscript}"</div>` : ''}
-  ${!voiceTranscript && !isError ? `<div class="voice-transcript empty">e.g. "hard serve, forehand, approach backhand winner"</div>` : ''}
-  ${isError ? `<div class="voice-error">⚠ ${voiceTranscript}<br><br>
-    <button onclick="voiceRedo()" style="background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;margin-right:8px;">Try again</button>
-    <button onclick="promptApiKey()" style="background:#1A0033;border:1px solid #AA00FF;color:#CF8FFF;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;">🔑 API Key</button>
-  </div>` : ''}
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
-    <button class="voice-tap-fallback" style="margin:0;padding:6px 0;" onclick="voiceSwitchToTap()">Switch to manual entry</button>
-    ${hasKey ? `<button onclick="promptApiKey()" style="background:transparent;border:none;color:var(--muted);font-size:11px;cursor:pointer;padding:6px;">🔑</button>` : ''}
-  </div>
-</div>`;
-    return;
-
-    // TAP FALLBACK — existing serve/rally UI (unreachable in voice mode, kept for reference)
-    if (!intensePhase) {
-      intensePhase = score.server === null ? 'serve0' : 'serve1';
-    }
-
-    const gc          = gameCounts();
-    const noahServing = score.server === 'noah';
-    const serverName  = noahServing ? 'NOAH' : 'OPP';
-    const returnerName= noahServing ? 'OPP'  : 'NOAH';
-
-    // ── SERVE 0: WHO'S SERVING? ──
-    if (intensePhase === 'serve0') {
-      root.innerHTML = `
-<div class="rb-serve-screen">
-  <div class="rb-serve-title"><span>Who's serving?</span></div>
-  <div class="rb-serve-grid" style="grid-template-columns:1fr 1fr;gap:10px;">
-    <button class="rb-serve-zone rbsz-in" onclick="intensePickServer('noah')">
-      <span class="rbsz-count" style="font-size:20px">🎾</span>Noah
-    </button>
-    <button class="rb-serve-zone" style="background:#2A0A00;border:2px solid #FF6D00;color:#FFAB76" onclick="intensePickServer('opp')">
-      <span class="rbsz-count" style="font-size:20px">🎾</span>Opponent
-    </button>
-  </div>
-</div>`;
-      return;
-    }
-
-    // ── SERVE 1 SCREEN ──
-    if (intensePhase === 'serve1') {
-      if (!noahServing) {
-        // Opp serving — just two buttons
-        root.innerHTML = `
-<div class="rb-serve-screen">
-  <div class="rb-serve-title"><span>🎾 OPP Serving</span></div>
-  <div class="rb-serve-grid" style="grid-template-columns:1fr 1fr;gap:10px;">
-    <button class="rb-serve-zone rbsz-in" onclick="intenseServe('1st','in')">
-      <span class="rbsz-count" style="font-size:20px">▶</span>Point Started
-    </button>
-    <button class="rb-serve-zone rbsz-df" onclick="intenseServe('2nd','df')">
-      <span class="rbsz-count">${gc.oppDf||0}</span>Double Fault
-    </button>
-  </div>
-</div>`;
-        return;
-      }
-      const s1total = (gc.S1in||0)+(gc.S1soft||0)+(gc.S1out||0);
-      const s1pct   = s1total ? Math.round((gc.S1in+gc.S1soft)/s1total*100)+'%' : '—';
-      root.innerHTML = `
-<div class="rb-serve-screen">
-  <div class="rb-serve-title">
-    <span>🎾 NOAH · 1st Serve</span>
-    <span style="color:var(--green)">${s1pct} in (${s1total})</span>
-  </div>
-  <div class="rb-serve-grid" style="grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
-    <button class="rb-serve-zone rbsz-in"   onclick="intenseServe('1st','in')">
-      <span class="rbsz-count">${gc.S1in||0}</span>Hard Serve
-    </button>
-    <button class="rb-serve-zone rbsz-soft" onclick="intenseServe('1st','soft')">
-      <span class="rbsz-count">${gc.S1soft||0}</span>Soft Serve
-    </button>
-  </div>
-  <div class="rb-serve-grid" style="grid-template-columns:1fr 1fr;gap:8px;">
-    <button class="rb-serve-zone rbsz-ace"   onclick="intenseServe('1st','ace')">
-      <span class="rbsz-count"></span>Ace ★
-    </button>
-    <button class="rb-serve-zone rbsz-fault" onclick="intenseServe('1st','fault')">
-      <span class="rbsz-count">${gc.S1out||0}</span>Fault ✗
-    </button>
-  </div>
-</div>`;
-
-    // ── SERVE 2 SCREEN (Noah only) ──
-    } else if (intensePhase === 'serve2') {
-      const s2total = (gc.S2in||0)+(gc.S2out||0)+(gc.S2df||0);
-      const s2pct   = s2total ? Math.round(gc.S2in/s2total*100)+'%' : '—';
-      root.innerHTML = `
-<div class="rb-serve-screen">
-  <div class="rb-serve-title">
-    <span>🎾 NOAH · 2nd Serve</span>
-    <span style="color:var(--amber)">${s2pct} in (${s2total})</span>
-    <button class="rb-undo" onclick="rallyUndoShot()">↩ 1st serve</button>
-  </div>
-  <div class="rb-serve-grid" style="grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
-    <button class="rb-serve-zone rbsz-in"   onclick="intenseServe('2nd','in')">
-      <span class="rbsz-count">${gc.S2in||0}</span>Hard Serve
-    </button>
-    <button class="rb-serve-zone rbsz-soft" onclick="intenseServe('2nd','soft')">
-      <span class="rbsz-count"></span>Soft Serve
-    </button>
-  </div>
-  <div class="rb-serve-grid" style="grid-template-columns:1fr 1fr;gap:8px;">
-    <button class="rb-serve-zone rbsz-fault" style="opacity:.35;pointer-events:none;">
-      <span class="rbsz-count">—</span>Fault
-    </button>
-    <button class="rb-serve-zone rbsz-df"   onclick="intenseServe('2nd','df')">
-      <span class="rbsz-count">${gc.S2df||0}</span>Double Fault
-    </button>
-  </div>
-</div>`;
-
-    // ── RETURN SCREEN ──
-    } else if (intensePhase === 'return') {
-      root.innerHTML = `
-<div class="rb-return-screen">
-  <div class="rb-serve-title">
-    <span>🎾 ${returnerName} · Return</span>
-    <button class="rb-undo" onclick="rallyUndoShot()">↩ Undo</button>
-  </div>
-  <div class="rb-return-grid three">
-    <button class="rb-return-zone rbr-winner" onclick="intenseReturn('winner')">Return<br>Winner</button>
-    <button class="rb-return-zone rbr-rally"  onclick="intenseReturn('rally')">Rally<br>Continues</button>
-    <button class="rb-return-zone rbr-error"  onclick="intenseReturn('error')">Return<br>Error</button>
-  </div>
-</div>`;
-
-    // ── RALLY SCREEN ──
-    } else if (intensePhase === 'rally') {
-      const nextPlayer = rallyNextPlayer();
-      const lastPlayer = rallyShots.length ? rallyShots[rallyShots.length-1].player : null;
-      const lastIsNoah = lastPlayer === 'noah';
-      const isNoah     = nextPlayer === 'noah';
-      const canEnd     = rallyShots.length > 0;
-
-      const chipHtml = rallyShots.length
-        ? rallyShots.map(s => {
-            const sideLabel = s.side ? s.side+' ' : '';
-            const label = s.player==='noah'
-              ? `N ${sideLabel}${s.shotType}`
-              : (s.shotType === 'return' ? 'O ↩' : 'O →');
-            return `<span class="rally-chip ${s.player}">${label}</span>`;
-          }).join('')
-        : `<span class="rally-chain-empty">Tap the first shot…</span>`;
-
-      root.innerHTML = `
-<div class="rally-builder">
-  <div class="rally-chain-wrap">
-    <div class="rally-chain" id="rallyChain">${chipHtml}</div>
-  </div>
-  <div class="rb-step-header">
-    <span class="rb-turn ${nextPlayer}">${isNoah ? '🎾 NOAH' : '🎾 OPP'}</span>
-    <span class="rb-step-name">Shot ${rallyShots.length + 1}</span>
-    <button class="rb-undo" onclick="rallyUndoShot()">↩ Undo</button>
-  </div>
-
-  ${isNoah ? `
-  <div class="rb-side-toggle">
-    <button class="rb-side-btn fh${rallySelSide==='FH'?' sel':''}" onclick="rallyTapSide('FH')">Forehand</button>
-    <button class="rb-side-btn bh${rallySelSide==='BH'?' sel':''}" onclick="rallyTapSide('BH')">Backhand</button>
-  </div>
-  ${!rallyPending ? `
-  <div class="rb-shot-list">
-    <button class="rb-shot-item${!rallySelSide?' disabled':''}" onclick="rallyTapShot('Ground')">Ground stroke</button>
-    <button class="rb-shot-item${!rallySelSide?' disabled':''}" onclick="rallyTapShot('Slice')">Slice</button>
-    <button class="rb-shot-item" onclick="rallyTapShot('Volley')">Volley</button>
-    <button class="rb-shot-item" onclick="rallyTapShot('Smash')">Smash / Overhead</button>
-    <button class="rb-shot-item" onclick="rallyTapShot('Lob')">Lob</button>
-    <button class="rb-shot-item" onclick="rallyTapShot('Drop')">Drop shot</button>
-    <button class="rb-shot-item" onclick="rallyTapShot('Other')">Other</button>
-  </div>
-  ` : `
-  <div class="rb-pending-bar">
-    ${rallyPending.side ? rallyPending.side+' ' : ''}${rallyPending.shotType} — what happened?
-  </div>
-  <div class="rb-shot-list">
-    <button class="rb-shot-item" style="background:#003D1A;color:#5FFFAB;border-color:#00C853" onclick="rallyCommitGood()">Shot goes in →</button>
-    <button class="rb-shot-item" style="background:#003D1A;color:#5FFFAB;border-color:#00C853;opacity:.8" onclick="commitRallyPoint('W')">Noah Winner ★</button>
-    <button class="rb-shot-item" style="background:#3D2800;color:#FFE57F;border-color:#FFB300" onclick="commitRallyPoint('FE')">Noah Forced Error</button>
-    <button class="rb-shot-item" style="background:#3D0009;color:#FF8A80;border-color:#FF1744" onclick="commitRallyPoint('UE')">Noah Unforced Error</button>
-  </div>
-  `}
-  ` : `
-  <div class="rb-shot-list">
-    <button class="rb-shot-item" style="background:#003D1A;color:#5FFFAB;border-color:#00C853" onclick="oppRallyReturn()">Rally Continues →</button>
-    <button class="rb-shot-item" style="background:#3D2800;color:#FFE57F;border-color:#FFB300" onclick="oppRallyError('FE')">Forced Error — Noah wins</button>
-    <button class="rb-shot-item" style="background:#3D0009;color:#FF8A80;border-color:#FF1744" onclick="oppRallyError('UE')">Unforced Error — Noah wins</button>
-  </div>
-  `}
-</div>`;
-
-      const chain = document.getElementById('rallyChain');
-      if (chain) chain.scrollLeft = chain.scrollWidth;
-    }
-  }
-}
-
 function logStandalone(type, label) {
   const scorer = (type==='SW'||type==='BW') ? 'noah' : 'opp';
-  const entry = {category:'standalone', type, label, ts:Date.now()};
+  const entry = { category:'standalone', type, label, ts:Date.now() };
   sets[currentSet].push(entry);
   gameLog.push(entry);
   awardPoint(scorer);
 }
 
 // ── GAME SCORING ──
-const GP=['0','15','30','40','AD'];
-function gameDisplay(n,o){
-  if(n<3&&o<3) return GP[n]+' – '+GP[o];
-  if(n===3&&o===3) return 'Deuce';
-  if(n===4&&o===3) return 'AD – 40';
-  if(n===3&&o===4) return '40 – AD';
-  return GP[Math.min(n,4)]+' – '+GP[Math.min(o,4)];
-}
-function awardPoint(winner){
-  const w=winner==='noah'?0:1, l=1-w;
-  if(score.game[0]>=3&&score.game[1]>=3){
-    if(score.game[w]===4){triggerGameWon(winner);return;}
-    else if(score.game[l]===4){score.game[l]=3;}
-    else{score.game[w]=4;}
+const GP = ['0','15','30','40','AD'];
+function awardPoint(winner) {
+  const w = winner==='noah' ? 0 : 1, l = 1-w;
+  if (score.game[0]>=3 && score.game[1]>=3) {
+    if (matchConfig.scoring === 'noad') { triggerGameWon(winner); return; }
+    if (score.game[w]===4) { triggerGameWon(winner); return; }
+    else if (score.game[l]===4) { score.game[l]=3; }
+    else { score.game[w]=4; }
   } else {
     score.game[w]++;
-    if(score.game[w]>=4&&score.game[l]<3){triggerGameWon(winner);return;}
+    if (score.game[w]>=4 && score.game[l]<3) { triggerGameWon(winner); return; }
   }
   saveState(); updateUI();
-  if((matchConfig.trackingMode||'medium')==='medium'){
-    setTimeout(()=>window.scrollTo({top:0,behavior:'smooth'}),80);
-  }
+  setTimeout(()=>window.scrollTo({top:0,behavior:'smooth'}), 80);
 }
-function triggerGameWon(winner){
-  pendingGameWinner=winner;
-  const ng=score.sets[currentSet][0],og=score.sets[currentSet][1];
-  const title=document.getElementById('gameWonTitle');
-  title.textContent=winner==='noah'?'Game Noah!':'Game Opponent';
-  title.className='game-won-title '+(winner==='noah'?'noah':'opp');
-  document.getElementById('gameWonScore').textContent='Set '+(currentSet+1)+' · '+ng+' – '+og+' games so far';
+function triggerGameWon(winner) {
+  pendingGameWinner = winner;
+  const ng=score.sets[currentSet][0], og=score.sets[currentSet][1];
+  const title = document.getElementById('gameWonTitle');
+  title.textContent = winner==='noah' ? 'Game Noah!' : 'Game Opponent';
+  title.className = 'game-won-title '+(winner==='noah'?'noah':'opp');
+  document.getElementById('gameWonScore').textContent = 'Set '+(currentSet+1)+' · '+ng+' – '+og+' games so far';
   document.getElementById('gameWonOverlay').classList.add('open');
   saveState(); updateUI();
 }
-function confirmGameWon(){
-  if(!pendingGameWinner) return;
+function confirmGameWon() {
+  if (!pendingGameWinner) return;
   const wi = pendingGameWinner==='noah' ? 0 : 1;
   score.sets[currentSet][wi]++;
-  score.game=[0,0];
-  if(score.server==='noah') score.server='opp';
-  else if(score.server==='opp') score.server='noah';
-  pendingGameWinner=null;
-  gameLog=[];
+  score.game = [0,0];
+  if (score.server==='noah') score.server='opp';
+  else if (score.server==='opp') score.server='noah';
+  pendingGameWinner = null;
+  gameLog = [];
   document.getElementById('gameWonOverlay').classList.remove('open');
-
-  // Check if set is now won
-  const [ng, og] = score.sets[currentSet];
-  if(setIsWon(ng, og, currentSet)) {
-    triggerSetWon(ng > og ? 'noah' : 'opp', ng, og);
-    saveState(); updateUI();
-    return;
-  }
+  const [ng,og] = score.sets[currentSet];
+  if (setIsWon(ng,og,currentSet)) { triggerSetWon(ng>og?'noah':'opp',ng,og); saveState(); updateUI(); return; }
   saveState(); updateUI();
 }
-
-// Returns true if set is definitively over
 function setIsWon(ng, og, setIdx) {
-  const isTB10 = setIdx === 2 && matchConfig.thirdSetFormat === 'tb10' && matchConfig.setsToWin > 1;
-  if(isTB10) {
-    return (ng >= 10 || og >= 10) && Math.abs(ng - og) >= 2;
-  }
+  const isTB10 = setIdx===2 && matchConfig.thirdSetFormat==='tb10' && matchConfig.setsToWin>1;
+  if (isTB10) return (ng>=10||og>=10) && Math.abs(ng-og)>=2;
   const target = matchConfig.gamesPerSet;
-  const hasTiebreak = matchConfig.tiebreakAt === 'tie';
-  if(ng >= target || og >= target) {
-    if(Math.abs(ng - og) >= 2) return true;
-    // Tiebreak win: target+1 to target (e.g. 7-6 for a 6-game set)
-    if(hasTiebreak && (ng === target+1 || og === target+1)) return true;
+  const hasTB  = matchConfig.tiebreakAt==='tie';
+  if (ng>=target||og>=target) {
+    if (Math.abs(ng-og)>=2) return true;
+    if (hasTB && (ng===target+1||og===target+1)) return true;
   }
   return false;
 }
-
 function triggerSetWon(winner, ng, og) {
-  const setNum = currentSet + 1;
+  const setNum = currentSet+1;
   const title = document.getElementById('setWonTitle');
-  title.textContent = winner === 'noah'
-    ? `Set ${setNum} — Noah!`
-    : `Set ${setNum} — Opponent`;
-  title.style.color = winner === 'noah' ? 'var(--amber)' : 'var(--red)';
-  document.getElementById('setWonScore').textContent =
-    `Noah ${ng} – Opp ${og}`;
+  title.textContent = winner==='noah' ? `Set ${setNum} — Noah!` : `Set ${setNum} — Opponent`;
+  title.style.color = winner==='noah' ? 'var(--amber)' : 'var(--red)';
+  document.getElementById('setWonScore').textContent = `Noah ${ng} – Opp ${og}`;
   document.getElementById('setWonOverlay').classList.add('open');
 }
-
 function confirmSetWon() {
   document.getElementById('setWonOverlay').classList.remove('open');
-  if(currentSet < 2) {
-    currentSet++;
-  }
+  if (currentSet < 2) currentSet++;
   saveState(); updateUI();
 }
-
 function cancelSetWon() {
-  // Undo the last game score change — decrement the last set winner's count
-  const [ng, og] = score.sets[currentSet];
-  if(ng > og) score.sets[currentSet][0] = Math.max(0, ng - 1);
-  else score.sets[currentSet][1] = Math.max(0, og - 1);
+  const [ng,og] = score.sets[currentSet];
+  if (ng>og) score.sets[currentSet][0]=Math.max(0,ng-1);
+  else score.sets[currentSet][1]=Math.max(0,og-1);
   document.getElementById('setWonOverlay').classList.remove('open');
   saveState(); updateUI();
 }
-function cancelGameWon(){
-  pendingGameWinner=null;
+function cancelGameWon() {
+  pendingGameWinner = null;
   document.getElementById('gameWonOverlay').classList.remove('open');
   undoLast();
 }
-function setServer(who){
-  score.server=who;
-  document.getElementById('srvNoah').classList.toggle('active',who==='noah');
-  document.getElementById('srvOpp').classList.toggle('active',who==='opp');
+function setServer(who) {
+  score.server = who;
   updateDots(); saveState(); updateUI();
 }
-function updateDots(){
-  document.getElementById('noahDot').classList.toggle('hidden',score.server!=='noah');
-  document.getElementById('oppDot').classList.toggle('hidden',score.server!=='opp');
-  document.getElementById('noahGameCard').classList.toggle('serving',score.server==='noah');
-  document.getElementById('oppGameCard').classList.toggle('serving',score.server==='opp');
-  document.getElementById('srvNoah').classList.toggle('active',score.server==='noah');
-  document.getElementById('srvOpp').classList.toggle('active',score.server==='opp');
-  // Show the right serve panel — hide Noah's panel in Intense mode (serve screen handles it)
-  const noahServing = score.server === 'noah';
-  const isIntense   = (matchConfig.trackingMode||'medium') === 'intense';
-  document.getElementById('noahServePanel').style.display = (noahServing && !isIntense) ? '' : 'none';
+function updateDots() {
+  document.getElementById('noahDot').classList.toggle('hidden', score.server!=='noah');
+  document.getElementById('oppDot').classList.toggle('hidden',  score.server!=='opp');
+  document.getElementById('noahGameCard').classList.toggle('serving', score.server==='noah');
+  document.getElementById('oppGameCard').classList.toggle('serving',  score.server==='opp');
+  document.getElementById('srvNoah').classList.toggle('active', score.server==='noah');
+  document.getElementById('srvOpp').classList.toggle('active',  score.server==='opp');
+  const noahServing = score.server==='noah';
+  document.getElementById('noahServePanel').style.display = noahServing ? '' : 'none';
   document.getElementById('oppServePanel').style.display  = noahServing ? 'none' : '';
   document.getElementById('serveSectionLabel').textContent = noahServing ? 'Noah Serve' : 'Opp Serving';
-  // Hide entire serve section in Intense mode — point entry flow handles all serve tracking
-  document.getElementById('serveSection').style.display = isIntense ? 'none' : '';
+  // Serve winner button — only when Noah serves
+  const swBtn = document.getElementById('serveWinnerBtn');
+  if (swBtn) swBtn.style.display = (score.server==='noah'||score.server===null) ? 'flex' : 'none';
 }
-function adjSet(setIdx,player,delta){
-  const idx=player==='noah'?0:1;
-  score.sets[setIdx][idx]=Math.max(0,score.sets[setIdx][idx]+delta);
-  // Check for set won after manual adjustment
-  const [ng,og]=score.sets[setIdx];
-  if(delta>0 && setIsWon(ng,og,setIdx)){
-    triggerSetWon(ng>og?'noah':'opp',ng,og);
-  }
+function adjSet(setIdx, player, delta) {
+  const idx = player==='noah' ? 0 : 1;
+  score.sets[setIdx][idx] = Math.max(0, score.sets[setIdx][idx]+delta);
+  const [ng,og] = score.sets[setIdx];
+  if (delta>0 && setIsWon(ng,og,setIdx)) triggerSetWon(ng>og?'noah':'opp',ng,og);
   saveState(); updateUI();
 }
 
+// ── SERVE ──
+function logServe(serve, result) {
+  const entry = { category:'serve', serve, result, ts:Date.now() };
+  sets[currentSet].push(entry);
+  gameLog.push(entry);
+  if (result==='df') { awardPoint(serve==='opp'?'noah':'opp'); }
+  else {
+    saveState(); updateUI();
+    if (result !== 'out') {
+      setTimeout(()=>window.scrollBy({top:120, behavior:'smooth'}), 80);
+    }
+  }
+}
+
 // ── COUNTS ──
-function counts(setIdx){
-  const entries=setIdx==='all'?sets.flat():sets[setIdx];
-  const c={
-    W:0, UEN:0, FON:0, FOO:0, UEO:0, SW:0, BW:0, BL:0,
-    S1in:0, S1soft:0, S1out:0, S2in:0, S2out:0, S2df:0, oppDf:0,
-    pos:{}, shot:{}, outcome:{}
-  };
-  for(const e of entries){
-    if(e.category==='serve'){
-      if(e.serve==='opp'&&e.result==='df')          c.oppDf++;
-      else if(e.serve==='1st'&&e.result==='in')      c.S1in++;
-      else if(e.serve==='1st'&&e.result==='soft')    c.S1soft++;
-      else if(e.serve==='1st'&&e.result==='out')     c.S1out++;
-      else if(e.serve==='2nd'&&e.result==='in')      c.S2in++;
-      else if(e.serve==='2nd'&&e.result==='out')     c.S2out++;
-      else if(e.serve==='2nd'&&e.result==='df')      c.S2df++;
-    } else if(e.category==='point'){
-      c[e.outcome]=(c[e.outcome]||0)+1;
-      if(e.pos)  { c.pos[e.pos]=(c.pos[e.pos]||0)+1; }
-      if(e.shot) { c.shot[e.shot]=(c.shot[e.shot]||0)+1; }
-      if(e.rally){ e.rally.forEach(s=>{ c.rallyShots=(c.rallyShots||0)+1; }); }
-      const k=e.outcome+'_'+(e.pos||'')+'_'+(e.shot||'');
-      c.outcome[k]=(c.outcome[k]||0)+1;
-    } else if(e.category==='standalone'){
-      c[e.type]=(c[e.type]||0)+1;
+function counts(setIdx) {
+  const entries = setIdx==='all' ? sets.flat() : sets[setIdx];
+  const c = { W:0,UEN:0,FON:0,FOO:0,UEO:0,SW:0,BW:0,BL:0,
+    S1in:0,S1soft:0,S1out:0,S2in:0,S2out:0,S2df:0,oppDf:0,
+    pos:{}, shot:{}, outcome:{} };
+  for (const e of entries) {
+    if (e.category==='serve') {
+      if (e.serve==='opp'&&e.result==='df')       c.oppDf++;
+      else if (e.serve==='1st'&&e.result==='in')  c.S1in++;
+      else if (e.serve==='1st'&&e.result==='soft')c.S1soft++;
+      else if (e.serve==='1st'&&e.result==='out') c.S1out++;
+      else if (e.serve==='2nd'&&e.result==='in')  c.S2in++;
+      else if (e.serve==='2nd'&&e.result==='out') c.S2out++;
+      else if (e.serve==='2nd'&&e.result==='df')  c.S2df++;
+    } else if (e.category==='point') {
+      c[e.outcome] = (c[e.outcome]||0)+1;
+      if (e.pos)  c.pos[e.pos]  = (c.pos[e.pos]||0)+1;
+      if (e.shot) c.shot[e.shot] = (c.shot[e.shot]||0)+1;
+    } else if (e.category==='standalone') {
+      c[e.type] = (c[e.type]||0)+1;
     }
   }
   c.winners = (c.W||0)+(c.SW||0)+(c.BW||0)+(c.FOO||0)+(c.UEO||0);
-  // light mode uses outcome 'W' for noah won (same code), 'L' for opp won — add light 'W' is already counted
   c.ue      = (c.UEN||0);
   return c;
 }
-function pct(n,d){return d?Math.round(n/d*100)+'%':'—';}
-function ratio(w,ue){if(!ue)return w>0?w+':0':'—';return (w/ue).toFixed(2);}
-function switchSet(idx){currentSet=idx;updateUI();}
-
-function undoLast(){
-  let removed=null;
-  if(sets[currentSet].length){removed=sets[currentSet].pop();}
-  else{for(let i=currentSet-1;i>=0;i--){if(sets[i].length){removed=sets[i].pop();break;}}}
-  // Also remove from gameLog if it's there
-  if(removed && gameLog.length && gameLog[gameLog.length-1].ts===removed.ts) gameLog.pop();
-  if(removed){
-    if(removed.category==='serve'&&removed.result==='df') undoGamePoint(removed.serve==='opp'?'noah':'opp');
-    else if(removed.category==='point') undoGamePoint(removed.scorer);
-    else if(removed.category==='standalone'){
-      const scorer=(removed.type==='SW'||removed.type==='BW')?'noah':'opp';
-      undoGamePoint(scorer);
+function gameCounts() {
+  const c = { W:0,FOO:0,FON:0,UEO:0,UEN:0,SW:0,BW:0,BL:0,
+    S1in:0,S1soft:0,S1out:0,S2in:0,S2out:0,S2df:0,oppDf:0, pos:{},shot:{} };
+  for (const e of gameLog) {
+    if (e.category==='serve') {
+      if (e.serve==='opp'&&e.result==='df')       c.oppDf++;
+      else if (e.serve==='1st'&&e.result==='in')  c.S1in++;
+      else if (e.serve==='1st'&&e.result==='soft')c.S1soft++;
+      else if (e.serve==='1st'&&e.result==='out') c.S1out++;
+      else if (e.serve==='2nd'&&e.result==='in')  c.S2in++;
+      else if (e.serve==='2nd'&&e.result==='out') c.S2out++;
+      else if (e.serve==='2nd'&&e.result==='df')  c.S2df++;
+    } else if (e.category==='point') {
+      c[e.outcome] = (c[e.outcome]||0)+1;
+      if (e.pos)  c.pos[e.pos]  = (c.pos[e.pos]||0)+1;
+      if (e.shot) c.shot[e.shot] = (c.shot[e.shot]||0)+1;
+    } else if (e.category==='standalone') {
+      c[e.type] = (c[e.type]||0)+1;
     }
+  }
+  return c;
+}
+function pct(n,d){ return d ? Math.round(n/d*100)+'%' : '—'; }
+function ratio(w,ue){ if(!ue) return w>0?w+':0':'—'; return (w/ue).toFixed(2); }
+function switchSet(idx){ currentSet=idx; updateUI(); }
+
+// ── UNDO ──
+function undoLast() {
+  let removed = null;
+  if (sets[currentSet].length) { removed = sets[currentSet].pop(); }
+  else { for(let i=currentSet-1;i>=0;i--){ if(sets[i].length){removed=sets[i].pop();break;} } }
+  if (removed && gameLog.length && gameLog[gameLog.length-1].ts===removed.ts) gameLog.pop();
+  if (removed) {
+    if (removed.category==='serve' && removed.result==='df') undoGamePoint(removed.serve==='opp'?'noah':'opp');
+    else if (removed.category==='point') undoGamePoint(removed.scorer);
+    else if (removed.category==='standalone') undoGamePoint((removed.type==='SW'||removed.type==='BW')?'noah':'opp');
   }
   clearSelections();
   saveState(); updateUI();
 }
-function undoGamePoint(who){
-  const idx=who==='noah'?0:1;
-  if(score.game[idx]>0) score.game[idx]--;
-}
-function logServe(serve,result){
-  const entry = {category:'serve',serve,result,ts:Date.now()};
-  sets[currentSet].push(entry);
-  gameLog.push(entry);
-  if(result==='df'){awardPoint(serve==='opp'?'noah':'opp');}
-  else{
-    saveState();updateUI();
-    // In medium mode, scroll point entry into view after logging a serve
-    if((matchConfig.trackingMode||'medium')==='medium' && result!=='out'){
-      setTimeout(()=>{
-        window.scrollBy({top: 120, behavior:'smooth'});
-      },80);
-    }
-  }
-}
-// Per-game counts from gameLog
-function gameCounts(){
-  const c={W:0,FOO:0,FON:0,UEO:0,UEN:0,SW:0,BW:0,BL:0,
-    S1in:0,S1soft:0,S1out:0,S2in:0,S2out:0,S2df:0,oppDf:0,
-    pos:{},shot:{}};
-  for(const e of gameLog){
-    if(e.category==='serve'){
-      if(e.serve==='opp'&&e.result==='df'){c.oppDf++;}
-      else if(e.serve==='1st'&&e.result==='in')   c.S1in++;
-      else if(e.serve==='1st'&&e.result==='soft')  c.S1soft++;
-      else if(e.serve==='1st'&&e.result==='out')   c.S1out++;
-      else if(e.serve==='2nd'&&e.result==='in')    c.S2in++;
-      else if(e.serve==='2nd'&&e.result==='out')   c.S2out++;
-      else if(e.serve==='2nd'&&e.result==='df')    c.S2df++;
-    } else if(e.category==='point'){
-      c[e.outcome]=(c[e.outcome]||0)+1;
-      if(e.pos)  { c.pos[e.pos]=(c.pos[e.pos]||0)+1; }
-      if(e.shot) { c.shot[e.shot]=(c.shot[e.shot]||0)+1; }
-    } else if(e.category==='standalone'){
-      c[e.type]=(c[e.type]||0)+1;
-    }
-  }
-  return c;
+function undoGamePoint(who) {
+  const idx = who==='noah' ? 0 : 1;
+  if (score.game[idx]>0) score.game[idx]--;
 }
 
-function toggleMatchStats(){
-  const body=document.getElementById('matchStatsBody');
-  const chev=document.getElementById('matchStatsChevron');
-  const open=body.classList.toggle('open');
-  chev.classList.toggle('open',open);
-  if(open) renderMatchStats();
+// ── UPDATE UI ──
+function updateUI() {
+  const all = counts('all'), gc = gameCounts();
+
+  // Header
+  document.getElementById('hdrWinners').textContent = all.winners;
+  document.getElementById('hdrUE').textContent      = all.ue;
+  document.getElementById('hdrRatio').textContent   = ratio(all.winners, all.ue);
+
+  // Game score
+  const n=score.game[0], o=score.game[1];
+  const isDeuce=n>=3&&o>=3&&n===o, noahAD=n===4&&o===3, oppAD=o===4&&n===3;
+  document.getElementById('noahGamePts').textContent = isDeuce?'D':noahAD?'AD':oppAD?'—':GP[n];
+  document.getElementById('oppGamePts').textContent  = isDeuce?'D':oppAD?'AD':noahAD?'—':GP[o];
+  document.getElementById('noahGamePts').className = 'gsp-pts'+(isDeuce?' deuce':'');
+  document.getElementById('oppGamePts').className  = 'gsp-pts opp'+(isDeuce?' deuce':'');
+  updateDots();
+
+  // Set scores
+  for (let i=0;i<3;i++) {
+    document.getElementById('noahS'+(i+1)).textContent = score.sets[i][0];
+    document.getElementById('oppS' +(i+1)).textContent = score.sets[i][1];
+  }
+
+  // Serve stats
+  document.getElementById('s1in').textContent   = gc.S1in;
+  document.getElementById('s1soft').textContent = gc.S1soft;
+  document.getElementById('s1out').textContent  = gc.S1out;
+  document.getElementById('s2in').textContent   = gc.S2in;
+  document.getElementById('s2out').textContent  = gc.S2out;
+  document.getElementById('s2df').textContent   = gc.S2df;
+  document.getElementById('oppDfCount').textContent = gc.oppDf;
+  document.getElementById('s1pct').textContent  = pct(gc.S1in+gc.S1soft, gc.S1in+gc.S1soft+gc.S1out);
+
+  // Point entry counts
+  document.getElementById('swCount').textContent = gc.SW||0;
+  ['Baseline','Approach','Net'].forEach(p => { const el=document.getElementById('cnt-pos-'+p); if(el) el.textContent=gc.pos[p]||0; });
+  ['Forehand','Backhand'].forEach(s     => { const el=document.getElementById('cnt-shot-'+s); if(el) el.textContent=gc.shot[s]||0; });
+  ['W','FOO','FON','UEO','UEN'].forEach(o => { const el=document.getElementById('cnt-out-'+o); if(el) el.textContent=gc[o]||0; });
+  ['BW','BL'].forEach(t => { const el=document.getElementById('cnt-'+t); if(el) el.textContent=gc[t]||0; });
+
+  // Set tabs
+  for (let i=0;i<3;i++) {
+    const c = counts(i);
+    document.getElementById('tabNum'+i).textContent = c.winners+'/'+c.ue;
+    document.getElementById('tab'+i).classList.toggle('active', i===currentSet);
+  }
+  document.getElementById('logSetLabel').textContent = currentSet+1;
+
+  if (document.getElementById('matchStatsBody').classList.contains('open')) renderMatchStats();
+  renderLog();
 }
 
-function renderMatchStats(){
-  const all=counts('all');
-  const s1t=all.S1in+all.S1soft+all.S1out;
-  const s2t=all.S2in+all.S2out+all.S2df;
-  const items=[
+function toggleMatchStats() {
+  const body = document.getElementById('matchStatsBody');
+  const chev = document.getElementById('matchStatsChevron');
+  const open = body.classList.toggle('open');
+  chev.classList.toggle('open', open);
+  if (open) renderMatchStats();
+}
+function renderMatchStats() {
+  const all = counts('all');
+  const s1t = all.S1in+all.S1soft+all.S1out, s2t = all.S2in+all.S2out+all.S2df;
+  const items = [
     {label:'Points Won',val:all.winners,cls:'g'},
     {label:'Noah UE',val:all.UEN||0,cls:'r'},
     {label:'Winners',val:all.W||0,cls:'g'},
@@ -1886,128 +901,54 @@ function renderMatchStats(){
     {label:'Net pts',val:all.pos['Net']||0,cls:'g'},
     {label:'FH pts',val:all.shot['Forehand']||0,cls:'g'},
     {label:'BH pts',val:all.shot['Backhand']||0,cls:'a'},
-    {label:'👁 Won',val:all.BW||0,cls:'p'},
+    {label:'👁 Won',val:all.BW||0,cls:'g'},
     {label:'👁 Lost',val:all.BL||0,cls:'r'},
   ];
-  document.getElementById('matchStatsGrid').innerHTML=items.map(i=>
+  document.getElementById('matchStatsGrid').innerHTML = items.map(i=>
     `<div class="ms-stat"><div class="ms-val ${i.cls}">${i.val}</div><div class="ms-lbl">${i.label}</div></div>`
   ).join('');
 }
 
-// ── UPDATE UI ──
-function updateUI(){
-  const all=counts('all'), gc=gameCounts();
-
-  // Header — cumulative
-  document.getElementById('hdrWinners').textContent=all.winners;
-  document.getElementById('hdrUE').textContent=all.ue;
-  document.getElementById('hdrRatio').textContent=ratio(all.winners,all.ue);
-
-  // Game score
-  const n=score.game[0],o=score.game[1];
-  const isDeuce=n>=3&&o>=3&&n===o, noahAD=n===4&&o===3, oppAD=o===4&&n===3;
-  document.getElementById('noahGamePts').textContent=isDeuce?'D':noahAD?'AD':oppAD?'—':GP[n];
-  document.getElementById('oppGamePts').textContent =isDeuce?'D':oppAD?'AD':noahAD?'—':GP[o];
-  document.getElementById('noahGamePts').className='gsp-pts'+(isDeuce?' deuce':'');
-  document.getElementById('oppGamePts').className ='gsp-pts opp'+(isDeuce?' deuce':'');
-  updateDots();
-
-  // Set scores
-  for(let i=0;i<3;i++){
-    document.getElementById('noahS'+(i+1)).textContent=score.sets[i][0];
-    document.getElementById('oppS' +(i+1)).textContent=score.sets[i][1];
-  }
-
-  // Serve stats — per-game counts on buttons
-  document.getElementById('s1in').textContent  =gc.S1in;
-  document.getElementById('s1soft').textContent=gc.S1soft;
-  document.getElementById('s1out').textContent =gc.S1out;
-  document.getElementById('s2in').textContent  =gc.S2in;
-  document.getElementById('s2out').textContent =gc.S2out;
-  document.getElementById('s2df').textContent  =gc.S2df;
-  document.getElementById('oppDfCount').textContent=gc.oppDf;
-  document.getElementById('s1pct').textContent =pct(gc.S1in+gc.S1soft,gc.S1in+gc.S1soft+gc.S1out);
-
-  // Mode badge
-  const mb = document.getElementById('modeBadge');
-  if (mb) { const m = matchConfig.trackingMode||'medium'; mb.textContent = m.toUpperCase(); mb.className = 'mode-badge '+m; }
-
-  // Point entry — fully re-rendered each update
-  renderPointEntry();
-
-  // Standalone row counts
-  ['SW','BW','BL'].forEach(t=>{
-    const el=document.getElementById('cnt-'+t);
-    if(el) el.textContent=gc[t]||0;
-  });
-
-  // Set tabs — cumulative W/UE
-  for(let i=0;i<3;i++){
-    const c=counts(i);
-    document.getElementById('tabNum'+i).textContent=c.winners+'/'+c.ue;
-    document.getElementById('tab'+i).classList.toggle('active',i===currentSet);
-  }
-  document.getElementById('logSetLabel').textContent=currentSet+1;
-
-  // Re-render match stats if open
-  if(document.getElementById('matchStatsBody').classList.contains('open')) renderMatchStats();
-
-  renderLog();
-}
-
-function renderLog(){
-  const all=[];
-  for(let i=0;i<3;i++) for(const e of sets[i]) all.push({...e,setIdx:i});
-  const list=document.getElementById('logList');
-  if(!all.length){
-    list.innerHTML='<div style="padding:14px;font-size:12px;color:var(--muted);text-align:center">Tap buttons above to log points</div>';
+function renderLog() {
+  const all = [];
+  for (let i=0;i<3;i++) for (const e of sets[i]) all.push({...e, setIdx:i});
+  const list = document.getElementById('logList');
+  if (!all.length) {
+    list.innerHTML = '<div style="padding:14px;font-size:12px;color:var(--muted);text-align:center">Tap buttons above to log points</div>';
     return;
   }
-  const outcomeLabel={
-    W:'Winner',FOO:'Forced (Noah→Opp)',FON:'Forced on Noah',
-    UEO:"Opp UE",UEN:'Noah UE'
-  };
-  const outcomeCls={W:'w',FOO:'foo',FON:'fe',UEO:'w',UEN:'ue'};
-  list.innerHTML=[...all].reverse().map(e=>{
-    let cls,label;
-    if(e.category==='serve'){
-      cls=e.result==='in'||e.result==='soft'?'w':'ue';
-      const rl=e.result==='df'?'double fault · opp scores':e.result==='soft'?'soft in ✓':e.result==='in'?'in ✓':'fault ✗';
-      label=e.serve+' serve · '+rl;
-    } else if(e.category==='point'){
-      cls=outcomeCls[e.outcome]||'fe';
-      const scorer=e.scorer==='noah'?'→ Noah':'→ Opp';
-      if(e.rally && e.rally.length){
-        const shots=e.rally.map(s=>`${s.player==='noah'?'N':'O'}:${s.side?s.side+' ':''}${s.shotType}/${s.dir}`).join(' ');
-        label='Rally ['+shots+'] · '+(outcomeLabel[e.outcome]||e.outcome)+' '+scorer;
-      } else if(e.pos && e.shot){
-        label=e.pos+' · '+e.shot+' · '+(outcomeLabel[e.outcome]||e.outcome)+' '+scorer;
-      } else {
-        label=(e.scorer==='noah'?'Noah Won':'Opp Won');
-      }
-    } else if(e.category==='standalone'){
-      cls=e.type==='SW'||e.type==='BW'?'w':'bl';
-      label=e.type==='SW'?'Serve Winner · Noah'
-           :e.type==='BW'?"👁 Didn't see · Noah"
-           :"👁 Didn't see · Opp";
+  const outcomeLabel = { W:'Winner',FOO:'Forced (Noah→Opp)',FON:'Forced on Noah',UEO:'Opp UE',UEN:'Noah UE' };
+  const outcomeCls   = { W:'w',FOO:'foo',FON:'fe',UEO:'w',UEN:'ue' };
+  list.innerHTML = [...all].reverse().map(e => {
+    let cls, label;
+    if (e.category==='serve') {
+      cls = e.result==='in'||e.result==='soft' ? 'w' : 'ue';
+      const rl = e.result==='df'?'double fault':e.result==='soft'?'soft in ✓':e.result==='in'?'in ✓':'fault ✗';
+      label = e.serve+' serve · '+rl;
+    } else if (e.category==='point') {
+      cls = outcomeCls[e.outcome]||'fe';
+      label = (e.pos||'')+(e.shot?' · '+e.shot:'')+' · '+(outcomeLabel[e.outcome]||e.outcome)+' → '+e.scorer;
+    } else if (e.category==='standalone') {
+      cls = e.type==='SW'||e.type==='BW' ? 'w' : 'bl';
+      label = e.type==='SW'?'Serve Winner · Noah':e.type==='BW'?"👁 Won · Noah":"👁 Lost · Opp";
     }
     return `<div class="log-item"><div class="log-dot ${cls}"></div><div class="log-text">${label}</div><div class="log-set">S${e.setIdx+1}</div></div>`;
   }).join('');
 }
 
-function openSummary(){
-  const all=counts('all');
-  const s1t=all.S1in+all.S1soft+all.S1out,s2t=all.S2in+all.S2out+all.S2df;
-  const grid=[
+// ── SUMMARY / SAVE ──
+function openSummary() {
+  const all = counts('all');
+  const s1t=all.S1in+all.S1soft+all.S1out, s2t=all.S2in+all.S2out+all.S2df;
+  const grid = [
     {label:'Points Won',val:all.winners,cls:'g'},
     {label:'Noah UE',val:all.UEN||0,cls:'r'},
     {label:'W:UE Ratio',val:ratio(all.winners,all.UEN||0),cls:'g'},
     {label:'Winners',val:all.W||0,cls:'g'},
     {label:'Forced on Noah',val:all.FON||0,cls:'r'},
     {label:'Noah forced Opp',val:all.FOO||0,cls:'g'},
-    {label:'Opp UE (Noah pts)',val:all.UEO||0,cls:'g'},
+    {label:'Opp UE',val:all.UEO||0,cls:'g'},
     {label:'1st Serve %',val:pct(all.S1in+all.S1soft,s1t),cls:'g'},
-    {label:'1st Serve Soft',val:all.S1soft||0,cls:'a'},
     {label:'2nd Serve %',val:pct(all.S2in,s2t),cls:'a'},
     {label:'Double Faults',val:all.S2df,cls:'r'},
     {label:'Serve Winners',val:all.SW||0,cls:'g'},
@@ -2018,21 +959,19 @@ function openSummary(){
     {label:'👁 Won',val:all.BW||0,cls:'p'},
     {label:'👁 Lost',val:all.BL||0,cls:'r'},
   ];
-  document.getElementById('summaryGrid').innerHTML=grid.map(g=>
+  document.getElementById('summaryGrid').innerHTML = grid.map(g=>
     `<div class="summary-stat"><div class="val ${g.cls}">${g.val}</div><div class="lbl">${g.label}</div></div>`
   ).join('');
   document.getElementById('overlay').classList.add('open');
 }
-function closeOverlay(){document.getElementById('overlay').classList.remove('open');}
-function confirmReset(){document.getElementById('confirmOverlay').classList.add('open');}
-function closeConfirm(){document.getElementById('confirmOverlay').classList.remove('open');}
-function doReset(){
+function closeOverlay(){ document.getElementById('overlay').classList.remove('open'); }
+function confirmReset(){ document.getElementById('confirmOverlay').classList.add('open'); }
+function closeConfirm(){ document.getElementById('confirmOverlay').classList.remove('open'); }
+function doReset() {
   sets=[[],[],[]]; currentSet=0;
   score={sets:[[0,0],[0,0],[0,0]],game:[0,0],server:null};
-  pendingGameWinner=null;
-  gameLog=[];
+  pendingGameWinner=null; gameLog=[];
   clearSelections();
-  clearRallyState();
   document.getElementById('srvNoah').classList.remove('active');
   document.getElementById('srvOpp').classList.remove('active');
   try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
@@ -2040,14 +979,10 @@ function doReset(){
   openStartScreen();
 }
 
-// ── SAVE MATCH ──
-function openSaveDialog(){
+function openSaveDialog() {
   const today = new Date();
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth()+1).padStart(2,'0');
-  const dd = String(today.getDate()).padStart(2,'0');
-  const todayStr = yyyy+'-'+mm+'-'+dd;
-  document.getElementById('saveDate').value = matchConfig.date || todayStr;
+  const yyyy=today.getFullYear(), mm=String(today.getMonth()+1).padStart(2,'0'), dd=String(today.getDate()).padStart(2,'0');
+  document.getElementById('saveDate').value    = matchConfig.date || yyyy+'-'+mm+'-'+dd;
   document.getElementById('saveOpponent').value = matchConfig.opponent || '';
   document.getElementById('saveStatus').textContent = '';
   document.getElementById('saveOverlay').classList.add('open');
@@ -2063,293 +998,155 @@ function matchMeta() {
 
 function buildSummaryData() {
   const all = counts('all');
-  const s1t = all.S1in+all.S1soft+all.S1out;
-  const s2t = all.S2in+all.S2out+all.S2df;
+  const s1t=all.S1in+all.S1soft+all.S1out, s2t=all.S2in+all.S2out+all.S2df;
   return {
     setScores: score.sets,
     stats: {
-      'Points Won (Noah)': all.winners,
-      'Noah UE': all.UEN||0,
-      'Winners': all.W||0,
-      'Forced on Noah': all.FON||0,
-      'Noah forced Opp': all.FOO||0,
-      'Opp UE': all.UEO||0,
-      'Serve Winners': all.SW||0,
-      '1st Serve In': all.S1in,
-      '1st Serve Soft': all.S1soft||0,
-      '1st Serve Fault': all.S1out,
-      '1st Serve %': pct(all.S1in+all.S1soft, s1t),
-      '2nd Serve In': all.S2in,
-      '2nd Serve Fault': all.S2out,
-      'Double Faults': all.S2df,
-      '2nd Serve %': pct(all.S2in, s2t),
-      'Baseline Points': all.pos['Baseline']||0,
-      'Approach Points': all.pos['Approach']||0,
-      'Net Points': all.pos['Net']||0,
-      'Forehand Points': all.shot['Forehand']||0,
-      'Backhand Points': all.shot['Backhand']||0,
-      '👁 Won (unseen)': all.BW||0,
-      '👁 Lost (unseen)': all.BL||0,
+      'Points Won (Noah)':all.winners,'Noah UE':all.UEN||0,'Winners':all.W||0,
+      'Forced on Noah':all.FON||0,'Noah forced Opp':all.FOO||0,'Opp UE':all.UEO||0,
+      'Serve Winners':all.SW||0,'1st Serve In':all.S1in,'1st Serve Soft':all.S1soft||0,
+      '1st Serve Fault':all.S1out,'1st Serve %':pct(all.S1in+all.S1soft,s1t),
+      '2nd Serve In':all.S2in,'2nd Serve Fault':all.S2out,'Double Faults':all.S2df,
+      '2nd Serve %':pct(all.S2in,s2t),
+      'Baseline Points':all.pos['Baseline']||0,'Approach Points':all.pos['Approach']||0,'Net Points':all.pos['Net']||0,
+      'Forehand Points':all.shot['Forehand']||0,'Backhand Points':all.shot['Backhand']||0,
+      '👁 Won':all.BW||0,'👁 Lost':all.BL||0,
     }
   };
 }
 
-function buildSummaryText(opp, dateStr) {
-  const d = buildSummaryData();
-  const s = d.stats;
-  const setScores = d.setScores;
-  const setLine = setScores.map((ss,i)=>`Set ${i+1}: Noah ${ss[0]} – Opp ${ss[1]}`).filter((_,i)=>setScores[i][0]+setScores[i][1]>0).join(' | ');
-  let txt = `NOAH TENNIS — ${dateStr} vs ${opp}\n`;
-  txt += '='.repeat(40) + '\n';
-  txt += setLine + '\n\n';
-  txt += 'POINTS\n';
-  ['Points Won (Noah)','Noah UE','Winners','Forced on Noah','Noah forced Opp','Opp UE','Serve Winners'].forEach(k=>{
-    txt += `  ${k}: ${s[k]}\n`;
-  });
-  txt += '\nSERVE\n';
-  ['1st Serve %','1st Serve Soft','2nd Serve %','Double Faults'].forEach(k=>{
-    txt += `  ${k}: ${s[k]}\n`;
-  });
-  txt += '\nPOSITION\n';
-  ['Baseline Points','Approach Points','Net Points'].forEach(k=>{
-    txt += `  ${k}: ${s[k]}\n`;
-  });
-  txt += '\nSHOT\n';
-  ['Forehand Points','Backhand Points'].forEach(k=>{
-    txt += `  ${k}: ${s[k]}\n`;
-  });
-
-  // Full point log
-  const outcomeLabel={W:'Winner',FOO:'Noah forced Opp',FON:'Forced on Noah',UEO:'Opp UE',UEN:'Noah UE'};
-  const scorerLabel={noah:'→ Noah',opp:'→ Opp'};
-  txt += '\n' + '='.repeat(40) + '\nPOINT LOG\n' + '='.repeat(40) + '\n';
-  sets.forEach((setEntries, si) => {
-    if(!setEntries.length) return;
-    txt += `\n--- Set ${si+1} ---\n`;
-    setEntries.forEach((e,i) => {
-      const n = String(i+1).padStart(3,' ');
-      if(e.category==='serve'){
-        const r = e.serve==='opp' ? `Opp double fault → Noah`
-                : e.result==='df'  ? `2nd serve double fault → Opp`
-                : e.result==='soft'? `1st serve soft in`
-                : e.result==='in'  ? `${e.serve} serve in`
-                :                    `${e.serve} serve fault`;
-        txt += `${n}. ${r}\n`;
-      } else if(e.category==='point'){
-        const ol = outcomeLabel[e.outcome] || e.outcome;
-        const sc = scorerLabel[e.scorer] || '';
-        if(e.rally && e.rally.length){
-          const shots=e.rally.map(s=>`${s.player==='noah'?'N':'O'}:${s.side?s.side+' ':''}${s.shotType}/${s.dir}`).join(' ');
-          txt += `${n}. Rally [${shots}] · ${ol} ${sc}\n`;
-        } else if(e.pos && e.shot){
-          txt += `${n}. ${e.pos} · ${e.shot} · ${ol} ${sc}\n`;
-        } else {
-          txt += `${n}. ${e.scorer==='noah'?'Noah Won':'Opp Won'}\n`;
-        }
-      } else if(e.category==='standalone'){
-        const l = e.type==='SW' ? 'Serve winner → Noah'
-                : e.type==='BW' ? "Didn't see · Noah"
-                :                  "Didn't see · Opp";
-        txt += `${n}. ${l}\n`;
-      }
-    });
-  });
-
-  return txt;
-}
-
 function saveAsHTML() {
-  const {opp, dateStr, dateVal} = matchMeta();
+  const {opp,dateStr,dateVal} = matchMeta();
   const d = buildSummaryData();
-  const s = d.stats;
   const setScores = d.setScores;
   const filename = `noah-tennis-${dateVal||'match'}-vs-${opp.replace(/[^a-z0-9]/gi,'-').toLowerCase()}.html`;
+  const statRows = Object.entries(d.stats).map(([k,v])=>`<tr><td>${k}</td><td><strong>${v}</strong></td></tr>`).join('');
+  const setRows  = setScores.map((ss,i)=>setScores[i][0]+setScores[i][1]>0?`<tr><td>Set ${i+1}</td><td><strong>Noah ${ss[0]}</strong></td><td><strong>Opp ${ss[1]}</strong></td></tr>`:'').join('');
+  const ol = {W:'Winner',FOO:'Noah forced Opp',FON:'Forced on Noah',UEO:'Opp UE',UEN:'Noah UE'};
+  const pointLog = sets.flatMap((setEntries,si)=>(setEntries||[]).map(e=>{
+    if (e.category==='serve') return `<tr><td>S${si+1}</td><td colspan="3">${e.serve} serve: ${e.result==='df'?'DF':e.result==='soft'?'soft in':e.result==='in'?'in':'fault'}</td></tr>`;
+    if (e.category==='point') return `<tr><td>S${si+1}</td><td>${e.pos||''}</td><td>${e.shot||''}</td><td>${ol[e.outcome]||e.outcome} → ${e.scorer}</td></tr>`;
+    if (e.category==='standalone') return `<tr><td>S${si+1}</td><td colspan="3">${e.type==='SW'?'Serve Winner':e.type==='BW'?'👁 Won':'👁 Lost'}</td></tr>`;
+    return '';
+  })).join('');
+  const utrLine = matchConfig.noahUTR||matchConfig.oppUTR ? ` · Noah ${matchConfig.noahUTR||'?'} UTR vs Opp ${matchConfig.oppUTR||'?'} UTR` : '';
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Noah Tennis — ${dateStr} vs ${opp}</title>
+<style>body{font-family:system-ui,sans-serif;max-width:600px;margin:40px auto;padding:0 20px;color:#1a1a1a;}
+h1{color:#00843D;margin-bottom:4px;}h2{color:#444;font-size:14px;font-weight:500;margin-bottom:24px;}
+h3{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#888;margin:24px 0 8px;}
+table{width:100%;border-collapse:collapse;}td{padding:6px 8px;border-bottom:1px solid #eee;font-size:13px;}
+td:last-child{text-align:right;}.section{background:#f8f8f8;border-radius:8px;padding:2px 8px;margin-bottom:16px;}</style>
 
-  const statRows = Object.entries(s).map(([k,v])=>
-    `<tr><td>${k}</td><td><strong>${v}</strong></td></tr>`
-  ).join('');
-
-  const setRows = setScores.map((ss,i)=>setScores[i][0]+setScores[i][1]>0
-    ? `<tr><td>Set ${i+1}</td><td><strong>Noah ${ss[0]}</strong></td><td><strong>Opp ${ss[1]}</strong></td></tr>`
-    : '').join('');
-
-  const pointLog = sets.flatMap((setEntries, si) =>
-    (setEntries||[]).map(e => {
-      if(e.category==='serve'){
-        const r=e.result==='df'?'Double fault (Opp)':e.result==='soft'?'1st soft in':e.result==='in'?'In':'Fault';
-        return `<tr><td>S${si+1}</td><td colspan="3">${e.serve} serve: ${r}</td></tr>`;
-      } else if(e.category==='point'){
-        const ol={W:'Winner',FOO:'Noah forced Opp',FON:'Forced on Noah',UEO:'Opp UE',UEN:'Noah UE',OW:'Opp Won',L:'Opp Won'};
-        if(e.rally && e.rally.length){
-          const shots=e.rally.map(s=>`${s.player==='noah'?'N':'O'}:${s.side?s.side+' ':''}${s.shotType}/${s.dir}`).join(' ');
-          return `<tr><td>S${si+1}</td><td colspan="3">Rally [${shots}] · ${ol[e.outcome]||e.outcome} → ${e.scorer}</td></tr>`;
-        } else if(e.pos && e.shot){
-          return `<tr><td>S${si+1}</td><td>${e.pos}</td><td>${e.shot}</td><td>${ol[e.outcome]||e.outcome} → ${e.scorer}</td></tr>`;
-        } else {
-          return `<tr><td>S${si+1}</td><td colspan="3">${e.scorer==='noah'?'Noah Won':'Opp Won'}</td></tr>`;
-        }
-      } else if(e.category==='standalone'){
-        const l=e.type==='SW'?'Serve Winner':e.type==='BW'?"👁 Won (unseen)":"👁 Lost (unseen)";
-        return `<tr><td>S${si+1}</td><td colspan="3">${l}</td></tr>`;
-      }
-      return '';
-    })
-  ).join('');
-
-  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8">
-<title>Noah Tennis — ${dateStr} vs ${opp}</title>
-<style>
-  body{font-family:system-ui,sans-serif;max-width:600px;margin:40px auto;padding:0 20px;color:#1a1a1a;}
-  h1{color:#00843D;margin-bottom:4px;}
-  h2{color:#444;font-size:14px;font-weight:500;margin-bottom:24px;}
-  h3{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#888;margin:24px 0 8px;}
-  table{width:100%;border-collapse:collapse;margin-bottom:8px;}
-  td{padding:6px 8px;border-bottom:1px solid #eee;font-size:13px;}
-  td:last-child{text-align:right;}
-  tr:last-child td{border-bottom:none;}
-  .section{background:#f8f8f8;border-radius:8px;padding:2px 8px;margin-bottom:16px;}
-</style></head><body>
-
-<h1>Noah Tennis</h1>
-<h2>${dateStr} · vs ${opp}${matchConfig.noahUTR||matchConfig.oppUTR ? ` · Noah ${matchConfig.noahUTR||'?'} UTR vs Opp ${matchConfig.oppUTR||'?'} UTR` : ''}</h2>
-<h3>Set Score</h3>
-<div class="section"><table>${setRows}</table></div>
-<h3>Stats</h3>
-<div class="section"><table>${statRows}</table></div>
-<h3>Point Log</h3>
-<div class="section"><table>
-<tr><th style="text-align:left;font-size:11px;color:#888">Set</th><th style="text-align:left;font-size:11px;color:#888">Position</th><th style="text-align:left;font-size:11px;color:#888">Shot</th><th style="text-align:left;font-size:11px;color:#888">Outcome</th></tr>
-${pointLog}</table></div>
+</head><body><h1>Noah Tennis</h1><h2>${dateStr} · vs ${opp}${utrLine}</h2>
+<h3>Set Score</h3><div class="section"><table>${setRows}</table></div>
+<h3>Stats</h3><div class="section"><table>${statRows}</table></div>
+<h3>Point Log</h3><div class="section"><table>${pointLog}</table></div>
 </body></html>`;
-
-triggerDownload(html, filename, ‘text/html’);
-document.getElementById(‘saveStatus’).textContent = ‘✓ HTML summary downloaded’;
+  triggerDownload(html, filename, 'text/html');
+  document.getElementById('saveStatus').textContent = '✓ HTML downloaded';
 }
 
 function saveAsJSON() {
-const {opp, dateStr, dateVal} = matchMeta();
+const {opp,dateStr,dateVal} = matchMeta();
 const filename = `noah-tennis-${dateVal||'match'}-vs-${opp.replace(/[^a-z0-9]/gi,'-').toLowerCase()}.json`;
 const data = {
-meta: { player:‘Noah’, noahUTR:matchConfig.noahUTR||’’, opponent:opp, oppUTR:matchConfig.oppUTR||’’, date:dateVal, dateFormatted:dateStr, trackingMode:matchConfig.trackingMode||‘medium’, savedAt:new Date().toISOString() },
+meta: { player:‘Noah’, noahUTR:matchConfig.noahUTR||’’, opponent:opp, oppUTR:matchConfig.oppUTR||’’, date:dateVal, dateFormatted:dateStr, savedAt:new Date().toISOString() },
 setScores: score.sets,
 summary: buildSummaryData().stats,
 pointLog: sets.flatMap((s,i)=>s.map(e=>({…e,set:i+1})))
 };
-triggerDownload(JSON.stringify(data, null, 2), filename, ‘application/json’);
-document.getElementById(‘saveStatus’).textContent = ‘✓ JSON data downloaded’;
+triggerDownload(JSON.stringify(data,null,2), filename, ‘application/json’);
+document.getElementById(‘saveStatus’).textContent = ‘✓ JSON downloaded’;
 }
 
 function saveAsEmail() {
-const {opp, dateStr} = matchMeta();
-const subject = encodeURIComponent(`Noah Tennis — ${dateStr} vs ${opp}`);
-const body = encodeURIComponent(buildSummaryText(opp, dateStr));
-window.location.href = `mailto:?subject=${subject}&body=${body}`;
+const {opp,dateStr} = matchMeta();
+const d = buildSummaryData();
+const s = d.stats;
+const setLine = d.setScores.map((ss,i)=>`Set ${i+1}: Noah ${ss[0]} – Opp ${ss[1]}`).filter((_,i)=>d.setScores[i][0]+d.setScores[i][1]>0).join(’ | ’);
+let txt = `NOAH TENNIS — ${dateStr} vs ${opp}\n${'='.repeat(40)}\n${setLine}\n\nPOINTS\n`;
+[‘Points Won (Noah)’,‘Noah UE’,‘Winners’,‘Forced on Noah’,‘Noah forced Opp’,‘Opp UE’,‘Serve Winners’].forEach(k=>{ txt+=`  ${k}: ${s[k]}\n`; });
+txt += ‘\nSERVE\n’;
+[‘1st Serve %’,‘2nd Serve %’,‘Double Faults’].forEach(k=>{ txt+=`  ${k}: ${s[k]}\n`; });
+txt += ‘\nPOSITION\n’;
+[‘Baseline Points’,‘Approach Points’,‘Net Points’].forEach(k=>{ txt+=`  ${k}: ${s[k]}\n`; });
+txt += ‘\nSHOT\n’;
+[‘Forehand Points’,‘Backhand Points’].forEach(k=>{ txt+=`  ${k}: ${s[k]}\n`; });
+window.location.href = `mailto:?subject=${encodeURIComponent(`Noah Tennis — ${dateStr} vs ${opp}`)}&body=${encodeURIComponent(txt)}`;
 document.getElementById(‘saveStatus’).textContent = ‘✓ Email draft opened’;
 }
 
 function triggerDownload(content, filename, mimeType) {
 try {
-const blob = new Blob([content], {type: mimeType});
-const url = URL.createObjectURL(blob);
-const a = document.createElement(‘a’);
-a.href = url;
-a.download = filename;
-document.body.appendChild(a);
-a.click();
+const blob = new Blob([content], {type:mimeType});
+const url  = URL.createObjectURL(blob);
+const a    = document.createElement(‘a’);
+a.href=url; a.download=filename;
+document.body.appendChild(a); a.click();
 setTimeout(()=>{ URL.revokeObjectURL(url); document.body.removeChild(a); }, 1000);
 } catch(e) {
-document.getElementById(‘saveStatus’).textContent = ‘⚠ Download failed — try copying from Summary instead’;
+document.getElementById(‘saveStatus’).textContent = ‘⚠ Download failed’;
 }
 }
 
 // ── START SCREEN ──
 function openStartScreen() {
 const today = new Date();
-const yyyy = today.getFullYear();
-const mm = String(today.getMonth()+1).padStart(2,‘0’);
-const dd = String(today.getDate()).padStart(2,‘0’);
-document.getElementById(‘setupDate’).value = yyyy+’-’+mm+’-’+dd;
+const yyyy=today.getFullYear(), mm=String(today.getMonth()+1).padStart(2,‘0’), dd=String(today.getDate()).padStart(2,‘0’);
+document.getElementById(‘setupDate’).value    = yyyy+’-’+mm+’-’+dd;
 document.getElementById(‘setupOpponent’).value = matchConfig.opponent || ‘’;
-document.getElementById(‘setupNoahUTR’).value = matchConfig.noahUTR || ‘’;
-document.getElementById(‘setupOppUTR’).value  = matchConfig.oppUTR  || ‘’;
+document.getElementById(‘setupNoahUTR’).value  = matchConfig.noahUTR  || ‘’;
+document.getElementById(‘setupOppUTR’).value   = matchConfig.oppUTR   || ‘’;
 document.getElementById(‘startError’).textContent = ‘’;
 reflectSetupSelections();
 document.getElementById(‘startScreen’).classList.remove(‘hidden’);
 validateStart();
 }
-
 function reflectSetupSelections() {
 const g = matchConfig.gamesPerSet;
-const isSingle = matchConfig.setsToWin === 1;
-
-// match format
-document.getElementById(‘mf-bo3’).className = ‘start-opt’ + (!isSingle ? ’ sel-green’ : ‘’);
-document.getElementById(‘mf-one’).className = ‘start-opt’ + (isSingle  ? ’ sel-green’ : ‘’);
-
-// scoring
-document.getElementById(‘sc-ad’).className   = ‘start-opt’ + (matchConfig.scoring===‘ad’   ? ’ sel-green’ : ‘’);
-document.getElementById(‘sc-noad’).className = ‘start-opt’ + (matchConfig.scoring===‘noad’ ? ’ sel-green’ : ‘’);
-
-// gamesPerSet
-[6,8,4].forEach(n => {
-const el = document.getElementById(‘sf-’+n);
-if(el) el.className = ‘start-opt’ + (g===n ? ’ sel-green’ : ‘’);
-});
-
-// tiebreak — label updates to match games target
-const tbAt = `at ${g}-${g}, 7 pts`;
-const tbEl = document.getElementById(‘tbLabel’);
-if(tbEl) tbEl.textContent = tbAt;
-document.getElementById(‘tb-yes’).className = ‘start-opt’ + (matchConfig.tiebreakAt===‘tie’  ? ’ sel-green’ : ‘’);
-document.getElementById(‘tb-no’).className  = ‘start-opt’ + (matchConfig.tiebreakAt===‘none’ ? ’ sel-green’ : ‘’);
-
-// third set — hide entirely for single set
+const isSingle = matchConfig.setsToWin===1;
+document.getElementById(‘mf-bo3’).className = ‘start-opt’+(!isSingle?’ sel-green’:’’);
+document.getElementById(‘mf-one’).className = ‘start-opt’+(isSingle?’ sel-green’:’’);
+document.getElementById(‘sc-ad’).className   = ‘start-opt’+(matchConfig.scoring===‘ad’?’ sel-green’:’’);
+document.getElementById(‘sc-noad’).className = ‘start-opt’+(matchConfig.scoring===‘noad’?’ sel-green’:’’);
+[6,8,4].forEach(n=>{ const el=document.getElementById(‘sf-’+n); if(el) el.className=‘start-opt’+(g===n?’ sel-green’:’’); });
+const tbEl = document.getElementById(‘tbLabel’); if(tbEl) tbEl.textContent=`at ${g}-${g}, 7 pts`;
+document.getElementById(‘tb-yes’).className = ‘start-opt’+(matchConfig.tiebreakAt===‘tie’?’ sel-green’:’’);
+document.getElementById(‘tb-no’).className  = ‘start-opt’+(matchConfig.tiebreakAt===‘none’?’ sel-green’:’’);
 const thirdSetEl = document.getElementById(‘thirdSetSection’);
-if(thirdSetEl) thirdSetEl.style.display = isSingle ? ‘none’ : ‘’;
-document.getElementById(‘ts-tb10’).className = ‘start-opt’ + (matchConfig.thirdSetFormat===‘tb10’ ? ’ sel-green’ : ‘’);
-document.getElementById(‘ts-full’).className  = ‘start-opt’ + (matchConfig.thirdSetFormat===‘full’ ? ’ sel-green’ : ‘’);
-
-// tracking mode
-[‘light’,‘medium’,‘intense’].forEach(m => {
-const el = document.getElementById(‘tm-’+m);
-if(el) el.className = ‘start-opt’ + (matchConfig.trackingMode===m ? ’ sel-green’ : ‘’);
-});
+if (thirdSetEl) thirdSetEl.style.display = isSingle ? ‘none’ : ‘’;
+document.getElementById(‘ts-tb10’).className = ‘start-opt’+(matchConfig.thirdSetFormat===‘tb10’?’ sel-green’:’’);
+document.getElementById(‘ts-full’).className  = ‘start-opt’+(matchConfig.thirdSetFormat===‘full’?’ sel-green’:’’);
 }
-
 function setupSelect(field, value) {
-matchConfig[field === ‘server’ ? ‘firstServer’ : field] = value;
+matchConfig[field] = value;
 reflectSetupSelections();
 validateStart();
 }
-
 function validateStart() {
 const opp = document.getElementById(‘setupOpponent’).value.trim();
 document.getElementById(‘startBeginBtn’).disabled = !opp.length;
 document.getElementById(‘startError’).textContent = ‘’;
 }
-
 function startMatch() {
 const opp = document.getElementById(‘setupOpponent’).value.trim();
-if(!opp) return;
+if (!opp) return;
 matchConfig.opponent = opp;
 matchConfig.date     = document.getElementById(‘setupDate’).value;
 matchConfig.noahUTR  = document.getElementById(‘setupNoahUTR’).value.trim();
 matchConfig.oppUTR   = document.getElementById(‘setupOppUTR’).value.trim();
-// Reset server and intense state for fresh match
 score.server = null;
-intensePhase = null;
-rallyShots   = [];
-rallyPending = null;
-rallySelSide = null;
+gameLog = [];
 document.getElementById(‘startScreen’).classList.add(‘hidden’);
 document.getElementById(‘saveOpponent’).value = opp;
-document.getElementById(‘saveDate’).value = matchConfig.date;
+document.getElementById(‘saveDate’).value     = matchConfig.date;
 saveState();
 updateUI();
 }
 
+// ── BOOT ──
 const hasState = loadState();
-if(!hasState || !matchConfig.opponent) {
+if (!hasState || !matchConfig.opponent) {
 openStartScreen();
 } else {
 updateUI();
