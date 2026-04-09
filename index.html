@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,13 +76,17 @@
   .pe-hint-step.active{border-color:var(--green);color:var(--green);}
   .pe-hint-arrow{color:var(--border);font-size:12px;}
 
-  .pe-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:start;}
+  .pe-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:stretch;}
+  .pe-grid > div{display:flex;flex-direction:column;}
+  .pe-col-outcomes{display:flex;flex-direction:column;flex:1;}
 
   .pe-col-label{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--muted);text-align:center;margin-bottom:5px;}
 
   /* position buttons — blue family */
-  .pe-btn{border:none;border-radius:10px;padding:13px 4px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;width:100%;display:flex;flex-direction:column;align-items:center;gap:4px;transition:filter .1s,transform .08s;margin-bottom:6px;}
+  .pe-btn{border:none;border-radius:10px;padding:6px 4px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;width:100%;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;transition:filter .1s,transform .08s;margin-bottom:6px;}
   .pe-btn:last-child{margin-bottom:0;}
+  .pe-col-outcomes .pe-btn{margin-bottom:4px;}
+  .pe-col-outcomes .pe-btn:last-child{margin-bottom:0;}
   .pe-btn:active{filter:brightness(1.3);transform:scale(.97);}
   .pe-btn .pe-count{font-family:'Bebas Neue',sans-serif;font-size:18px;line-height:1;}
   .pe-btn .pe-lbl{font-size:10px;line-height:1.2;text-align:center;}
@@ -263,6 +266,29 @@
   .rb-out-fe {background:#3D2800;color:#FFE57F;border:1px solid #FFB300;}
   .rb-out-ue {background:#3D0009;color:#FF8A80;border:1px solid #FF1744;}
 
+  /* ── VOICE MODE ── */
+  .voice-screen{margin:10px 14px 0;}
+  .voice-hold-btn{width:100%;border:none;border-radius:20px;padding:36px 10px;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:10px;background:#1A0033;color:#CF8FFF;border:2px solid #AA00FF;transition:all .1s;-webkit-user-select:none;user-select:none;}
+  .voice-hold-btn.recording{background:#3D0060;border-color:#E040FB;color:#F8BBFF;box-shadow:0 0 30px #AA00FF60;}
+  .voice-hold-btn .voice-icon{font-size:40px;line-height:1;}
+  .voice-hold-btn .voice-lbl{font-size:13px;letter-spacing:.5px;}
+  .voice-transcript{margin-top:10px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;min-height:52px;font-size:13px;color:var(--text);line-height:1.5;font-style:italic;}
+  .voice-transcript.empty{color:var(--muted);}
+  .voice-parsed-card{margin-top:10px;background:var(--surface);border:1px solid #AA00FF;border-radius:12px;overflow:hidden;}
+  .voice-parsed-title{background:#1A0033;padding:9px 14px;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#CF8FFF;font-weight:600;}
+  .voice-parsed-body{padding:10px 14px;}
+  .voice-parsed-row{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px;border-bottom:1px solid var(--border);}
+  .voice-parsed-row:last-child{border-bottom:none;}
+  .voice-parsed-key{color:var(--muted);font-weight:600;min-width:70px;font-size:11px;}
+  .voice-parsed-val{color:var(--text);font-weight:600;}
+  .voice-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
+  .voice-commit{border:none;border-radius:10px;padding:14px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;background:#003D1A;color:#5FFFAB;border:1px solid #00C853;}
+  .voice-redo{border:none;border-radius:10px;padding:14px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;background:var(--surface2);color:var(--muted);border:1px solid var(--border);}
+  .voice-tap-fallback{margin-top:8px;width:100%;border:none;background:transparent;color:var(--muted);font-size:11px;font-weight:600;padding:8px;cursor:pointer;text-decoration:underline;}
+  .voice-error{margin-top:8px;background:#3D0009;border:1px solid #FF1744;border-radius:8px;padding:10px 12px;font-size:12px;color:#FF8A80;}
+  .voice-spinner{display:inline-block;width:18px;height:18px;border:2px solid #CF8FFF40;border-top-color:#CF8FFF;border-radius:50%;animation:spin .7s linear infinite;margin-bottom:2px;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
   /* ── MODE PICKER OVERLAY ── */
   .mode-picker-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;width:100%;max-width:380px;padding:20px;}
   .mode-picker-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--text);margin-bottom:14px;}
@@ -359,6 +385,20 @@
     <div class="start-section-label">Opponent</div>
     <input class="start-input" type="text" id="setupOpponent" placeholder="Opponent name" autocomplete="off" oninput="validateStart()">
     <div class="start-error" id="startError"></div>
+  </div>
+
+  <div class="start-section">
+    <div class="start-section-label">UTR Ratings</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <div>
+        <div style="font-size:10px;color:var(--muted);font-weight:600;margin-bottom:5px;">Noah</div>
+        <input class="start-input" type="number" id="setupNoahUTR" placeholder="e.g. 6.12" step="0.01" min="0" max="16" style="padding:10px 12px;font-size:14px;">
+      </div>
+      <div>
+        <div style="font-size:10px;color:var(--muted);font-weight:600;margin-bottom:5px;">Opponent</div>
+        <input class="start-input" type="number" id="setupOppUTR" placeholder="e.g. 5.80" step="0.01" min="0" max="16" style="padding:10px 12px;font-size:14px;">
+      </div>
+    </div>
   </div>
 
   <div class="start-section">
@@ -485,11 +525,8 @@
 <!-- 3. POINT ENTRY: rendered by renderPointEntry() based on mode -->
 <div id="pointEntryRoot"></div>
 
-<!-- STANDALONE: Serve Winner + Didn't See -->
-<div class="standalone-row">
-  <button class="sa-btn sa-sv" onclick="logStandalone('SW','Serve Winner')">
-    <span class="count" id="cnt-SW">0</span><span class="lbl">Serve Winner</span>
-  </button>
+<!-- STANDALONE: Didn't See -->
+<div class="standalone-row" id="standaloneRow" style="grid-template-columns:1fr 1fr;">
   <button class="sa-btn sa-bw" onclick="logStandalone('BW','Blind Won')">
     <span class="count" id="cnt-BW">0</span><span class="lbl">👁 Won</span>
   </button>
@@ -660,6 +697,8 @@ let selShot = null;
 let matchConfig = {
   opponent: '',
   date: '',
+  noahUTR: '',
+  oppUTR: '',
   scoring: 'ad',
   setsToWin: 2,
   gamesPerSet: 6,
@@ -722,13 +761,237 @@ function setMode(m) {
 let rallyShots   = [];   // [{player, side, shotType}, ...]
 let rallyPending = null; // not used post-direction-removal, kept for compat
 let rallySelSide = null; // 'FH' | 'BH' — currently selected side tab
-let intensePhase = null; // 'serve1'|'serve2'|'return'|'rally'|null
+let intensePhase = null; // 'serve0'|'serve1'|'serve2'|'return'|'rally'|null
+
+// Voice mode state
+let voiceRecognition = null;
+let voiceTranscript  = '';
+let voiceParsed      = null;
+let voiceState       = 'idle'; // 'idle'|'recording'|'processing'|'confirm'|'error'
+let voiceUseTap      = false;  // fallback to tap UI for this point
 
 function clearRallyState() {
   rallyShots   = [];
   rallyPending = null;
   rallySelSide = null;
   intensePhase = null;
+  voiceTranscript = '';
+  voiceParsed     = null;
+  voiceState      = 'idle';
+  voiceUseTap     = false;
+  if (voiceRecognition) { try { voiceRecognition.stop(); } catch(e){} voiceRecognition = null; }
+}
+
+// ── VOICE MODE FUNCTIONS ──
+
+function voiceStartRecording() {
+  if (voiceState === 'recording') return;
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) {
+    voiceState = 'error';
+    voiceTranscript = 'Speech recognition not supported in this browser. Try Safari on iOS or Chrome.';
+    renderPointEntry(); return;
+  }
+  voiceRecognition = new SR();
+  voiceRecognition.continuous = true;
+  voiceRecognition.interimResults = true;
+  voiceRecognition.lang = 'en-US';
+  voiceTranscript = '';
+  voiceState = 'recording';
+  voiceRecognition.onresult = e => {
+    voiceTranscript = Array.from(e.results).map(r=>r[0].transcript).join(' ');
+    renderPointEntry();
+  };
+  voiceRecognition.onerror = e => {
+    voiceState = 'error';
+    voiceTranscript = 'Mic error: ' + e.error + '. Check microphone permissions.';
+    renderPointEntry();
+  };
+  voiceRecognition.start();
+  renderPointEntry();
+}
+
+function voiceStopRecording() {
+  if (voiceState !== 'recording') return;
+  if (voiceRecognition) { try { voiceRecognition.stop(); } catch(e){} }
+  voiceRecognition = null;
+  if (!voiceTranscript.trim()) { voiceState = 'idle'; renderPointEntry(); return; }
+  voiceState = 'processing';
+  renderPointEntry();
+  voiceParseWithAPI(voiceTranscript.trim());
+}
+
+async function voiceParseWithAPI(transcript) {
+  const noahServing = score.server === 'noah' || score.server === null;
+  const prompt = `You are a tennis analyst parsing a point narration into structured JSON. The narrator is Greg, watching his 15-year-old son Noah play. Greg always narrates FROM NOAH'S PERSPECTIVE.
+
+CONTEXT:
+- Server this point: ${noahServing ? 'NOAH' : 'OPPONENT'}
+- Narration: "${transcript}"
+
+MENTAL MODEL — how Greg narrates:
+- Every shot Greg mentions is NOAH'S shot unless explicitly marked as opponent's
+- Position defaults to BASELINE unless Greg says "approach" or "net" or "came in" or "at net"
+- Once Noah "approaches" or "comes in", he stays at net for subsequent shots until the point ends
+- The opponent getting the ball back between Noah's shots is IMPLICIT — Greg does not narrate opponent returns unless they end the point
+- Sequence: [serve] → [opponent return, implied] → [Noah shot] → [implied opp return] → [Noah shot] → ... → [outcome]
+
+SERVE VOCABULARY (${noahServing ? 'Noah serving' : 'Opponent serving'}):
+- "fault", "out", "long", "wide", "net" → 1st serve fault
+- "in", "good", "deep", "second in", "kick in", "slice in" → serve in (second serve if fault mentioned first)
+- "hard", "flat", "body" → hard serve in
+- "kick", "kick serve", "topspin serve" → soft/kick serve in  
+- "ace", "serve winner", "clean ace" → ace
+- "double", "double fault", "double faulted" → double fault
+
+NOAH'S SHOT VOCABULARY:
+- "forehand", "fh", "forehand ground", "righty" → {side:FH, shotType:Ground}
+- "backhand", "bh", "backhand ground" → {side:BH, shotType:Ground}
+- "slice", "backhand slice", "forehand slice" → {side:FH or BH based on context, shotType:Slice}
+- "volley", "forehand volley", "backhand volley", "put away" → shotType:Volley
+- "overhead", "smash", "slam" → shotType:Smash
+- "drop", "drop shot" → shotType:Drop
+- "lob" → shotType:Lob
+- "approach", "approach shot", "came in on" → position becomes Approach for that shot
+- "at net", "came to net", "net shot" → position becomes Net
+
+OUTCOME VOCABULARY (who won the point):
+- "winner", "clean winner", "clean", "put away", "passed", "blasted" → Noah winner (scorer:noah)
+- "error", "missed", "long", "wide", "in the net", "out", "unforced" → Noah unforced error (scorer:opp)
+- "forced error", "forced", "jammed", "stretched", "couldn't get it", "lunging" → Noah forced error (scorer:opp)
+- "their error", "opp error", "they missed", "they went long", "their unforced" → opponent UE (scorer:noah)
+- "their winner", "passed me", "they hit a winner", "ace" [when opp serving] → opponent winner (scorer:opp)
+
+EXAMPLE NARRATIONS → EXPECTED PARSE:
+"fault, in, forehand, backhand winner" →
+  serve: fault then 2nd serve in; rally: [{noah,FH,Ground},{noah,BH,Ground}]; outcome: winner, scorer:noah
+
+"fault, in, forehand, forehand, approach backhand winner" →
+  serve: fault, 2nd in; rally: [{noah,FH,Ground,baseline},{noah,FH,Ground,baseline},{noah,BH,Volley-or-Ground,approach}]; outcome:winner,scorer:noah
+
+"hard serve, ace" →
+  serve: hard, ace; outcome: winner, scorer:noah
+
+"in, forehand, error" →
+  serve: in (1st); rally:[{noah,FH,Ground}]; outcome: unforced_error, scorer:opp
+
+Output ONLY this JSON, no other text:
+{
+  "serve": {
+    "type": "hard|soft|ace|fault|double_fault|in",
+    "second_serve": true|false,
+    "second_serve_type": "hard|soft|fault|double_fault|null"
+  },
+  "rally": [
+    {"player":"noah","side":"FH|BH|null","shotType":"Ground|Slice|Volley|Smash|Lob|Drop|Other","position":"Baseline|Approach|Net"}
+  ],
+  "outcome": {
+    "type": "winner|forced_error|unforced_error",
+    "scorer": "noah|opp"
+  }
+}
+
+Rules:
+- rally array contains ONLY Noah's shots (opponent returns are implied between each)
+- If no rally shots mentioned (ace, return winner/error), rally = []
+- Always output valid JSON. If genuinely ambiguous, make the most reasonable inference.
+- Do NOT include notes or any text outside the JSON object.`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 800,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.[0]?.text || '';
+    const clean = text.replace(/```json|```/g, '').trim();
+    voiceParsed = JSON.parse(clean);
+    voiceCommit(); // commit immediately, no confirmation
+  } catch(e) {
+    voiceState = 'error';
+    voiceTranscript = (voiceTranscript ? voiceTranscript + '\n\n' : '') + 'Parse error: ' + e.message;
+  }
+  renderPointEntry();
+}
+
+function voiceCommit() {
+  if (!voiceParsed) return;
+  const p = voiceParsed;
+  const noahServing = score.server === 'noah' || score.server === null;
+
+  // Log serve stats
+  if (noahServing && p.serve?.type) {
+    // If there was a fault, log it first
+    if (p.serve.second_serve) {
+      sets[currentSet].push({category:'serve', serve:'1st', result:'out', ts:Date.now()});
+      gameLog.push(sets[currentSet][sets[currentSet].length-1]);
+      // Then log the 2nd serve
+      const s2type = p.serve.second_serve_type || p.serve.type;
+      const s2result = s2type === 'double_fault' ? 'df' : s2type === 'soft' ? 'soft' : 'in';
+      sets[currentSet].push({category:'serve', serve:'2nd', result:s2result, ts:Date.now()});
+      gameLog.push(sets[currentSet][sets[currentSet].length-1]);
+    } else {
+      const s1result = {
+        'hard':'in', 'soft':'soft', 'in':'in', 'ace':'in',
+        'fault':'out', 'double_fault':'df'
+      }[p.serve.type] || 'in';
+      sets[currentSet].push({category:'serve', serve:'1st', result:s1result, ts:Date.now()});
+      gameLog.push(sets[currentSet][sets[currentSet].length-1]);
+    }
+  } else if (!noahServing && p.serve?.type === 'double_fault') {
+    sets[currentSet].push({category:'serve', serve:'opp', result:'df', ts:Date.now()});
+    gameLog.push(sets[currentSet][sets[currentSet].length-1]);
+  }
+
+  // Map outcome
+  const outcomeCodeMap = {
+    winner:        p.outcome?.scorer === 'noah' ? 'W'   : 'OW',
+    forced_error:  p.outcome?.scorer === 'noah' ? 'FOO' : 'FON',
+    unforced_error:p.outcome?.scorer === 'noah' ? 'UEO' : 'UEN',
+  };
+  const code   = outcomeCodeMap[p.outcome?.type] || (p.outcome?.scorer === 'noah' ? 'W' : 'UEN');
+  const scorer = p.outcome?.scorer || 'noah';
+
+  // Rally shots are all Noah's — stored with player:noah and position
+  const rallyData = (p.rally || []).map(s => ({
+    player: 'noah',
+    side: s.side || null,
+    shotType: s.shotType || 'Ground',
+    position: s.position || 'Baseline'
+  }));
+
+  const entry = {
+    category: 'point',
+    outcome:  code,
+    scorer,
+    rally:    rallyData,
+    voiceTranscript,
+    ts: Date.now()
+  };
+  sets[currentSet].push(entry);
+  gameLog.push(entry);
+  clearRallyState();
+  awardPoint(scorer);
+}
+
+function voiceRedo() {
+  voiceTranscript = '';
+  voiceParsed = null;
+  voiceState = 'idle';
+  renderPointEntry();
+}
+
+function voiceSwitchToTap() {
+  voiceUseTap = true;
+  voiceTranscript = '';
+  voiceParsed = null;
+  voiceState = 'idle';
+  renderPointEntry();
 }
 
 function rallyFirstPlayer() {
@@ -1012,17 +1275,15 @@ function renderPointEntry() {
 </div>`;
 
   } else if (mode === 'medium') {
+    const noahServing = score.server === 'noah' || score.server === null;
     root.innerHTML = `
 <div class="point-entry">
-  <div class="pe-hint">
-    <span class="pe-hint-step${selPos?' active':''}" id="hintPos">1 Position</span>
-    <span class="pe-hint-arrow">›</span>
-    <span class="pe-hint-step${selShot?' active':''}" id="hintShot">2 Shot</span>
-    <span class="pe-hint-arrow">›</span>
-    <span class="pe-hint-step${(selPos&&selShot)?' active':''}" id="hintOut">3 Outcome</span>
-  </div>
-  <div class="pe-grid">
-    <div>
+  ${noahServing ? `
+  <button style="width:100%;border:none;border-radius:10px;padding:12px;margin-bottom:10px;background:#004D20;color:#69FFBB;border:1px solid #00E676;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onclick="logStandalone('SW','Serve Winner')">
+    <span>Serve Winner ★</span><span style="font-family:'Bebas Neue',sans-serif;font-size:20px">${gc.SW||0}</span>
+  </button>` : ''}
+  <div class="pe-grid" style="align-items:stretch;">
+    <div style="display:flex;flex-direction:column;">
       <div class="pe-col-label">Position</div>
       ${['Baseline','Approach','Net'].map(p=>`
       <button class="pe-btn pe-pos${selPos===p?' selected':''}" id="pos-${p}" onclick="selectPos('${p}')">
@@ -1030,7 +1291,7 @@ function renderPointEntry() {
         <span class="pe-lbl">${p}</span>
       </button>`).join('')}
     </div>
-    <div>
+    <div style="display:flex;flex-direction:column;">
       <div class="pe-col-label">Shot</div>
       ${['Forehand','Backhand'].map(s=>`
       <button class="pe-btn pe-shot${selShot===s?' selected':''}" id="shot-${s}" onclick="selectShot('${s}')">
@@ -1038,9 +1299,9 @@ function renderPointEntry() {
         <span class="pe-lbl">${s}</span>
       </button>`).join('')}
     </div>
-    <div>
+    <div style="display:flex;flex-direction:column;">
       <div class="pe-col-label">Outcome</div>
-      <div id="outCol" class="pe-col-outcomes${(selPos&&selShot)?'':' locked'}">
+      <div id="outCol" class="pe-col-outcomes${(selPos&&selShot)?'':' locked'}" style="flex:1;display:flex;flex-direction:column;">
         <button class="pe-btn pe-out-w"   onclick="commitPoint('W',  'noah')"><span class="pe-count">${gc.W||0}</span><span class="pe-lbl">Winner</span></button>
         <button class="pe-btn pe-out-foo" onclick="commitPoint('FOO','noah')"><span class="pe-count">${gc.FOO||0}</span><span class="pe-lbl">Forced → Noah</span></button>
         <button class="pe-btn pe-out-fon" onclick="commitPoint('FON','opp')" ><span class="pe-count">${gc.FON||0}</span><span class="pe-lbl">Forced on Noah</span></button>
@@ -1052,7 +1313,70 @@ function renderPointEntry() {
 </div>`;
 
   } else if (mode === 'intense') {
-    // If intensePhase is null, initialize — always start at serve screen
+
+    // Fallback: render medium mode UI for this point
+    if (voiceUseTap) {
+      const noahServing = score.server === 'noah' || score.server === null;
+      root.innerHTML = `
+<div class="point-entry">
+  ${noahServing ? `
+  <button style="width:100%;border:none;border-radius:10px;padding:12px;margin-bottom:10px;background:#004D20;color:#69FFBB;border:1px solid #00E676;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onclick="logStandalone('SW','Serve Winner');voiceUseTap=false;">
+    <span>Serve Winner ★</span><span style="font-family:'Bebas Neue',sans-serif;font-size:20px">${gameCounts().SW||0}</span>
+  </button>` : ''}
+  <div class="pe-grid" style="align-items:stretch;">
+    <div style="display:flex;flex-direction:column;">
+      <div class="pe-col-label">Position</div>
+      ${['Baseline','Approach','Net'].map(p=>`
+      <button class="pe-btn pe-pos${selPos===p?' selected':''}" id="pos-${p}" onclick="selectPos('${p}')">
+        <span class="pe-count">${(gameCounts().pos||{})[p]||0}</span>
+        <span class="pe-lbl">${p}</span>
+      </button>`).join('')}
+    </div>
+    <div style="display:flex;flex-direction:column;">
+      <div class="pe-col-label">Shot</div>
+      ${['Forehand','Backhand'].map(s=>`
+      <button class="pe-btn pe-shot${selShot===s?' selected':''}" id="shot-${s}" onclick="selectShot('${s}')">
+        <span class="pe-count">${(gameCounts().shot||{})[s]||0}</span>
+        <span class="pe-lbl">${s}</span>
+      </button>`).join('')}
+    </div>
+    <div style="display:flex;flex-direction:column;">
+      <div class="pe-col-label">Outcome</div>
+      <div id="outCol" class="pe-col-outcomes${(selPos&&selShot)?'':' locked'}" style="flex:1;display:flex;flex-direction:column;">
+        <button class="pe-btn pe-out-w"   onclick="commitPoint('W','noah');voiceUseTap=false;"><span class="pe-count">${gameCounts().W||0}</span><span class="pe-lbl">Winner</span></button>
+        <button class="pe-btn pe-out-foo" onclick="commitPoint('FOO','noah');voiceUseTap=false;"><span class="pe-count">${gameCounts().FOO||0}</span><span class="pe-lbl">Forced → Noah</span></button>
+        <button class="pe-btn pe-out-fon" onclick="commitPoint('FON','opp');voiceUseTap=false;"><span class="pe-count">${gameCounts().FON||0}</span><span class="pe-lbl">Forced on Noah</span></button>
+        <button class="pe-btn pe-out-ueo" onclick="commitPoint('UEO','noah');voiceUseTap=false;"><span class="pe-count">${gameCounts().UEO||0}</span><span class="pe-lbl">Opp UE → Noah</span></button>
+        <button class="pe-btn pe-out-uen" onclick="commitPoint('UEN','opp');voiceUseTap=false;"><span class="pe-count">${gameCounts().UEN||0}</span><span class="pe-lbl">Noah UE</span></button>
+      </div>
+    </div>
+  </div>
+  <button onclick="voiceUseTap=false;renderPointEntry();" style="margin-top:8px;width:100%;border:none;background:transparent;color:var(--muted);font-size:11px;font-weight:600;padding:6px;cursor:pointer;text-decoration:underline;">Back to voice</button>
+</div>`;
+      return;
+    }
+
+    // Voice primary UI
+    const isRecording  = voiceState === 'recording';
+    const isProcessing = voiceState === 'processing';
+    const isError      = voiceState === 'error';
+
+    root.innerHTML = `
+<div class="voice-screen">
+  <button class="voice-hold-btn${isRecording?' recording':''}"
+    ontouchstart="voiceStartRecording()" ontouchend="voiceStopRecording()"
+    onmousedown="voiceStartRecording()" onmouseup="voiceStopRecording()" onmouseleave="voiceStopRecording()">
+    <span class="voice-icon">${isRecording ? '🔴' : isProcessing ? '<span class="voice-spinner"></span>' : '🎤'}</span>
+    <span class="voice-lbl">${isRecording ? 'Recording… release when done' : isProcessing ? 'Parsing point…' : 'Hold to narrate the point'}</span>
+  </button>
+  ${voiceTranscript && !isError ? `<div class="voice-transcript">"${voiceTranscript}"</div>` : ''}
+  ${!voiceTranscript && !isError ? `<div class="voice-transcript empty">e.g. "hard serve, return in, forehand ground, unforced error"</div>` : ''}
+  ${isError ? `<div class="voice-error">⚠ ${voiceTranscript}<br><br><button onclick="voiceRedo()" style="background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;">Try again</button></div>` : ''}
+  <button class="voice-tap-fallback" onclick="voiceSwitchToTap()">Switch to manual entry for this point</button>
+</div>`;
+    return;
+
+    // TAP FALLBACK — existing serve/rally UI (unreachable in voice mode, kept for reference)
     if (!intensePhase) {
       intensePhase = score.server === null ? 'serve0' : 'serve1';
     }
@@ -1265,6 +1589,9 @@ function awardPoint(winner){
     if(score.game[w]>=4&&score.game[l]<3){triggerGameWon(winner);return;}
   }
   saveState(); updateUI();
+  if((matchConfig.trackingMode||'medium')==='medium'){
+    setTimeout(()=>window.scrollTo({top:0,behavior:'smooth'}),80);
+  }
 }
 function triggerGameWon(winner){
   pendingGameWinner=winner;
@@ -1442,7 +1769,15 @@ function logServe(serve,result){
   sets[currentSet].push(entry);
   gameLog.push(entry);
   if(result==='df'){awardPoint(serve==='opp'?'noah':'opp');}
-  else{saveState();updateUI();}
+  else{
+    saveState();updateUI();
+    // In medium mode, scroll point entry into view after logging a serve
+    if((matchConfig.trackingMode||'medium')==='medium' && result!=='out'){
+      setTimeout(()=>{
+        window.scrollBy({top: 120, behavior:'smooth'});
+      },80);
+    }
+  }
 }
 // Per-game counts from gameLog
 function gameCounts(){
@@ -1655,12 +1990,12 @@ function doReset(){
 
 // ── SAVE MATCH ──
 function openSaveDialog(){
-  // Pre-fill today's date
   const today = new Date();
   const yyyy = today.getFullYear();
   const mm = String(today.getMonth()+1).padStart(2,'0');
   const dd = String(today.getDate()).padStart(2,'0');
-  document.getElementById('saveDate').value = yyyy+'-'+mm+'-'+dd;
+  const todayStr = yyyy+'-'+mm+'-'+dd;
+  document.getElementById('saveDate').value = matchConfig.date || todayStr;
   document.getElementById('saveOpponent').value = matchConfig.opponent || '';
   document.getElementById('saveStatus').textContent = '';
   document.getElementById('saveOverlay').classList.add('open');
@@ -1823,7 +2158,7 @@ function saveAsHTML() {
   .section{background:#f8f8f8;border-radius:8px;padding:2px 8px;margin-bottom:16px;}
 </style></head><body>
 <h1>Noah Tennis</h1>
-<h2>${dateStr} · vs ${opp}</h2>
+<h2>${dateStr} · vs ${opp}${matchConfig.noahUTR||matchConfig.oppUTR ? ` · Noah ${matchConfig.noahUTR||'?'} UTR vs Opp ${matchConfig.oppUTR||'?'} UTR` : ''}</h2>
 <h3>Set Score</h3>
 <div class="section"><table>${setRows}</table></div>
 <h3>Stats</h3>
@@ -1842,7 +2177,7 @@ function saveAsJSON() {
   const {opp, dateStr, dateVal} = matchMeta();
   const filename = `noah-tennis-${dateVal||'match'}-vs-${opp.replace(/[^a-z0-9]/gi,'-').toLowerCase()}.json`;
   const data = {
-    meta: { player:'Noah', opponent:opp, date:dateVal, dateFormatted:dateStr, trackingMode:matchConfig.trackingMode||'medium', savedAt:new Date().toISOString() },
+    meta: { player:'Noah', noahUTR:matchConfig.noahUTR||'', opponent:opp, oppUTR:matchConfig.oppUTR||'', date:dateVal, dateFormatted:dateStr, trackingMode:matchConfig.trackingMode||'medium', savedAt:new Date().toISOString() },
     setScores: score.sets,
     summary: buildSummaryData().stats,
     pointLog: sets.flatMap((s,i)=>s.map(e=>({...e,set:i+1})))
@@ -1876,15 +2211,15 @@ function triggerDownload(content, filename, mimeType) {
 
 // ── START SCREEN ──
 function openStartScreen() {
-  // Pre-fill today's date
   const today = new Date();
   const yyyy = today.getFullYear();
   const mm = String(today.getMonth()+1).padStart(2,'0');
   const dd = String(today.getDate()).padStart(2,'0');
   document.getElementById('setupDate').value = yyyy+'-'+mm+'-'+dd;
   document.getElementById('setupOpponent').value = matchConfig.opponent || '';
+  document.getElementById('setupNoahUTR').value = matchConfig.noahUTR || '';
+  document.getElementById('setupOppUTR').value  = matchConfig.oppUTR  || '';
   document.getElementById('startError').textContent = '';
-  // Reflect current config selections
   reflectSetupSelections();
   document.getElementById('startScreen').classList.remove('hidden');
   validateStart();
@@ -1944,7 +2279,9 @@ function startMatch() {
   const opp = document.getElementById('setupOpponent').value.trim();
   if(!opp) return;
   matchConfig.opponent = opp;
-  matchConfig.date = document.getElementById('setupDate').value;
+  matchConfig.date     = document.getElementById('setupDate').value;
+  matchConfig.noahUTR  = document.getElementById('setupNoahUTR').value.trim();
+  matchConfig.oppUTR   = document.getElementById('setupOppUTR').value.trim();
   // Reset server and intense state for fresh match
   score.server = null;
   intensePhase = null;
