@@ -260,11 +260,6 @@
   </div>
 
   <div class="start-section">
-    <div class="start-section-label">Match Date</div>
-    <input class="start-input" type="date" id="setupDate">
-  </div>
-
-  <div class="start-section">
     <div class="start-section-label">Scoring</div>
     <div class="start-toggle-row two">
       <div class="start-opt sel-green" id="sc-ad"   onclick="setupSelect('scoring','ad')">AD Scoring<span class="start-opt-sub">Deuce / Advantage</span></div>
@@ -357,7 +352,7 @@
     <div class="serve-row">
       <div class="serve-name">2nd</div>
       <button class="serve-btn in"  onclick="logServe('2nd','in')"><span class="btn-count" id="s2in">0</span><span class="btn-label">In ✓</span></button>
-      <button class="serve-btn out" onclick="logServe('2nd','out')"><span class="btn-count" id="s2out">0</span><span class="btn-label">Fault ✗</span></button>
+      <button class="serve-btn soft" onclick="logServe('2nd','soft')"><span class="btn-count" id="s2soft">0</span><span class="btn-label">Soft In</span></button>
       <button class="serve-btn df"  onclick="logServe('2nd','df')"><span class="btn-count" id="s2df">0</span><span class="btn-label">D.Fault</span></button>
     </div>
   </div>
@@ -473,7 +468,6 @@
   <div class="save-card">
     <div class="save-card-title">Save Match</div>
     <div class="save-field"><label>Opponent Name</label><input type="text" id="saveOpponent" placeholder="e.g. Smith, J." autocomplete="off"></div>
-    <div class="save-field"><label>Match Date</label><input type="date" id="saveDate"></div>
     <div class="save-actions">
       <button class="save-action-btn html"       onclick="saveAsHTML()">📄 Download HTML Summary</button>
       <button class="save-action-btn json"       onclick="saveAsJSON()">📊 Download Raw Data (JSON)</button>
@@ -735,7 +729,7 @@ function logServe(serve, result) {
 function counts(setIdx) {
   const entries = setIdx==='all' ? sets.flat() : sets[setIdx];
   const c = { W:0,UEN:0,FON:0,FOO:0,UEO:0,SW:0,BW:0,BL:0,
-    S1in:0,S1soft:0,S1out:0,S2in:0,S2out:0,S2df:0,oppDf:0,
+    S1in:0,S1soft:0,S1out:0,S2in:0,S2soft:0,S2df:0,oppDf:0,
     pos:{}, shot:{}, outcome:{} };
   for (const e of entries) {
     if (e.category==='serve') {
@@ -744,7 +738,7 @@ function counts(setIdx) {
       else if (e.serve==='1st'&&e.result==='soft')c.S1soft++;
       else if (e.serve==='1st'&&e.result==='out') c.S1out++;
       else if (e.serve==='2nd'&&e.result==='in')  c.S2in++;
-      else if (e.serve==='2nd'&&e.result==='out') c.S2out++;
+      else if (e.serve==='2nd'&&e.result==='soft') c.S2soft++;
       else if (e.serve==='2nd'&&e.result==='df')  c.S2df++;
     } else if (e.category==='point') {
       c[e.outcome] = (c[e.outcome]||0)+1;
@@ -760,7 +754,7 @@ function counts(setIdx) {
 }
 function gameCounts() {
   const c = { W:0,FOO:0,FON:0,UEO:0,UEN:0,SW:0,BW:0,BL:0,
-    S1in:0,S1soft:0,S1out:0,S2in:0,S2out:0,S2df:0,oppDf:0, pos:{},shot:{} };
+    S1in:0,S1soft:0,S1out:0,S2in:0,S2soft:0,S2df:0,oppDf:0, pos:{},shot:{} };
   for (const e of gameLog) {
     if (e.category==='serve') {
       if (e.serve==='opp'&&e.result==='df')       c.oppDf++;
@@ -768,7 +762,7 @@ function gameCounts() {
       else if (e.serve==='1st'&&e.result==='soft')c.S1soft++;
       else if (e.serve==='1st'&&e.result==='out') c.S1out++;
       else if (e.serve==='2nd'&&e.result==='in')  c.S2in++;
-      else if (e.serve==='2nd'&&e.result==='out') c.S2out++;
+      else if (e.serve==='2nd'&&e.result==='soft') c.S2soft++;
       else if (e.serve==='2nd'&&e.result==='df')  c.S2df++;
     } else if (e.category==='point') {
       c[e.outcome] = (c[e.outcome]||0)+1;
@@ -832,7 +826,7 @@ function updateUI() {
   document.getElementById('s1soft').textContent = gc.S1soft;
   document.getElementById('s1out').textContent  = gc.S1out;
   document.getElementById('s2in').textContent   = gc.S2in;
-  document.getElementById('s2out').textContent  = gc.S2out;
+  document.getElementById('s2soft').textContent  = gc.S2soft;
   document.getElementById('s2df').textContent   = gc.S2df;
   document.getElementById('oppDfCount').textContent = gc.oppDf;
   document.getElementById('s1pct').textContent  = pct(gc.S1in+gc.S1soft, gc.S1in+gc.S1soft+gc.S1out);
@@ -865,7 +859,7 @@ function toggleMatchStats() {
 }
 function renderMatchStats() {
   const all = counts('all');
-  const s1t = all.S1in+all.S1soft+all.S1out, s2t = all.S2in+all.S2out+all.S2df;
+  const s1t = all.S1in+all.S1soft+all.S1out, s2t = all.S2in+all.S2soft+all.S2df;
   const items = [
     {label:'Points Won',val:all.winners,cls:'g'},
     {label:'Noah UE',val:all.UEN||0,cls:'r'},
@@ -922,7 +916,7 @@ function renderLog() {
 // ── SUMMARY / SAVE ──
 function openSummary() {
   const all = counts('all');
-  const s1t=all.S1in+all.S1soft+all.S1out, s2t=all.S2in+all.S2out+all.S2df;
+  const s1t=all.S1in+all.S1soft+all.S1out, s2t=all.S2in+all.S2soft+all.S2df;
   const grid = [
     {label:'Points Won',val:all.winners,cls:'g'},
     {label:'Noah UE',val:all.UEN||0,cls:'r'},
@@ -963,9 +957,6 @@ function doReset() {
 }
 
 function openSaveDialog() {
-  const today = new Date();
-  const yyyy=today.getFullYear(), mm=String(today.getMonth()+1).padStart(2,'0'), dd=String(today.getDate()).padStart(2,'0');
-  document.getElementById('saveDate').value    = matchConfig.date || yyyy+'-'+mm+'-'+dd;
   document.getElementById('saveOpponent').value = matchConfig.opponent || '';
   document.getElementById('saveStatus').textContent = '';
   document.getElementById('saveOverlay').classList.add('open');
@@ -973,15 +964,15 @@ function openSaveDialog() {
 function closeSaveDialog(){ document.getElementById('saveOverlay').classList.remove('open'); }
 
 function matchMeta() {
-  const opp = document.getElementById('saveOpponent').value.trim() || 'Unknown';
-  const dateVal = document.getElementById('saveDate').value;
+  const opp     = document.getElementById('saveOpponent').value.trim() || 'Unknown';
+  const dateVal = matchConfig.date || '';
   const dateStr = dateVal ? new Date(dateVal+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : 'Unknown date';
   return { opp, dateStr, dateVal };
 }
 
 function buildSummaryData() {
   const all = counts('all');
-  const s1t=all.S1in+all.S1soft+all.S1out, s2t=all.S2in+all.S2out+all.S2df;
+  const s1t=all.S1in+all.S1soft+all.S1out, s2t=all.S2in+all.S2soft+all.S2df;
   return {
     setScores: score.sets,
     stats: {
@@ -989,7 +980,7 @@ function buildSummaryData() {
       'Forced on Noah':all.FON||0,'Noah forced Opp':all.FOO||0,'Opp UE':all.UEO||0,
       'Serve Winners':all.SW||0,'1st Serve In':all.S1in,'1st Serve Soft':all.S1soft||0,
       '1st Serve Fault':all.S1out,'1st Serve %':pct(all.S1in+all.S1soft,s1t),
-      '2nd Serve In':all.S2in,'2nd Serve Fault':all.S2out,'Double Faults':all.S2df,
+      '2nd Serve In':all.S2in,'2nd Serve Soft':all.S2soft,'Double Faults':all.S2df,
       '2nd Serve %':pct(all.S2in,s2t),
       'Baseline Points':all.pos['Baseline']||0,'Approach Points':all.pos['Approach']||0,'Net Points':all.pos['Net']||0,
       'Forehand Points':all.shot['Forehand']||0,'Backhand Points':all.shot['Backhand']||0,
@@ -1073,9 +1064,6 @@ function triggerDownload(content, filename, mimeType) {
 
 // ── START SCREEN ──
 function openStartScreen() {
-  const today = new Date();
-  const yyyy=today.getFullYear(), mm=String(today.getMonth()+1).padStart(2,'0'), dd=String(today.getDate()).padStart(2,'0');
-  document.getElementById('setupDate').value    = yyyy+'-'+mm+'-'+dd;
   document.getElementById('setupOpponent').value = matchConfig.opponent || '';
   document.getElementById('setupNoahUTR').value  = matchConfig.noahUTR  || '';
   document.getElementById('setupOppUTR').value   = matchConfig.oppUTR   || '';
@@ -1119,14 +1107,13 @@ function startMatch() {
     return;
   }
   matchConfig.opponent = opp;
-  matchConfig.date     = document.getElementById('setupDate').value;
+  const today = new Date();
+  matchConfig.date = today.getFullYear()+'-'+String(today.getMonth()+1).padStart(2,'0')+'-'+String(today.getDate()).padStart(2,'0');
   matchConfig.noahUTR  = document.getElementById('setupNoahUTR').value.trim();
   matchConfig.oppUTR   = document.getElementById('setupOppUTR').value.trim();
   score.server = null;
   gameLog = [];
   document.getElementById('startScreen').classList.add('hidden');
-  document.getElementById('saveOpponent').value = opp;
-  document.getElementById('saveDate').value     = matchConfig.date;
   saveState();
   updateUI();
 }
